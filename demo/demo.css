@@ -1,0 +1,45 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    display: table;
+    width: 100%;
+    height: 100%;
+    background-color: #2b4d5f;
+    text-align: center;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, sans-serif;
+}
+
+.container {
+    display: table-cell;
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.btn {
+    display: inline-block;
+    margin: 10px;
+    padding: .55em 2.5em;
+    outline: 0;
+    border: 0;
+    border-radius: 2px;
+    background: #e0e3e5;
+    box-shadow: none;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 1em;
+    line-height: 1.65em;
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+
+.btn--primary {
+    background-color: #27a960;
+}
