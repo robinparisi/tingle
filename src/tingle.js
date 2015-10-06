@@ -49,7 +49,7 @@
             if(modalHeight < viewportHeight) {
                 modalContent.classList.add('tingle-modal__content--center');
             }
-            
+
             window.setTimeout(function(){
                 modal.classList.add('tingle-modal--visible');
             }, 50);
