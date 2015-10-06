@@ -38,12 +38,28 @@
         };
 
         var open = function(options) {
-            modal.classList.add('tingle-modal--visible');
+            modal.style.display = 'block';
+            var modalHeight = Math.max(modalContent.offsetHeight, modalContent.scrollHeight, modalContent.clientHeight || 0);
+            var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+            console.log(modalContent.offsetHeight);
+            console.log(modalContent.scrollHeight);
+            console.log(modalContent.clientHeight);
+
+            if(modalHeight < viewportHeight) {
+                modalContent.classList.add('tingle-modal__content--center');
+            }
+            
+            window.setTimeout(function(){
+                modal.classList.add('tingle-modal--visible');
+            }, 50);
+
         };
 
         var close = function(e) {
+            modal.style.display = 'none';
             modal.classList.remove('tingle-modal--visible');
-            console.log(e);
+            modalContent.classList.remove('tingle-modal__content--center');
         };
 
         var _catchEvent = function(e) {
@@ -75,29 +91,30 @@
 
         var _bindEvents = function() {
             bind(modalCloseBtn, 'click', close);
-            bind(modalWrapper, 'click', close);
+            bind(modal, 'click', close);
             bind(modalContent, 'click', _catchEvent);
 
         };
 
         var _unbindEvents = function() {
             unbind(modalCloseBtn, 'click', close);
-            unbind(modalWrapper, 'click', close);
+            unbind(modal, 'click', close);
             unbind(modalContent, 'click', _catchEvent);
         };
 
         var _build = function() {
             modal = create('div', 'tingle-modal');
+            modal.style.display = 'none';
 
             modalCloseBtn = create('button', 'tingle-modal__close');
             modalCloseBtn.innerHTML = '×';
 
-            modalWrapper = create('div', 'tingle-modal__wrapper');
+            //modalWrapper = create('div', 'tingle-modal__wrapper');
 
             modalContent = create('div', 'tingle-modal__content');
 
             modal.appendChild(modalCloseBtn);
-            modal.appendChild(modalWrapper).appendChild(modalContent);
+            modal.appendChild(modalContent);
         };
 
         return {

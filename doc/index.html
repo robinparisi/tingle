@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<title>Tingle</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="demo.css" media="all">
+	<link rel="stylesheet" href="../src/tingle.css" media="all">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+	<div class="container">
+		<h1>tingle.js</h1>
+		<p>
+			Curabitur blandit tempus porttitor. Etiam porta sem malesuada magna mollis euismod.
+		</p>
+		<ul>
+			<li>item 1</li>
+			<li>item 2</li>
+			<li>item 3</li>
+			<li>item 4</li>
+		</ul>
+
+		<h2>Démonstration</h2>
+		<h2>Installation</h2>
+		<pre><code>bower install tingle</code></pre>
+		<p>Tingle use just one small CSS. Feel free to include it in your worflow (Less, SASS, etc...) and customise it to fit your needs.</p>
+		<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;tingle.min.css&quot;&gt;</code></pre>
+		<p>Then, just include tingle somewhere in your document</p>
+		<h2>API</h2>
+		<p>
+			Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Cras mattis consectetur purus sit amet fermentum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Nullam quis risus eget urna mollis ornare vel eu leo. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Nullam id dolor id nibh ultricies vehicula ut id elit. Donec id elit non mi porta gravida at eget metus.
+</p>
+<p>
+	Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Cras mattis consectetur purus sit amet fermentum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Nullam quis risus eget urna mollis ornare vel eu leo. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Nullam id dolor id nibh ultricies vehicula ut id elit. Donec id elit non mi porta gravida at eget metus.
+</p>
+<p>
+	Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Cras mattis consectetur purus sit amet fermentum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Nullam quis risus eget urna mollis ornare vel eu leo. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Nullam id dolor id nibh ultricies vehicula ut id elit. Donec id elit non mi porta gravida at eget metus.
+</p>
+		<button class="btn btn--primary js-tingle-tiny">Exemple (tiny content)</button>
+		<button class="btn btn--secondary js-tingle-big">Exemple (big content)</button>
+	</div>
+	<div class="tingle-demo tingle-demo-tiny">
+		<h1>A small content</h1>
+		<p>Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+	</div>
+
+	<div class="tingle-demo tingle-demo-big">
+		<h1>A big content</h1>
+		<p>Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+		<img src="http://lorempixel.com/600/400/sports" height="400">
+		<p>Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+	</div>
+
+	<script src="../src/tingle.js"></script>
+	<script type="text/javascript">
+	tingle.modal.init();
+	var btn = document.querySelector('.js-tingle-tiny');
+	btn.addEventListener('click', function(){
+		tingle.modal.setContent(document.querySelector('.tingle-demo-tiny').innerHTML);
+		tingle.modal.open();
+	});
+
+	var btn = document.querySelector('.js-tingle-big');
+	btn.addEventListener('click', function(){
+		tingle.modal.setContent(document.querySelector('.tingle-demo-big').innerHTML);
+		tingle.modal.open();
+	});
+	</script>
+</body>
+</html>
