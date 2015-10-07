@@ -1,0 +1,226 @@
+/* rythm
+-------------------------------------------------------------- */
+
+html {
+    font-size: 62.5%;
+}
+body {
+    font-size: 1.6em;
+    line-height: 1.5;
+}
+p,
+ul,
+ol,
+dl,
+blockquote,
+pre,
+td,
+th,
+textarea {
+    font-size: 1em; /* equiv 16px */
+    line-height: 1.5;
+    margin: 1.5em 0;
+}
+h1,
+.h1-like {
+    font-size:  2.125em; /* equiv 34px */
+    line-height: 1.4118;
+    margin:  1.4118em 0 .7059em 0;
+}
+h2,
+.h2-like {
+    font-size:  1.625em; /* equiv 26px */
+    line-height: 1.8462;
+    margin:  1.8462em 0 .9231em 0;
+}
+h3,
+.h3-like {
+    font-size:  1.5em; /* equiv 24px */
+    line-height:  1;
+    margin:  2em 0  1em 0;
+}
+h4,
+.h4-like {
+    font-size:  1.375em; /* equiv 22px */
+    line-height:  1.0909;
+    margin:  2.1818em 0  1.0909em 0;
+}
+h5,
+.h5-like {
+    font-size:  1.25em; /* equiv 20px */
+    line-height:  1.2;
+    margin:  2.4em 0  1.2em 0;
+}
+h6,
+.h6-like {
+    font-size:  1.125em; /* equiv 18px */
+    line-height:  1.3333;
+    margin:  2.6666em 0  1.3333em 0;
+}
+.smaller {
+    font-size: .625em; /* equiv 10px */
+    line-height:  2.4;
+    margin:  2.4em 0  2.4em 0;
+}
+.small {
+    font-size: .75em; /* equiv 12px */
+    line-height:  2;
+    margin:  2em 0  2em 0;
+}
+.big {
+    font-size:  1.125em; /* equiv 18px */
+    line-height:  1.3333;
+    margin:  1.3333em 0  1.3333em 0;
+}
+.bigger {
+    font-size:  1.25em; /* equiv 20px */
+    line-height:  1.2;
+    margin:  1.2em 0  1.2em 0;
+}
+.biggest {
+    font-size:  1.375em; /* equiv 22px */
+    line-height:  1.0909;
+    margin:  1.0909em 0  1.0909em 0;
+}
+
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child,
+h5:first-child,
+h6:first-child {
+    margin-top: 0;
+}
+
+/* avoid last-child bottom margin */
+p:last-child,
+ul:last-child,
+ol:last-child,
+dl:last-child,
+blockquote:last-child,
+pre:last-child,
+table:last-child {
+    margin-bottom: 0;
+}
+
+
+/* avoid supp margin on nested elements */
+li p,
+li ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+/* you shall not pass */
+textarea,
+table,
+td,
+th,
+code,
+pre,
+samp,
+div,
+p {
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -o-hyphens: auto;
+    hyphens: auto;
+}
+code,
+pre,
+samp {
+    white-space: pre-wrap;
+    font-family: consolas, 'DejaVu Sans Mono', courier, monospace;
+}
+code {
+    line-height: 1;
+}
+table {
+    margin-bottom: 1.5em;
+}
+/* style
+-------------------------------------------------------------- */
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #215a6d;
+    font-family: 'Roboto', sans-serif;
+}
+
+a,
+a:hover,
+a:visited {
+    color: #dfece6;
+    text-decoration: underline;
+}
+
+h2,
+h3 {
+    border-bottom: 1px dotted #dfece6;
+}
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 60%;
+    color: #fff;
+}
+
+.btn {
+    display: inline-block;
+    padding: .5em 1.5em;
+    outline: 0;
+    border: 0;
+    border-radius: 2px;
+    background: #e0e3e5;
+    box-shadow: none;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 1em;
+    line-height: 1.65em;
+    cursor: pointer;
+
+    -webkit-appearance: none;
+}
+
+.btn--primary {
+    background-color: #3ca2a2;
+}
+
+.btn--secondary {
+    background-color: #92c7a3;
+}
+
+pre {
+    background-color: #2d2d29;
+    padding: 15px 10px;
+}
+
+code {
+    background-color: #3ca2a2;
+    color: #fff;
+    padding: 2px 5px;
+    border-radius: 5px;
+}
+
+.tingle-demo {
+    display: none;
+}
+
+.mr1 {
+    margin-right: 10px;
+}
+
+.list-blh {
+    line-height: 1.8;
+}
