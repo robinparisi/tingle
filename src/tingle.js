@@ -42,10 +42,6 @@
             var modalHeight = Math.max(modalContent.offsetHeight, modalContent.scrollHeight, modalContent.clientHeight || 0);
             var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 
-            console.log(modalContent.offsetHeight);
-            console.log(modalContent.scrollHeight);
-            console.log(modalContent.clientHeight);
-
             if(modalHeight < viewportHeight) {
                 modalContent.classList.add('tingle-modal__content--center');
             }
