@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<title>Tingle</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="normalize.css" media="all">
+	<link rel="stylesheet" href="demo.css" media="all">
+	<link rel="stylesheet" href="../src/tingle.css" media="all">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+	<div class="container">
+		<h1>tingle.js</h1>
+		<p>
+			A simple modal plugin written in pure JavaScript (<a href="https://github.com/robinparisi/tingle">Source code on GitHub</a>).
+		</p>
+		<ul>
+			<li>No dependencies required</li>
+			<li>Fully customizable via CSS</li>
+			<li>CSS3 transitions</li>
+			<li>Simple API</li>
+			<li>No extra files to download</li>
+		</ul>
+
+		<h2>Demo</h2>
+		<button class="btn btn--primary mr1 js-tingle-tiny">Example (tiny content)</button>
+		<button class="btn btn--secondary js-tingle-big">Example (big content)</button>
+		<h2>Installation</h2>
+		<pre style="background:#042029;color:#839496">bower install tingle</pre>
+
+		<p>Tingle uses just one small CSS. Feel free to include it in your workflow (Less, Sass, etc...) and customize it to fit yours needs.</p>
+
+		<pre style="background:#042029;color:#839496"><span style="color:#586e75">&lt;</span><span style="color:#268bd2;font-weight:700">link</span> <span style="color:#93a1a1">rel</span>=<span style="color:#269186"><span style="color:#269186">"</span>stylesheet<span style="color:#269186">"</span></span> <span style="color:#93a1a1">href</span>=<span style="color:#269186"><span style="color:#269186">"</span>tingle.min.css<span style="color:#269186">"</span></span><span style="color:#586e75">></span></pre>
+
+		<p>Then, just include tingle in your document :</p>
+
+		<pre style="background:#042029;color:#839496"><span style="color:#586e75">&lt;</span><span style="color:#268bd2;font-weight:700">script</span> <span style="color:#93a1a1">src</span>=<span style="color:#269186"><span style="color:#269186">"</span>tingle.min.js<span style="color:#269186">"</span></span><span style="color:#586e75">>&lt;/</span><span style="color:#268bd2;font-weight:700">script</span><span style="color:#586e75">></span></pre>
+		<p>Use tingle :</p>
+
+		<pre style="background:#042029;color:#839496"><span style="color:#268bd2">tingle.modal.init</span>();<br><span style="color:#268bd2">tingle.modal.setContent</span>(<span style="color:#269186"><span style="color:#748b00">'</span>&lt;p>Here some content&lt;/p><span style="color:#748b00">'</span></span>);<br><span style="color:#268bd2">tingle.modal.open</span>();</pre>
+
+		<h2>API</h2>
+		<ul class="list-blh">
+			<li><code>init</code> - init tingle (build modal, bind events, insert modal in dom)</li>
+			<li><code>setContent</code> - set modal content</li>
+			<li><code>open</code> - open modal</li>
+			<li><code>close</code> - close modal</li>
+			<li><code>destroy</code> - destroy tingle (unbind events, remove modal from dom)</li>
+		</ul>
+	</div>
+
+	<!-- Tingle tiny content -->
+	<div class="tingle-demo tingle-demo-tiny">
+		<h1>A small content</h1>
+		<p>Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+	</div>
+	<!-- /Tingle tiny content -->
+
+	<!-- Tingle big content -->
+	<div class="tingle-demo tingle-demo-big">
+		<h1>A big content</h1>
+		<p>Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+		<img src="http://lorempixel.com/600/400/sports" height="400">
+		<p>Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+	</div>
+	<!-- /Tingle big content -->
+
+	<script src="../src/tingle.js"></script>
+	<script type="text/javascript">
+	tingle.modal.init();
+	var btn = document.querySelector('.js-tingle-tiny');
+	btn.addEventListener('click', function(){
+		tingle.modal.setContent(document.querySelector('.tingle-demo-tiny').innerHTML);
+		tingle.modal.open();
+	});
+
+	var btn = document.querySelector('.js-tingle-big');
+	btn.addEventListener('click', function(){
+		tingle.modal.setContent(document.querySelector('.tingle-demo-big').innerHTML);
+		tingle.modal.open();
+	});
+	</script>
+</body>
+</html>
