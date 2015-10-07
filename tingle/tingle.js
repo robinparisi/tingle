@@ -1,7 +1,7 @@
 /*!
 * tingle.js
 * @author  robin_parisi
-* @version 0.1.0
+* @version 0.0.1
 * @url
 */
 (function (root, factory) {
@@ -41,10 +41,6 @@
             modal.style.display = 'block';
             var modalHeight = Math.max(modalContent.offsetHeight, modalContent.scrollHeight, modalContent.clientHeight || 0);
             var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-
-            console.log(modalContent.offsetHeight);
-            console.log(modalContent.scrollHeight);
-            console.log(modalContent.clientHeight);
 
             if(modalHeight < viewportHeight) {
                 modalContent.classList.add('tingle-modal__content--center');
