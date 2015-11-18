@@ -21,11 +21,13 @@
     /**
     * Modal constructor
     */
-    function Modal() {
+    function Modal(options) {
         this.modal;
         this.modalCloseBtn;
         this.modalWrapper;
         this.modalContent;
+        options = options ? options : {};
+        this.onClose = options.onClose ? options.onClose : null;
     }
 
     /**
@@ -62,6 +64,9 @@
         this.modal.style.display = 'none';
         this.modal.classList.remove('tingle-modal--visible');
         this.modalContent.classList.remove('tingle-modal__content--center');
+        if(typeof this.onClose === "function") {
+            this.onClose();
+        }
     };
 
     /**

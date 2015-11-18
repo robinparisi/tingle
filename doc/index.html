@@ -69,8 +69,16 @@
 	<script src="tingle/tingle.js"></script>
 	<script type="text/javascript">
 
-	var modalTiny = new tingle.modal();
-	var modalBig = new tingle.modal();
+	var modalTiny = new tingle.modal({
+		onClose: function() {
+			console.log('close tiny modal');
+		}
+	});
+	var modalBig = new tingle.modal({
+		onClose: function() {
+			console.log('close big modal');
+		}
+	});
 
 	modalTiny.init();
 	modalBig.init();
