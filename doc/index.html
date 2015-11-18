@@ -59,7 +59,7 @@
 
 	<!-- Tingle big content -->
 	<div class="tingle-demo tingle-demo-big">
-		<h1>A big content</h1>
+		<h1 class="plop">A big content</h1>
 		<p>Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
 		<img src="http://lorempixel.com/600/400/sports" height="400">
 		<p>Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
@@ -68,17 +68,23 @@
 
 	<script src="tingle/tingle.js"></script>
 	<script type="text/javascript">
-	tingle.modal.init();
+
+	var modalTiny = new tingle.modal();
+	var modalBig = new tingle.modal();
+
+	modalTiny.init();
+	modalBig.init();
+
 	var btn = document.querySelector('.js-tingle-tiny');
 	btn.addEventListener('click', function(){
-		tingle.modal.setContent(document.querySelector('.tingle-demo-tiny').innerHTML);
-		tingle.modal.open();
+		modalTiny.setContent(document.querySelector('.tingle-demo-tiny').innerHTML);
+		modalTiny.open();
 	});
 
 	var btn = document.querySelector('.js-tingle-big');
 	btn.addEventListener('click', function(){
-		tingle.modal.setContent(document.querySelector('.tingle-demo-big').innerHTML);
-		tingle.modal.open();
+		modalBig.setContent(document.querySelector('.tingle-demo-big').innerHTML);
+		modalBig.open();
 	});
 	</script>
 </body>

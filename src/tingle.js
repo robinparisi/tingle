@@ -13,114 +13,113 @@
         root.tingle = factory();
     }
 }(this, function () {
-    var btn;
-
-    var modal = {};
-    var confirm = {};
-    var alert = {};
 
     /* ----------------------------------------------------------- */
     /* == modal */
     /* ----------------------------------------------------------- */
 
-    var modal = (function() {
+    /**
+    * Modal constructor
+    */
+    function Modal() {
+        this.modal;
+        this.modalCloseBtn;
+        this.modalWrapper;
+        this.modalContent;
+    }
 
-        var modal;
-        var modalCloseBtn;
-        var modalWrapper;
-        var modalContent;
-        var content = '';
+    /**
+    * Init modal
+    */
+    Modal.prototype.init = function() {
+        _build.call(this);
+        _bindEvents.call(this);
+        _insertInDom.call(this);
+    };
 
-        var init = function() {
-            _build();
-            _bindEvents();
-            _insertInDom();
-        };
+    /**
+    * Open modal
+    */
+    Modal.prototype.open = function(options) {
+        this.modal.style.display = 'block';
+        var modalHeight = Math.max(this.modalContent.offsetHeight, this.modalContent.scrollHeight, this.modalContent.clientHeight || 0);
+        var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 
-        var open = function(options) {
-            modal.style.display = 'block';
-            var modalHeight = Math.max(modalContent.offsetHeight, modalContent.scrollHeight, modalContent.clientHeight || 0);
-            var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+        if(modalHeight < viewportHeight) {
+            this.modalContent.classList.add('tingle-modal__content--center');
+        }
+        var self = this;
+        window.setTimeout(function(){
+            self.modal.classList.add('tingle-modal--visible');
+        }, 50);
 
-            if(modalHeight < viewportHeight) {
-                modalContent.classList.add('tingle-modal__content--center');
-            }
+    };
 
-            window.setTimeout(function(){
-                modal.classList.add('tingle-modal--visible');
-            }, 50);
+    /**
+    * Close modal
+    */
+    Modal.prototype.close = function(e) {
+        this.modal.style.display = 'none';
+        this.modal.classList.remove('tingle-modal--visible');
+        this.modalContent.classList.remove('tingle-modal__content--center');
+    };
 
-        };
+    /**
+    * Destroy modal: unbind events dans remove from dom
+    */
+    Modal.prototype.destroy = function() {
+        _unbindEvents();
+        _removeFromDom();
+        this.modal = null;
+    };
 
-        var close = function(e) {
-            modal.style.display = 'none';
-            modal.classList.remove('tingle-modal--visible');
-            modalContent.classList.remove('tingle-modal__content--center');
-        };
+    /**
+    * Set content
+    */
+    Modal.prototype.setContent = function(content) {
+        this.modalContent.innerHTML = content;
+    };
 
-        var _catchEvent = function(e) {
-            e.stopPropagation();
-        };
+    var _insertInDom = function() {
+        insertInDom(this.modal);
+    };
 
-        var destroy = function() {
-            _unbindEvents();
-            _removeFromDom();
-            modal = null;
-        };
+    var _removeFromDom = function() {
+        if(document.querySelector('.tingle-modal')) {
+            removeFromDom(this.modal);
+        }
+    };
 
-        var setContent = function(content) {
-            modalContent.innerHTML = content;
-        };
+    var _bindEvents = function() {
+        bind(this.modalCloseBtn, 'click', this.close.bind(this));
+        bind(this.modal, 'click', this.close.bind(this));
+        bind(this.modalContent, 'click', _catchEvent);
+    };
 
-        var _insertInDom = function() {
-            // if the modal is not already in the dom
-            if(!document.querySelector('.tingle-modal')) {
-                insertInDom(modal);
-            }
-        };
+    var _catchEvent = function(e) {
+        e.stopPropagation();
+    };
 
-        var _removeFromDom = function() {
-            if(document.querySelector('.tingle-modal')) {
-                removeFromDom(modal);
-            }
-        };
+    var _unbindEvents = function() {
+        unbind(this.modalCloseBtn, 'click', this.close.bind(this));
+        unbind(this.modal, 'click', this.close.bind(this));
+        unbind(this.modalContent, 'click', _catchEvent);
+    };
 
-        var _bindEvents = function() {
-            bind(modalCloseBtn, 'click', close);
-            bind(modal, 'click', close);
-            bind(modalContent, 'click', _catchEvent);
+    var _build = function() {
+        this.modal = create('div', 'tingle-modal');
+        this.modal.style.display = 'none';
 
-        };
+        this.modalCloseBtn = create('button', 'tingle-modal__close');
+        this.modalCloseBtn.innerHTML = '×';
 
-        var _unbindEvents = function() {
-            unbind(modalCloseBtn, 'click', close);
-            unbind(modal, 'click', close);
-            unbind(modalContent, 'click', _catchEvent);
-        };
+        //modalWrapper = create('div', 'tingle-modal__wrapper');
 
-        var _build = function() {
-            modal = create('div', 'tingle-modal');
-            modal.style.display = 'none';
+        this.modalContent = create('div', 'tingle-modal__content');
 
-            modalCloseBtn = create('button', 'tingle-modal__close');
-            modalCloseBtn.innerHTML = '×';
-
-            //modalWrapper = create('div', 'tingle-modal__wrapper');
-
-            modalContent = create('div', 'tingle-modal__content');
-
-            modal.appendChild(modalCloseBtn);
-            modal.appendChild(modalContent);
-        };
-
-        return {
-            init: init,
-            open: open,
-            close: close,
-            destroy: destroy,
-            setContent: setContent
-        };
-    })();
+        this.modal.appendChild(this.modalCloseBtn);
+        this.modal.appendChild(this.modalContent);
+    };
 
     /* ----------------------------------------------------------- */
     /* == confirm */
@@ -171,7 +170,6 @@
         }
     }
 
-
     function create(element, cssClass) {
         var element = document.createElement(element);
         if(cssClass) {
@@ -185,9 +183,7 @@
     /* ----------------------------------------------------------- */
 
     return {
-        modal: modal,
-        alert: alert,
-        confirm: confirm
-    }
+        modal: Modal
+    };
 
 }));
