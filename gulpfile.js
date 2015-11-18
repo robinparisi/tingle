@@ -76,10 +76,18 @@ gulp.task('deploy', function() {
 /**
  * Copy sources to doc folder
  */
-gulp.task('copy', function () {
+gulp.task('copy', ['css', 'css-min', 'js', 'js-min'], function () {
     return gulp.src(['dist/**/*'])
       .pipe(gulp.dest('doc/tingle'));
 });
+
+/**
+ * Watch files for changes
+ */
+gulp.task('watch', function() {
+    gulp.watch('src/**', ['copy']);
+});
+
 
 gulp.task('doc', ['copy', 'deploy']);
 gulp.task('default', ['css', 'css-min', 'js', 'js-min']);
