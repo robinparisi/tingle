@@ -201,17 +201,10 @@ h3 {
     background-color: #92c7a3;
 }
 
-pre {
-    background-color: #2d2d29;
-    padding: 15px 10px;
+.hljs {
+    padding: 15px 20px;
 }
 
-code {
-    background-color: #3ca2a2;
-    color: #fff;
-    padding: 2px 5px;
-    border-radius: 5px;
-}
 
 .tingle-demo {
     display: none;
