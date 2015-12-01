@@ -1,7 +1,7 @@
 /*!
 * tingle.js
 * @author  robin_parisi
-* @version 0.2.0
+* @version 0.3.0
 * @url
 */
 (function (root, factory) {
@@ -70,11 +70,14 @@
     };
 
     /**
-    * Destroy modal: unbind events dans remove from dom
+    * Destroy modal: unbind events and remove from dom
     */
     Modal.prototype.destroy = function() {
-        _unbindEvents();
-        _removeFromDom();
+        if(this.modal === null) {
+            return;
+        }
+        _unbindEvents.call(this);
+        _removeFromDom.call(this);
         this.modal = null;
     };
 
