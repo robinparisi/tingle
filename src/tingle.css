@@ -19,8 +19,7 @@
 	background: rgba(255, 255, 255, .8);
 	opacity: 0;
 	cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAABKElEQVR42o3TvUpDQRAF4FzdPaYQxEIbS38RtPFprEwlKohPYGtnI/4VoloIPoAIavQJfCKrnAlZOAxkmIFhdzPcL8ndmR5judY64LrEtJjr5aJjVtvw+T0A+7YvPFwyn1uRgSzE2CqlfPP5w1Y0/SoJKrQ5gY5bsQh4baB8hgDaUEgDDnxxoIfWCQ0dVKaBNx6U/Zr+Ig9NA28FbLGagTSqgHfM18lxhdAvz0cBFIIdgAsDmW/MAwelG7IvffRP6E/q/TTUvhXANqF3QgOu51wfZUKQgfT6fwicukt50lvOQkN52V3c2DHkr382OykGQaCvoI+qNraC7V3OyKx9JhoSAcgqsEvog4WTAIomxcBFOy/w8MA8C6EYvLfWGWMAdgIoMynz9u9GIh0wD30esEoAAAAASUVORK5CYII="), pointer;
-	transition: transform .3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity .2s ease;
-	transform: scale(.6);
+	transition: opacity .2s ease;
 }
 
 .tingle-modal__close {
@@ -51,6 +50,8 @@
 	background: #fff;
 	opacity: 1;
 	cursor: auto;
+	transform: scale(.6);
+	transition: transform .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 /* state
@@ -59,5 +60,8 @@
 .tingle-modal--visible {
 	visibility: visible;
 	opacity: 1;
+}
+
+.tingle-modal--visible .tingle-modal__content {
 	transform: scale(1);
 }
