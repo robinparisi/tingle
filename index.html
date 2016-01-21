@@ -53,10 +53,13 @@ modal.init();
 modal.setContent('here some content');
 
 // open modal
-modalTiny.open();
+modal.open();
 
 // close modal
 modal.close();
+
+// destroy modal (unbind events and remove from dom)
+modal.detroy();
         </code></pre>
 
         <!-- Tingle tiny content -->
@@ -79,12 +82,13 @@ modal.close();
 
         var modalTiny = new tingle.modal({
             onClose: function() {
-                console.log('close tiny modal');
+                alert('close tiny modal');
             }
         });
         var modalBig = new tingle.modal({
             onClose: function() {
-                console.log('close big modal');
+                alert('close big modal and destroy');
+                this.destroy();
             }
         });
 
