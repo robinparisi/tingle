@@ -66,11 +66,3 @@
 	-ms-transform: scale(1);
 	transform: scale(1);
 }
-
-.tingle-modal__content--center {
-	top: 50%;
-	left: 50%;
-	-webkit-transform: translate(-50%, -50%);
-	-ms-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
-}
