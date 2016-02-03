@@ -1,6 +1,11 @@
 /* ----------------------------------------------------------- */
-/* == tingle v0.3.0 */
+/* == tingle v0.4.0 */
 /* ----------------------------------------------------------- */
+
+.tingle-enabled {
+	overflow: hidden;
+	height: 100%;
+}
 
 .tingle-modal,
 .tingle-modal__wrapper {
@@ -51,11 +56,11 @@
 	background: #fff;
 	opacity: 1;
 	cursor: auto;
+	-webkit-transition: -webkit-transform .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	transition: transform .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	-webkit-transform: scale(.6);
 	-ms-transform: scale(.6);
 	transform: scale(.6);
-	-webkit-transition: -webkit-transform .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	transition: transform .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 /* state
