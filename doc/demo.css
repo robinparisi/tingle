@@ -17,70 +17,70 @@ pre,
 td,
 th,
 textarea {
+    margin: 1.5em 0;
     font-size: 1em; /* equiv 16px */
     line-height: 1.5;
-    margin: 1.5em 0;
 }
 h1,
 .h1-like {
+    margin:  1.4118em 0 .7059em 0;
     font-size:  2.125em; /* equiv 34px */
     line-height: 1.4118;
-    margin:  1.4118em 0 .7059em 0;
 }
 h2,
 .h2-like {
+    margin:  1.8462em 0 .9231em 0;
     font-size:  1.625em; /* equiv 26px */
     line-height: 1.8462;
-    margin:  1.8462em 0 .9231em 0;
 }
 h3,
 .h3-like {
+    margin:  2em 0  1em 0;
     font-size:  1.5em; /* equiv 24px */
     line-height:  1;
-    margin:  2em 0  1em 0;
 }
 h4,
 .h4-like {
+    margin:  2.1818em 0  1.0909em 0;
     font-size:  1.375em; /* equiv 22px */
     line-height:  1.0909;
-    margin:  2.1818em 0  1.0909em 0;
 }
 h5,
 .h5-like {
+    margin:  2.4em 0  1.2em 0;
     font-size:  1.25em; /* equiv 20px */
     line-height:  1.2;
-    margin:  2.4em 0  1.2em 0;
 }
 h6,
 .h6-like {
+    margin:  2.6666em 0  1.3333em 0;
     font-size:  1.125em; /* equiv 18px */
     line-height:  1.3333;
-    margin:  2.6666em 0  1.3333em 0;
 }
 .smaller {
+    margin:  2.4em 0  2.4em 0;
     font-size: .625em; /* equiv 10px */
     line-height:  2.4;
-    margin:  2.4em 0  2.4em 0;
 }
 .small {
+    margin:  2em 0  2em 0;
     font-size: .75em; /* equiv 12px */
     line-height:  2;
-    margin:  2em 0  2em 0;
 }
 .big {
+    margin:  1.3333em 0  1.3333em 0;
     font-size:  1.125em; /* equiv 18px */
     line-height:  1.3333;
-    margin:  1.3333em 0  1.3333em 0;
 }
 .bigger {
+    margin:  1.2em 0  1.2em 0;
     font-size:  1.25em; /* equiv 20px */
     line-height:  1.2;
-    margin:  1.2em 0  1.2em 0;
 }
 .biggest {
+    margin:  1.0909em 0  1.0909em 0;
     font-size:  1.375em; /* equiv 22px */
     line-height:  1.0909;
-    margin:  1.0909em 0  1.0909em 0;
 }
 
 h1:first-child,
@@ -123,9 +123,10 @@ p {
     word-wrap: break-word;
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
+    hyphens: auto;
+
     -ms-hyphens: auto;
     -o-hyphens: auto;
-    hyphens: auto;
 }
 code,
 pre,
@@ -166,11 +167,11 @@ h3 {
 }
 
 .container {
-    margin-left: auto;
     margin-right: auto;
+    margin-left: auto;
     padding-top: 30px;
     padding-bottom: 30px;
-    width: 60%;
+    width: 70%;
     color: #fff;
 }
 
@@ -216,4 +217,20 @@ h3 {
 
 .list-blh {
     line-height: 1.8;
+}
+
+/* responsive
+-------------------------------------------------------------- */
+
+@media (max-width: 540px) {
+
+    .container {
+        width: 90%;
+    }
+
+    .btn {
+        display: block;
+        margin-bottom: 20px;
+        width: 100%;
+    }
 }
