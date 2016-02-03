@@ -18,6 +18,8 @@
     /* == modal */
     /* ----------------------------------------------------------- */
 
+    var body = document.querySelector('body');
+
     /**
     * Modal constructor
     */
@@ -53,6 +55,8 @@
             self.modal.classList.add('tingle-modal--visible');
         }, 50);
 
+        // prevent double scroll
+        body.classList.add('tingle-enabled');
     };
 
     /**
@@ -61,6 +65,9 @@
     Modal.prototype.close = function(e) {
         this.modal.style.display = 'none';
         this.modal.classList.remove('tingle-modal--visible');
+
+        body.classList.remove('tingle-enabled');
+
         this.modalContent.classList.remove('tingle-modal__content--center');
         if(typeof this.onClose === "function") {
             this.onClose();

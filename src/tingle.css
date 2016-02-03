@@ -2,6 +2,11 @@
 /* == tingle v0.4.0 */
 /* ----------------------------------------------------------- */
 
+.tingle-enabled {
+	overflow: hidden;
+	height: 100%;
+}
+
 .tingle-modal,
 .tingle-modal__wrapper {
 	box-sizing: border-box;
@@ -50,8 +55,8 @@
 	background: #fff;
 	opacity: 1;
 	cursor: auto;
-	transform: scale(.6);
 	transition: transform .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	transform: scale(.6);
 }
 
 /* state
