@@ -146,7 +146,7 @@
                 this.modalBoxContent.style['padding-bottom'] = this.modalBoxFooter.clientHeight + 20 + 'px';
                 bind(this.modalBoxFooter, 'click', _catchEvent);
             }
-        } else {
+        } else if(this.modalBoxFooter) {
             if(!this.modalBox.contains(this.modalBoxFooter)) {
                 this.modal.removeChild(this.modalBoxFooter);
                 this.modalBox.appendChild(this.modalBoxFooter);

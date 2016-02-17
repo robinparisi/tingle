@@ -1,12 +1,15 @@
 /* rythm
 -------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+}
 
 html {
-    font-size: 62.5%;
+  font-size: 62.5%;
 }
 body {
-    font-size: 1.6em;
-    line-height: 1.5;
+  font-size: 1.6em;
+  line-height: 1.5;
 }
 p,
 ul,
@@ -17,70 +20,70 @@ pre,
 td,
 th,
 textarea {
-    margin: 1.5em 0;
-    font-size: 1em; /* equiv 16px */
-    line-height: 1.5;
+  margin: 1.5em 0;
+  font-size: 1em; /* equiv 16px */
+  line-height: 1.5;
 }
 h1,
 .h1-like {
-    margin:  1.4118em 0 .7059em 0;
-    font-size:  2.125em; /* equiv 34px */
-    line-height: 1.4118;
+  margin:  1.4118em 0 .7059em 0;
+  font-size:  2.125em; /* equiv 34px */
+  line-height: 1.4118;
 }
 h2,
 .h2-like {
-    margin:  1.8462em 0 .9231em 0;
-    font-size:  1.625em; /* equiv 26px */
-    line-height: 1.8462;
+  margin:  1.8462em 0 .9231em 0;
+  font-size:  1.625em; /* equiv 26px */
+  line-height: 1.8462;
 }
 h3,
 .h3-like {
-    margin:  2em 0  1em 0;
-    font-size:  1.5em; /* equiv 24px */
-    line-height:  1;
+  margin:  2em 0  1em 0;
+  font-size:  1.5em; /* equiv 24px */
+  line-height:  1;
 }
 h4,
 .h4-like {
-    margin:  2.1818em 0  1.0909em 0;
-    font-size:  1.375em; /* equiv 22px */
-    line-height:  1.0909;
+  margin:  2.1818em 0  1.0909em 0;
+  font-size:  1.375em; /* equiv 22px */
+  line-height:  1.0909;
 }
 h5,
 .h5-like {
-    margin:  2.4em 0  1.2em 0;
-    font-size:  1.25em; /* equiv 20px */
-    line-height:  1.2;
+  margin:  2.4em 0  1.2em 0;
+  font-size:  1.25em; /* equiv 20px */
+  line-height:  1.2;
 }
 h6,
 .h6-like {
-    margin:  2.6666em 0  1.3333em 0;
-    font-size:  1.125em; /* equiv 18px */
-    line-height:  1.3333;
+  margin:  2.6666em 0  1.3333em 0;
+  font-size:  1.125em; /* equiv 18px */
+  line-height:  1.3333;
 }
 .smaller {
-    margin:  2.4em 0  2.4em 0;
-    font-size: .625em; /* equiv 10px */
-    line-height:  2.4;
+  margin:  2.4em 0  2.4em 0;
+  font-size: .625em; /* equiv 10px */
+  line-height:  2.4;
 }
 .small {
-    margin:  2em 0  2em 0;
-    font-size: .75em; /* equiv 12px */
-    line-height:  2;
+  margin:  2em 0  2em 0;
+  font-size: .75em; /* equiv 12px */
+  line-height:  2;
 }
 .big {
-    margin:  1.3333em 0  1.3333em 0;
-    font-size:  1.125em; /* equiv 18px */
-    line-height:  1.3333;
+  margin:  1.3333em 0  1.3333em 0;
+  font-size:  1.125em; /* equiv 18px */
+  line-height:  1.3333;
 }
 .bigger {
-    margin:  1.2em 0  1.2em 0;
-    font-size:  1.25em; /* equiv 20px */
-    line-height:  1.2;
+  margin:  1.2em 0  1.2em 0;
+  font-size:  1.25em; /* equiv 20px */
+  line-height:  1.2;
 }
 .biggest {
-    margin:  1.0909em 0  1.0909em 0;
-    font-size:  1.375em; /* equiv 22px */
-    line-height:  1.0909;
+  margin:  1.0909em 0  1.0909em 0;
+  font-size:  1.375em; /* equiv 22px */
+  line-height:  1.0909;
 }
 
 h1:first-child,
@@ -89,7 +92,7 @@ h3:first-child,
 h4:first-child,
 h5:first-child,
 h6:first-child {
-    margin-top: 0;
+  margin-top: 0;
 }
 
 /* avoid last-child bottom margin */
@@ -100,15 +103,15 @@ dl:last-child,
 blockquote:last-child,
 pre:last-child,
 table:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 
 /* avoid supp margin on nested elements */
 li p,
 li ul {
-    margin-top: 0;
-    margin-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 /* you shall not pass */
 textarea,
@@ -120,103 +123,192 @@ pre,
 samp,
 div,
 p {
-    word-wrap: break-word;
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    hyphens: auto;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
 
-    -ms-hyphens: auto;
-    -o-hyphens: auto;
+  -ms-hyphens: auto;
+  -o-hyphens: auto;
 }
 code,
 pre,
 samp {
-    white-space: pre-wrap;
-    font-family: consolas, 'DejaVu Sans Mono', courier, monospace;
+  white-space: pre-wrap;
+  font-family: consolas, 'DejaVu Sans Mono', courier, monospace;
 }
 code {
-    line-height: 1;
+  line-height: 1;
 }
 table {
-    margin-bottom: 1.5em;
+  margin-bottom: 1.5em;
 }
 /* style
 -------------------------------------------------------------- */
 
 html,
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    background-color: #215a6d;
-    font-family: 'Roboto', sans-serif;
+  background-color: #fff;
+  font-family: 'Varela Round', sans-serif;
 }
 
 a,
 a:hover,
 a:visited {
-    color: #dfece6;
-    text-decoration: underline;
+  color: #39df7f;
+  text-decoration: underline;
 }
 
 h2,
 h3 {
-    border-bottom: 1px dotted #dfece6;
+  border-bottom: 1px dotted #dfece6;
 }
 
 .container {
-    margin-right: auto;
-    margin-left: auto;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    width: 70%;
-    color: #fff;
+  margin-right: auto;
+  margin-left: auto;
+  width: 70%;
+}
+
+.header {
+  position: relative;
+  margin-bottom: 60px;
+  padding: 30px 0 60px 0;
+  height: 220px;
+  background-color: #39df7f;
+  color: #fff;
+  text-align: center;
+}
+
+.header__title {
+  margin-bottom: 10px;
+  font-size: 4rem;
+}
+
+.header__tagline {
+  margin-bottom: 30px;
+  font-size: 1.8rem;
+}
+
+.content {
+  padding-bottom: 30px;
+}
+
+.header__github {
+  position: absolute;;
+  bottom: 0;
+  right: 10%;
+  width: 60px;
+  height: 60px;
+  transform: rotate(180deg) translateZ(0);
+  transform-origin: center;
+  animation-name: github;
+  animation-duration: .5s;
+  animation-timing-function: cubic-bezier(.91,.79,.57,1.01);
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+h2 {
+  position: relative;
+  left: 30px;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #39df7f;
+  color: #39df7f;
+  line-height: 1.5;
+}
+
+h2::before {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  left: -50px;
+  width: 35px;
+  height: 35px;
+  border: 2px solid #39df7f;
+  border-radius: 50%;
+  content: attr(data-bullet);
+  text-align: center;
+  font-size: 25px;
+  line-height: 35px;;
 }
 
 .btn {
-    display: inline-block;
-    padding: .5em 1.5em;
-    outline: 0;
-    border: 0;
-    border-radius: 2px;
-    background: #e0e3e5;
-    box-shadow: none;
-    color: #fff;
-    text-align: center;
-    text-decoration: none;
-    font-weight: 400;
-    font-size: 1em;
-    line-height: 1.65em;
-    cursor: pointer;
+  display: inline-block;
+  padding: .5em 1.5em;
+  outline: 0;
+  border: 0;
+  border: 2px solid #39df7f;
+  border-radius: 4px;
+  background: none;
+  box-shadow: none;
+  color: #39df7f;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 1em;
+  line-height: 1.65em;
+  cursor: pointer;
 
-    -webkit-appearance: none;
-}
-
-.btn--primary {
-    background-color: #3ca2a2;
-}
-
-.btn--secondary {
-    background-color: #92c7a3;
+  -webkit-appearance: none;
 }
 
 .hljs {
-    padding: 15px 20px;
+  padding: 15px 20px;
+  line-height: 1.3;
 }
 
 
 .tingle-demo {
-    display: none;
+  display: none;
 }
 
 .mr1 {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .list-blh {
-    line-height: 1.8;
+  line-height: 1.8;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.methods {
+  display: table;
+}
+
+.methods {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.methods tr:nth-child(odd) {
+  background-color: #f9f9f9
+}
+.methods td {
+  padding: 10px;
+}
+
+/* animations
+-------------------------------------------------------------- */
+
+@keyframes github {
+  0% {
+    top: 220px;
+    transform: rotate(180deg);
+  }
+  100% {
+    top: 0;
+    transform: rotate(0);
+  }
 }
 
 /* responsive
@@ -224,13 +316,13 @@ h3 {
 
 @media (max-width: 540px) {
 
-    .container {
-        width: 90%;
-    }
+  .container {
+    width: 90%;
+  }
 
-    .btn {
-        display: block;
-        margin-bottom: 20px;
-        width: 100%;
-    }
+  .btn {
+    display: block;
+    margin-bottom: 20px;
+    width: 100%;
+  }
 }
