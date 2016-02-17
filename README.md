@@ -1,10 +1,9 @@
 
 ![Logo Tingle](logo.png)
 
+A minimalist and easy to use modal plugin written in pure JavaScript.
 
-A simple modal plugin written in pure JavaScript.
-
-[Documentation page](https://robinparisi.github.io/tingle/)
+Read the documentation : >> [https://robinparisi.github.io/tingle/](https://robinparisi.github.io/tingle/) <<
 
 ![Demo Page screenshot](tingle.gif)
 
