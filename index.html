@@ -21,7 +21,7 @@
     <header class="header">
         <div class="container">
             <h1 class="header__title">tingle.js</h1>
-            <div class="header__tagline">A minimalist and easy to use modal plugin written in pure JavaScript</div>
+            <div class="header__tagline">A minimalist and easy-to-use modal plugin written in pure JavaScript</div>
             <img class="header__pic" src="modal.svg" alt="Pure JavaScript modal plugin">
             <a href="https://github.com/robinparisi/tingle" class="header__github" target="_blank"><img src="github.svg" alt="Github"></a>
         </div>
@@ -30,7 +30,7 @@
     <div class="container tingle-content-wrapper content">
         <h2 data-bullet="1">Give it a try</h2>
         <p>
-            Tingle is simple <strong>modal plugin</strong> written in pure JavaScript (<a href="https://github.com/robinparisi/tingle">Source code on GitHub</a>).
+            Tingle is a simple <strong>modal plugin</strong> written in pure JavaScript (<a href="https://github.com/robinparisi/tingle">Source code on GitHub</a>).
         </p>
 
         <ul>
@@ -42,22 +42,22 @@
             <li>Created with UX in mind</li>
         </ul>
 
-        <p>Below you will find some examples for using tingle : </p>
+        <p>Below you will find some examples for using tingle: </p>
 
         <button class="btn btn--primary mr1 js-tingle-modal-1">A simple modal</button>
-        <button class="btn btn--secondary mr1 js-tingle-modal-2">Need buttons ?</button>
-        <button class="btn btn--secondary mr1 js-tingle-modal-3">Big content ? No problem !</button>
-        <button class="btn btn--secondary mr1 js-tingle-modal-4">Stick to me !</button>
+        <button class="btn btn--secondary mr1 js-tingle-modal-2">Need buttons?</button>
+        <button class="btn btn--secondary mr1 js-tingle-modal-3">Big content? No problem!</button>
+        <button class="btn btn--secondary mr1 js-tingle-modal-4">Stick to me!</button>
         <button class="btn btn--secondary mr1 js-tingle-modal-5">?</button>
 
         <h2 data-bullet="2">Installation</h2>
         <pre><code>bower install tingle</code></pre>
 
-        <p>Tingle uses just one small CSS. Feel free to include it in your workflow (Less, Sass, etc...) and customize it to fit yours needs.</p>
+        <p>Tingle uses just one small CSS. Feel free to include it in your workflow (Less, Sass, etc...) and customize it to fit your needs.</p>
 
         <pre class="html"><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;tingle.min.css&quot;&gt;</code></pre>
 
-        <p>Then, just include tingle in your document :</p>
+        <p>Then, just include tingle in your document:</p>
 
         <pre class="html"><code>&lt;script src=&quot;tingle.min.js&quot;&gt;&lt;/script&gt;</code></pre>
 
@@ -100,8 +100,8 @@ modal.close();
 modal.detroy();
         </code></pre>
         <h2 data-bullet="4">CSS</h2>
-        All tingle styles are available in CSS. Only some specifics properties for positionning are processing by JavaScript.
-        It means you can customize tingle to fit your needs. Tingle came with some useful styles for buttons :
+        All tingle styles are available in CSS. Only some specific properties for positioning are processed by JavaScript.
+        It means you can customize tingle to fit your needs. Tingle came with some useful styles for buttons:
 
         <ul>
             <li>tingle-btn</li>
@@ -144,13 +144,18 @@ modal.detroy();
             </tr>
             <tr>
                 <td>onResize()</td>
-                <td>Recalculate position of the modal.</td>
+                <td>Recalculate position of the modal</td>
             </tr>
             <tr>
                 <td>isOverflow()</td>
-                <td>Return true modal height is bigger than viewport height</td>
+                <td>Return true if modal height is bigger than viewport height</td>
             </tr>
-        </dl>
+        </table>
+
+        <footer class="footer">
+            Developed by <a href="https://twitter.com/robin_parisi" target="_blank">@robin_parisi</a>
+        </footer>
+
         <!-- Tingle tiny content -->
         <div class="tingle-demo tingle-demo-tiny">
             <h1>A small content</h1>
@@ -168,6 +173,7 @@ modal.detroy();
             <img src="http://lorempixel.com/800/400/cats/4" height="400">
             <p>Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
         </div>
+
         <!-- /Tingle big content -->
 
         <script src="tingle/tingle.js"></script>
