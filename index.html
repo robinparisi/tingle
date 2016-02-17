@@ -3,31 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Tingle</title>
+    <meta name="description" content="A minimalist and easy to use modal plugin written in pure JavaScript">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="normalize.css" media="all">
-    <link rel="stylesheet" href="vendor/highlight/styles/solarized_dark.css" media="all">
+    <link rel="stylesheet" href="vendor/highlight/styles/monokai_sublime.css" media="all">
     <link rel="stylesheet" href="demo.css" media="all">
     <link rel="stylesheet" href="tingle/tingle.css" media="all">
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 </head>
 <body>
-    <div class="container">
-        <h1>tingle.js</h1>
+    <header class="header">
+        <div class="container">
+            <h1 class="header__title">tingle.js</h1>
+            <div class="header__tagline">A minimalist and easy to use modal plugin written in pure JavaScript</div>
+            <img class="header__pic" src="modal.svg" alt="Pure JavaScript modal plugin">
+            <a href="https://github.com/robinparisi/tingle" class="header__github" target="_blank"><img src="github.svg" alt="Github"></a>
+        </div>
+    </header>
+
+    <div class="container tingle-content-wrapper content">
+        <h2 data-bullet="1">Give it a try</h2>
         <p>
-            A simple modal plugin written in pure JavaScript (<a href="https://github.com/robinparisi/tingle">Source code on GitHub</a>).
+            Tingle is simple <strong>modal plugin</strong> written in pure JavaScript (<a href="https://github.com/robinparisi/tingle">Source code on GitHub</a>).
         </p>
+
         <ul>
             <li>No dependencies required</li>
             <li>Fully customizable via CSS</li>
-            <li>CSS3 transitions</li>
+            <li>CSS transitions</li>
             <li>Simple API</li>
             <li>No extra files to download</li>
+            <li>Created with UX in mind</li>
         </ul>
 
-        <h2>Demo</h2>
-        <button class="btn btn--primary mr1 js-tingle-tiny">Example (tiny content)</button>
-        <button class="btn btn--secondary js-tingle-big">Example (big content)</button>
-        <h2>Installation</h2>
+        <p>Below you will find some examples for using tingle : </p>
+
+        <button class="btn btn--primary mr1 js-tingle-modal-1">A simple modal</button>
+        <button class="btn btn--secondary mr1 js-tingle-modal-2">Need buttons ?</button>
+        <button class="btn btn--secondary mr1 js-tingle-modal-3">Big content ? No problem !</button>
+        <button class="btn btn--secondary mr1 js-tingle-modal-4">Stick to me !</button>
+        <button class="btn btn--secondary mr1 js-tingle-modal-5">?</button>
+
+        <h2 data-bullet="2">Installation</h2>
         <pre><code>bower install tingle</code></pre>
 
         <p>Tingle uses just one small CSS. Feel free to include it in your workflow (Less, Sass, etc...) and customize it to fit yours needs.</p>
@@ -38,19 +55,34 @@
 
         <pre class="html"><code>&lt;script src=&quot;tingle.min.js&quot;&gt;&lt;/script&gt;</code></pre>
 
-        <h2>Use</h2>
+        <h2 data-bullet="3">Use</h2>
         <pre class="javascript"><code>
+// instanciate new modal
 var modal = new tingle.modal({
+    footer: true,
+    stickyFooter: false,
     onClose: function() {
-        console.log('close tiny modal');
+        alert('modal closed');
     }
 });
 
-// init modal
+// init modal (create and append to dom)
 modal.init();
 
 // set content
-modal.setContent('here some content');
+modal.setContent('&lt;h1&gt;here some content&lt;/h1&gt;');
+
+// add a button
+modal.addFooterBtn('Button label', 'tingle-btn tingle-btn--primary', function() {
+    // here goes some logic
+    modal.close();
+});
+
+// add another button
+modal.addFooterBtn('Dangerous action !', 'tingle-btn tingle-btn--danger', function() {
+    // here goes some logic
+    modal.close();
+});
 
 // open modal
 modal.open();
@@ -61,7 +93,54 @@ modal.close();
 // destroy modal (unbind events and remove from dom)
 modal.detroy();
         </code></pre>
+        <h2 data-bullet="4">CSS</h2>
+        All tingle styles are available in CSS. Only some specifics properties for positionning are processing by JavaScript.
+        It means you can customize tingle to fit your needs. Tingle came with some useful styles for buttons :
 
+        <ul>
+            <li>tingle-btn</li>
+            <li>tingle-btn--primary</li>
+            <li>tingle-btn--default</li>
+            <li>tingle-btn--danger</li>
+            <li>tingle-btn--pull-left</li>
+            <li>tingle-btn--pull-right</li>
+        </ul>
+
+        <h2 data-bullet="5">API</h2>
+        <table class="methods">
+            <tr>
+                <td>init()</td>
+                <td>Create modal and append to dom</td>
+            </tr>
+            <tr>
+                <td>open()</td>
+                <td>Open modal (tingle-enabled class is added on body)</td>
+            </tr>
+            <tr>
+                <td>close()</td>
+                <td>Close modal and execute callback if exist</td>
+            </tr>
+            <tr>
+                <td>destroy()</td>
+                <td>Destroy modal (remove from dom and unbind events)</td>
+            </tr>
+            <tr>
+                <td>setContent(content)</td>
+                <td>Set content for modal</td>
+            </tr>
+            <tr>
+                <td>addFooterBtn(label, cssClass, callback)</td>
+                <td>Add buttons to footer (use cssClass for style and positioning)</td>
+            </tr>
+            <tr>
+                <td>onResize()</td>
+                <td>Recalculate position of the modal.</td>
+            </tr>
+            <tr>
+                <td>isOverflow()</td>
+                <td>Return true modal height is bigger than viewport height</td>
+            </tr>
+        </dl>
         <!-- Tingle tiny content -->
         <div class="tingle-demo tingle-demo-tiny">
             <h1>A small content</h1>
@@ -71,40 +150,85 @@ modal.detroy();
 
         <!-- Tingle big content -->
         <div class="tingle-demo tingle-demo-big">
-            <h1 class="plop">A big content</h1>
+            <h1 class="plop">Big content with scroll</h1>
             <p>Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-            <img src="http://lorempixel.com/600/400/sports" height="400">
+            <img src="http://lorempixel.com/800/400/cats/3" height="400">
+            <p>Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+            <p>Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+            <img src="http://lorempixel.com/800/400/cats/4" height="400">
             <p>Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
         </div>
         <!-- /Tingle big content -->
+
         <script src="tingle/tingle.js"></script>
         <script type="text/javascript">
 
-        var modalTiny = new tingle.modal({
-            onClose: function() {
-                alert('close tiny modal');
-            }
-        });
-        var modalBig = new tingle.modal({
-            onClose: function() {
-                alert('close big modal and destroy');
-            }
-        });
+        /**
+        * Modal Tiny no footer
+        */
 
-        modalTiny.init();
-        modalBig.init();
-
-        var btn = document.querySelector('.js-tingle-tiny');
+        var modalTinyNoFooter = new tingle.modal();
+        var btn = document.querySelector('.js-tingle-modal-1');
         btn.addEventListener('click', function(){
-            modalTiny.setContent(document.querySelector('.tingle-demo-tiny').innerHTML);
-            modalTiny.open();
+            modalTinyNoFooter.open();
         });
+        modalTinyNoFooter.init();
+        modalTinyNoFooter.setContent(document.querySelector('.tingle-demo-tiny').innerHTML);
 
-        var btn = document.querySelector('.js-tingle-big');
-        btn.addEventListener('click', function(){
-            modalBig.setContent(document.querySelector('.tingle-demo-big').innerHTML);
-            modalBig.open();
+        /**
+        * Modal tiny with btn
+        */
+
+        var modalTinyBtn = new tingle.modal({
+            footer: true
         });
+        var btn2 = document.querySelector('.js-tingle-modal-2');
+        btn2.addEventListener('click', function(){
+            modalTinyBtn.open();
+        });
+        modalTinyBtn.init();
+        modalTinyBtn.setContent(document.querySelector('.tingle-demo-tiny').innerHTML);
+        modalTinyBtn.addFooterBtn('A nice button', 'tingle-btn tingle-btn--primary tingle-btn--pull-right', null);
+        modalTinyBtn.addFooterBtn('Another button', 'tingle-btn tingle-btn--default', null);
+        modalTinyBtn.addFooterBtn('Danger !', 'tingle-btn tingle-btn--danger', null);
+
+        /**
+        * Modal big
+        */
+
+        var modalBigContent = new tingle.modal();
+        var btn3 = document.querySelector('.js-tingle-modal-3');
+        btn3.addEventListener('click', function(){
+            modalBigContent.open();
+        });
+        modalBigContent.init();
+        modalBigContent.setContent(document.querySelector('.tingle-demo-big').innerHTML);
+
+        /**
+        * Modal big with sticky footer
+        */
+        var modalStickyFooter = new tingle.modal({
+            footer: true,
+            stickyFooter: true
+        });
+        var btn4 = document.querySelector('.js-tingle-modal-4');
+        btn4.addEventListener('click', function(){
+            modalStickyFooter.open();
+        });
+        modalStickyFooter.init();
+        modalStickyFooter.setFooterContent("This footer is sticky so it's useful to keep actions always visible.");
+        modalStickyFooter.setContent(document.querySelector('.tingle-demo-big').innerHTML);
+
+        /**
+        * 	Modal suprise
+        */
+        var modalSurprise = new tingle.modal();
+        var btn5 = document.querySelector('.js-tingle-modal-5');
+        btn5.addEventListener('click', function(){
+            modalSurprise.setContent('<iframe width="100%" height="400" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" frameborder="0" allowfullscreen></iframe>');
+            modalSurprise.open();
+        });
+        modalSurprise.init();
 
         </script>
         <script type="text/javascript" src="vendor/highlight/highlight.pack.js"></script>
