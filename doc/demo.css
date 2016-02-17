@@ -293,8 +293,13 @@ img {
 .methods tr:nth-child(odd) {
   background-color: #f9f9f9
 }
+
 .methods td {
   padding: 10px;
+}
+
+.footer {
+  text-align: center;
 }
 
 /* animations
