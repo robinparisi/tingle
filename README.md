@@ -1,6 +1,6 @@
 
-tingle.js
-==============
+![Logo Tingle](logo.png)
+
 
 A simple modal plugin written in pure JavaScript.
 
