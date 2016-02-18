@@ -40,12 +40,18 @@
         // extends config
         this.opts = extend({}, defaults, options);
 
+        // init modal
+        this.init();
+
     }
 
     /**
     * Init modal
     */
     Modal.prototype.init = function() {
+        if(this.modal) {
+            return;
+        }
         _build.call(this);
         _bindEvents.call(this);
         _insertInDom.call(this);
@@ -89,12 +95,12 @@
         this.modal.style.display = 'none';
         body.classList.remove('tingle-enabled');
 
+        this.modal.classList.remove('tingle-modal--visible');
+
         // on close callback
         if(typeof this.opts.onClose === "function") {
-            this.opts.onClose();
+            this.opts.onClose.call(this);
         }
-
-        this.modal.classList.remove('tingle-modal--visible');
     };
 
     /**
@@ -117,6 +123,8 @@
 
         // prefetch pictures before showing tingle so we can get the real height
         _prefetchPictures(this.modalBoxContent);
+
+        this.resize();
     };
 
     Modal.prototype.addFooter = function() {
@@ -167,17 +175,19 @@
         // bind callback
         btn.addEventListener('click', callback);
 
-        // add classes to btn
-        cssClass.split(" ").forEach(function (item) {
-            btn.classList.add(item);
-        });
+        if(typeof cssClass === 'string' && cssClass.length) {
+            // add classes to btn
+            cssClass.split(" ").forEach(function (item) {
+                btn.classList.add(item);
+            });
+        }
 
         this.modalBoxFooter.appendChild(btn);
 
         return btn;
     }
 
-    Modal.prototype.onResize = function() {
+    Modal.prototype.resize = function() {
         // only if the modal is currently shown
         if(this.modal.classList.contains('tingle-modal--visible')) {
             _offset.call(this);
@@ -201,12 +211,17 @@
 
 
     function _recalculateFooterPosition() {
+        if(!this.modalBoxFooter) {
+            return;
+        }
         this.modalBoxFooter.style.width = this.modalBox.clientWidth + 'px';
         this.modalBoxFooter.style.left = this.modalBox.offsetLeft + 'px';
     }
 
     function _offset() {
-        if(!this.isOverflow()) {
+        if(this.isOverflow()) {
+            this.modalBox.style.top = '';
+        } else {
             var offset = window.innerHeight / 2 - this.modalBox.clientHeight / 2;
             this.modalBox.style.top = offset + 'px';
         }
@@ -257,7 +272,7 @@
         bind(this.modalCloseBtn, 'click', this.close.bind(this));
         bind(this.modal, 'click', this.close.bind(this));
         bind(this.modalBox, 'click', _catchEvent);
-        window.addEventListener('resize', this.onResize.bind(this));
+        window.addEventListener('resize', this.resize.bind(this));
     };
 
 

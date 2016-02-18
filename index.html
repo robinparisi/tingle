@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tingle</title>
-    <meta name="description" content="A minimalist and easy to use modal plugin written in pure JavaScript">
+    <title>Modal plugin written in pure JavaScript - Tingle</title>
+    <meta name="description" content="A minimalist and easy-to-neuse modal plugin written in pure JavaScript">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="normalize.css" media="all">
     <link rel="stylesheet" href="vendor/highlight/styles/monokai_sublime.css" media="all">
@@ -15,7 +15,6 @@
     <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
     <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-
 </head>
 <body>
     <header class="header">
@@ -72,9 +71,6 @@ var modal = new tingle.modal({
     }
 });
 
-// init modal (create and append to dom)
-modal.init();
-
 // set content
 modal.setContent('&lt;h1&gt;here some content&lt;/h1&gt;');
 
@@ -95,11 +91,33 @@ modal.open();
 
 // close modal
 modal.close();
-
-// destroy modal (unbind events and remove from dom)
-modal.detroy();
         </code></pre>
-        <h2 data-bullet="4">CSS</h2>
+        <h2 data-bullet="4">Options</h2>
+        <table class="methods">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th class="w60">Description</th>
+                </tr>
+            </thead>
+            <tr>
+                <td>footer</td>
+                <td>boolean</td>
+                <td>Display a footer or not</td>
+            </tr>
+            <tr>
+                <td>stickyFooter</td>
+                <td>boolean</td>
+                <td>Display a footer or not</td>
+            </tr>
+            <tr>
+                <td>onClose</td>
+                <td>function</td>
+                <td>Callback to execute when tingle is closed</td>
+            </tr>
+        </table>
+        <h2 data-bullet="5">CSS</h2>
         All tingle styles are available in CSS. Only some specific properties for positioning are processed by JavaScript.
         It means you can customize tingle to fit your needs. Tingle came with some useful styles for buttons:
 
@@ -112,12 +130,14 @@ modal.detroy();
             <li>tingle-btn--pull-right</li>
         </ul>
 
-        <h2 data-bullet="5">API</h2>
+        <h2 data-bullet="6">API</h2>
         <table class="methods">
-            <tr>
-                <td>init()</td>
-                <td>Create modal and append to dom</td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th class="w60">Description</th>
+                </tr>
+            </thead>
             <tr>
                 <td>open()</td>
                 <td>Open modal (tingle-enabled class is added on body)</td>
@@ -143,7 +163,7 @@ modal.detroy();
                 <td>Add buttons to footer (use cssClass for style and positioning)</td>
             </tr>
             <tr>
-                <td>onResize()</td>
+                <td>resize()</td>
                 <td>Recalculate position of the modal</td>
             </tr>
             <tr>
@@ -183,12 +203,15 @@ modal.detroy();
         * Modal Tiny no footer
         */
 
-        var modalTinyNoFooter = new tingle.modal();
+        var modalTinyNoFooter = new tingle.modal({
+            onClose: function() {
+
+            }
+        });
         var btn = document.querySelector('.js-tingle-modal-1');
         btn.addEventListener('click', function(){
             modalTinyNoFooter.open();
         });
-        modalTinyNoFooter.init();
         modalTinyNoFooter.setContent(document.querySelector('.tingle-demo-tiny').innerHTML);
 
         /**
@@ -199,14 +222,24 @@ modal.detroy();
             footer: true
         });
         var btn2 = document.querySelector('.js-tingle-modal-2');
+
         btn2.addEventListener('click', function(){
             modalTinyBtn.open();
         });
-        modalTinyBtn.init();
+
         modalTinyBtn.setContent(document.querySelector('.tingle-demo-tiny').innerHTML);
-        modalTinyBtn.addFooterBtn('A nice button', 'tingle-btn tingle-btn--primary tingle-btn--pull-right', null);
-        modalTinyBtn.addFooterBtn('Another button', 'tingle-btn tingle-btn--default', null);
-        modalTinyBtn.addFooterBtn('Danger !', 'tingle-btn tingle-btn--danger', null);
+
+        modalTinyBtn.addFooterBtn('Primary action', 'tingle-btn tingle-btn--primary tingle-btn--pull-right', function() {
+            alert('click on primary button!');
+        });
+
+        modalTinyBtn.addFooterBtn('Cancel', 'tingle-btn tingle-btn--default tingle-btn--pull-right', function(){
+            modalTinyBtn.close();
+        });
+
+        modalTinyBtn.addFooterBtn('Danger!', 'tingle-btn tingle-btn--danger', function(){
+            alert('click on danger button!');
+        });
 
         /**
         * Modal big
@@ -217,7 +250,6 @@ modal.detroy();
         btn3.addEventListener('click', function(){
             modalBigContent.open();
         });
-        modalBigContent.init();
         modalBigContent.setContent(document.querySelector('.tingle-demo-big').innerHTML);
 
         /**
@@ -231,7 +263,6 @@ modal.detroy();
         btn4.addEventListener('click', function(){
             modalStickyFooter.open();
         });
-        modalStickyFooter.init();
         modalStickyFooter.setFooterContent("This footer is sticky so it's useful to keep actions always visible.");
         modalStickyFooter.setContent(document.querySelector('.tingle-demo-big').innerHTML);
 
@@ -244,7 +275,6 @@ modal.detroy();
             modalSurprise.setContent('<iframe width="100%" height="400" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" frameborder="0" allowfullscreen></iframe>');
             modalSurprise.open();
         });
-        modalSurprise.init();
 
         </script>
         <script type="text/javascript" src="vendor/highlight/highlight.pack.js"></script>
