@@ -183,7 +183,11 @@ modal.detroy();
         * Modal Tiny no footer
         */
 
-        var modalTinyNoFooter = new tingle.modal();
+        var modalTinyNoFooter = new tingle.modal({
+            onClose: function() {
+                this.destroy();
+            }
+        });
         var btn = document.querySelector('.js-tingle-modal-1');
         btn.addEventListener('click', function(){
             modalTinyNoFooter.open();

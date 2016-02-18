@@ -95,12 +95,12 @@
         this.modal.style.display = 'none';
         body.classList.remove('tingle-enabled');
 
+        this.modal.classList.remove('tingle-modal--visible');
+
         // on close callback
         if(typeof this.opts.onClose === "function") {
-            this.opts.onClose();
+            this.opts.onClose.call(this);
         }
-
-        this.modal.classList.remove('tingle-modal--visible');
     };
 
     /**
