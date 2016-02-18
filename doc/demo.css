@@ -298,10 +298,24 @@ img {
   padding: 10px;
 }
 
+.methods th {
+  background-color: #39df7f;
+  color: #fff;
+  padding: 10px;
+  text-align: left;
+}
+
 .footer {
   text-align: center;
 }
 
+.w20 {
+  width: 20%;
+}
+
+.w60 {
+  width: 60%;
+}
 /* animations
 -------------------------------------------------------------- */
 
