@@ -191,9 +191,7 @@
         // only if the modal is currently shown
         if(this.modal.classList.contains('tingle-modal--visible')) {
             _offset.call(this);
-            if(this.modalBox.contains(this.modalBoxFooter)){
-                _recalculateFooterPosition.call(this);
-            }
+            _recalculateFooterPosition.call(this);
             if(!this.isOverflow() && this.opts.stickyFooter) {
                 this.setStickyFooter(false);
             } else if(this.isOverflow() && this.opts.stickyFooter) {
@@ -213,12 +211,17 @@
 
 
     function _recalculateFooterPosition() {
+        if(!this.modalBoxFooter) {
+            return;
+        }
         this.modalBoxFooter.style.width = this.modalBox.clientWidth + 'px';
         this.modalBoxFooter.style.left = this.modalBox.offsetLeft + 'px';
     }
 
     function _offset() {
-        if(!this.isOverflow()) {
+        if(this.isOverflow()) {
+            this.modalBox.style.top = '';
+        } else {
             var offset = window.innerHeight / 2 - this.modalBox.clientHeight / 2;
             this.modalBox.style.top = offset + 'px';
         }
