@@ -167,10 +167,12 @@
         // bind callback
         btn.addEventListener('click', callback);
 
-        // add classes to btn
-        cssClass.split(" ").forEach(function (item) {
-            btn.classList.add(item);
-        });
+        if(typeof cssClass === 'string' && cssClass.length) {
+            // add classes to btn
+            cssClass.split(" ").forEach(function (item) {
+                btn.classList.add(item);
+            });
+        }
 
         this.modalBoxFooter.appendChild(btn);
 
