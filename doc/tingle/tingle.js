@@ -40,12 +40,18 @@
         // extends config
         this.opts = extend({}, defaults, options);
 
+        // init modal
+        this.init();
+
     }
 
     /**
     * Init modal
     */
     Modal.prototype.init = function() {
+        if(this.modal) {
+            return;
+        }
         _build.call(this);
         _bindEvents.call(this);
         _insertInDom.call(this);
