@@ -123,6 +123,8 @@
 
         // prefetch pictures before showing tingle so we can get the real height
         _prefetchPictures(this.modalBoxContent);
+
+        this.resize();
     };
 
     Modal.prototype.addFooter = function() {
@@ -185,11 +187,13 @@
         return btn;
     }
 
-    Modal.prototype.onResize = function() {
+    Modal.prototype.resize = function() {
         // only if the modal is currently shown
         if(this.modal.classList.contains('tingle-modal--visible')) {
             _offset.call(this);
-            _recalculateFooterPosition.call(this);
+            if(this.modalBox.contains(this.modalBoxFooter)){
+                _recalculateFooterPosition.call(this);
+            }
             if(!this.isOverflow() && this.opts.stickyFooter) {
                 this.setStickyFooter(false);
             } else if(this.isOverflow() && this.opts.stickyFooter) {
@@ -265,7 +269,7 @@
         bind(this.modalCloseBtn, 'click', this.close.bind(this));
         bind(this.modal, 'click', this.close.bind(this));
         bind(this.modalBox, 'click', _catchEvent);
-        window.addEventListener('resize', this.onResize.bind(this));
+        window.addEventListener('resize', this.resize.bind(this));
     };
 
 
