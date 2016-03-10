@@ -119,7 +119,13 @@
     * Set content
     */
     Modal.prototype.setContent = function(content) {
-        this.modalBoxContent.innerHTML = content;
+        // check type of content : String or Node
+        if(typeof content === 'string'){
+            this.modalBoxContent.innerHTML = content;
+        }else{
+            this.modalBoxContent.innerHTML = "";
+            this.modalBoxContent.appendChild(content);
+        }
 
         // prefetch pictures before showing tingle so we can get the real height
         _prefetchPictures(this.modalBoxContent);
