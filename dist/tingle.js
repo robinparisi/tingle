@@ -1,7 +1,7 @@
 /*!
 * tingle.js
 * @author  robin_parisi
-* @version 0.5.0
+* @version 0.6.0
 * @url
 */
 (function (root, factory) {
@@ -33,6 +33,7 @@
         this.modalContent;
         var defaults = {
             onClose: null,
+            onOpen: null,
             stickyFooter: false,
             footer: false
         }
@@ -85,6 +86,14 @@
         */
         _offset.call(this);
 
+        // onOpen event
+        var transitionEvent = whichTransitionEvent();
+        var self = this;
+        transitionEvent && this.modal.addEventListener(transitionEvent, function(e) {
+            if(e.propertyName == 'transform') {
+                self.opts.onOpen.call(self);
+            }
+        });
     };
 
     /**
@@ -119,7 +128,13 @@
     * Set content
     */
     Modal.prototype.setContent = function(content) {
-        this.modalBoxContent.innerHTML = content;
+        // check type of content : String or Node
+        if(typeof content === 'string'){
+            this.modalBoxContent.innerHTML = content;
+        }else{
+            this.modalBoxContent.innerHTML = "";
+            this.modalBoxContent.appendChild(content);
+        }
 
         // prefetch pictures before showing tingle so we can get the real height
         _prefetchPictures(this.modalBoxContent);
@@ -353,6 +368,23 @@
             element.classList.add(cssClass);
         }
         return element;
+    }
+
+    function whichTransitionEvent(){
+        var t;
+        var el = document.createElement('tingle-test-transition');
+        var transitions = {
+            'transition':'transitionend',
+            'OTransition':'oTransitionEnd',
+            'MozTransition':'transitionend',
+            'WebkitTransition':'webkitTransitionEnd'
+        }
+
+        for(t in transitions){
+            if( el.style[t] !== undefined ){
+                return transitions[t];
+            }
+        }
     }
 
     /* ----------------------------------------------------------- */

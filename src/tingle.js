@@ -33,6 +33,7 @@
         this.modalContent;
         var defaults = {
             onClose: null,
+            onOpen: null,
             stickyFooter: false,
             footer: false
         }
@@ -85,6 +86,14 @@
         */
         _offset.call(this);
 
+        // onOpen event
+        var transitionEvent = whichTransitionEvent();
+        var self = this;
+        transitionEvent && this.modal.addEventListener(transitionEvent, function(e) {
+            if(e.propertyName == 'transform') {
+                self.opts.onOpen.call(self);
+            }
+        });
     };
 
     /**
@@ -359,6 +368,23 @@
             element.classList.add(cssClass);
         }
         return element;
+    }
+
+    function whichTransitionEvent(){
+        var t;
+        var el = document.createElement('tingle-test-transition');
+        var transitions = {
+            'transition':'transitionend',
+            'OTransition':'oTransitionEnd',
+            'MozTransition':'transitionend',
+            'WebkitTransition':'webkitTransitionEnd'
+        }
+
+        for(t in transitions){
+            if( el.style[t] !== undefined ){
+                return transitions[t];
+            }
+        }
     }
 
     /* ----------------------------------------------------------- */
