@@ -66,8 +66,11 @@
 var modal = new tingle.modal({
     footer: true,
     stickyFooter: false,
+    onOpen: function() {
+        console.log('modal open');
+    },
     onClose: function() {
-        alert('modal closed');
+        console.log('modal closed');
     }
 });
 
@@ -110,6 +113,11 @@ modal.close();
                 <td>stickyFooter</td>
                 <td>boolean</td>
                 <td>Display a footer or not</td>
+            </tr>
+            <tr>
+                <td>onOpen</td>
+                <td>function</td>
+                <td>Callback to execute when tingle is open (after transition end)</td>
             </tr>
             <tr>
                 <td>onClose</td>
@@ -205,7 +213,11 @@ modal.close();
 
         var modalTinyNoFooter = new tingle.modal({
             onClose: function() {
-
+                console.log('close');
+            },
+            onOpen: function() {
+                console.log('open');
+                console.log(this.modalBox.clientWidth);
             }
         });
         var btn = document.querySelector('.js-tingle-modal-1');
