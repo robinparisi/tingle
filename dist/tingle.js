@@ -87,13 +87,15 @@
         _offset.call(this);
 
         // onOpen event
-        var transitionEvent = whichTransitionEvent();
-        var self = this;
-        transitionEvent && this.modal.addEventListener(transitionEvent, function(e) {
-            if(e.propertyName == 'transform') {
-                self.opts.onOpen.call(self);
-            }
-        });
+        if(typeof this.opts.onOpen === 'function') {
+            var transitionEvent = whichTransitionEvent();
+            var self = this;
+            transitionEvent && this.modal.addEventListener(transitionEvent, function(e) {
+                if(e.propertyName == 'transform') {
+                    self.opts.onOpen.call(self);
+                }
+            });
+        }
     };
 
     /**
