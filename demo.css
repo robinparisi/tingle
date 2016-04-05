@@ -169,6 +169,10 @@ h3 {
   border-bottom: 1px dotted #dfece6;
 }
 
+.important {
+  text-decoration: underline;
+}
+
 .container {
   margin-right: auto;
   margin-left: auto;

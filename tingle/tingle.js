@@ -35,7 +35,8 @@
             onClose: null,
             onOpen: null,
             stickyFooter: false,
-            footer: false
+            footer: false,
+            cssClass: []
         }
 
         // extends config
@@ -87,13 +88,15 @@
         _offset.call(this);
 
         // onOpen event
-        var transitionEvent = whichTransitionEvent();
-        var self = this;
-        transitionEvent && this.modal.addEventListener(transitionEvent, function(e) {
-            if(e.propertyName == 'transform') {
-                self.opts.onOpen.call(self);
-            }
-        });
+        if(typeof this.opts.onOpen === 'function') {
+            var transitionEvent = whichTransitionEvent();
+            var self = this;
+            transitionEvent && this.modal.addEventListener(transitionEvent, function(e) {
+                if(e.propertyName == 'transform') {
+                    self.opts.onOpen.call(self);
+                }
+            });
+        }
     };
 
     /**
@@ -142,6 +145,10 @@
         this.resize();
     };
 
+    Modal.prototype.getContent = function() {
+        return this.modalBoxContent;
+    };
+
     Modal.prototype.addFooter = function() {
         // add footer to modal
         _buildFooter.call(this);
@@ -152,6 +159,9 @@
         this.modalBoxFooter.innerHTML = content;
     };
 
+    Modal.prototype.getFooterContent = function() {
+        return this.modalBoxFooter;
+    };
 
     Modal.prototype.setStickyFooter = function(isSticky) {
 
@@ -250,10 +260,15 @@
         this.modal = create('div', 'tingle-modal');
         this.modal.style.display = 'none';
 
+        // custom class
+        this.opts.cssClass.forEach(function (item) {
+            if(typeof item === 'string') {
+                this.modal.classList.add(item);
+            }
+        }, this);
+
         this.modalCloseBtn = create('button', 'tingle-modal__close');
         this.modalCloseBtn.innerHTML = '×';
-
-        //modalWrapper = create('div', 'tingle-modal__wrapper');
 
         this.modalBox = create('div', 'tingle-modal-box');
         this.modalBoxContent = create('div', 'tingle-modal-box__content');
