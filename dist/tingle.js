@@ -35,7 +35,8 @@
             onClose: null,
             onOpen: null,
             stickyFooter: false,
-            footer: false
+            footer: false,
+            cssClass: []
         }
 
         // extends config
@@ -252,10 +253,15 @@
         this.modal = create('div', 'tingle-modal');
         this.modal.style.display = 'none';
 
+        // custom class
+        this.opts.cssClass.forEach(function (item) {
+            if(typeof item === 'string') {
+                this.modal.classList.add(item);
+            }
+        }, this);
+
         this.modalCloseBtn = create('button', 'tingle-modal__close');
         this.modalCloseBtn.innerHTML = '×';
-
-        //modalWrapper = create('div', 'tingle-modal__wrapper');
 
         this.modalBox = create('div', 'tingle-modal-box');
         this.modalBoxContent = create('div', 'tingle-modal-box__content');
