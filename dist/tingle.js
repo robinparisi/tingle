@@ -145,6 +145,10 @@
         this.resize();
     };
 
+    Modal.prototype.getContent = function() {
+        return this.modalBoxContent;
+    };
+
     Modal.prototype.addFooter = function() {
         // add footer to modal
         _buildFooter.call(this);
@@ -155,6 +159,9 @@
         this.modalBoxFooter.innerHTML = content;
     };
 
+    Modal.prototype.getFooterContent = function() {
+        return this.modalBoxFooter;
+    };
 
     Modal.prototype.setStickyFooter = function(isSticky) {
 
