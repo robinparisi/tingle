@@ -1,7 +1,7 @@
 /*!
 * tingle.js
 * @author  robin_parisi
-* @version 0.6.0
+* @version 0.7.0
 * @url
 */
 (function (root, factory) {
