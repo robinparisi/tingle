@@ -276,6 +276,10 @@ h2::before {
   margin-right: 10px;
 }
 
+.mb1 {
+  margin-bottom: 10px;
+}
+
 .list-blh {
   line-height: 1.8;
 }
