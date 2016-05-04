@@ -50,9 +50,26 @@
         <button class="btn btn--secondary mr1 js-tingle-modal-5">?</button>
 
         <h2 data-bullet="2">Installation</h2>
-        <pre><code>bower install tingle</code></pre>
-        <pre><code>npm install tingle.js --save</code></pre>
-
+        <table class="methods">
+            <thead>
+                <tr>
+                    <th>Method</th>
+                    <th class="w60">Procedure</th>
+                </tr>
+            </thead>
+            <tr>
+                <td>Bower</td>
+                <td>bower install tingle --save</td>
+            </tr>
+            <tr>
+                <td>NPM</td>
+                <td>npm install tingle.js --save</td>
+            </tr>
+            <tr>
+                <td>Basic download</td>
+                <td><a href="https://github.com/robinparisi/tingle/archive/master.zip" title="Download tingle">download zip</a></td>
+            </tr>
+        </table>
         <p>Tingle uses just one small CSS. Feel free to include it in your workflow (Less, Sass, etc...) and customize it to fit your needs.</p>
 
         <pre class="html"><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;tingle.min.css&quot;&gt;</code></pre>
@@ -63,39 +80,39 @@
 
         <h2 data-bullet="3">Use</h2>
         <pre class="javascript"><code>
-            // instanciate new modal
-            var modal = new tingle.modal({
-                footer: true,
-                stickyFooter: false,
-                cssClass: ['custom-class-1', 'custom-class-2']
-                onOpen: function() {
-                    console.log('modal open');
-                },
-                onClose: function() {
-                    console.log('modal closed');
-                }
-            });
+// instanciate new modal
+var modal = new tingle.modal({
+    footer: true,
+    stickyFooter: false,
+    cssClass: ['custom-class-1', 'custom-class-2']
+    onOpen: function() {
+        console.log('modal open');
+    },
+    onClose: function() {
+        console.log('modal closed');
+    }
+});
 
-            // set content
-            modal.setContent('&lt;h1&gt;here some content&lt;/h1&gt;');
+// set content
+modal.setContent('&lt;h1&gt;here some content&lt;/h1&gt;');
 
-            // add a button
-            modal.addFooterBtn('Button label', 'tingle-btn tingle-btn--primary', function() {
-                // here goes some logic
-                modal.close();
-            });
+// add a button
+modal.addFooterBtn('Button label', 'tingle-btn tingle-btn--primary', function() {
+    // here goes some logic
+    modal.close();
+});
 
-            // add another button
-            modal.addFooterBtn('Dangerous action !', 'tingle-btn tingle-btn--danger', function() {
-                // here goes some logic
-                modal.close();
-            });
+// add another button
+modal.addFooterBtn('Dangerous action !', 'tingle-btn tingle-btn--danger', function() {
+    // here goes some logic
+    modal.close();
+});
 
-            // open modal
-            modal.open();
+// open modal
+modal.open();
 
-            // close modal
-            modal.close();
+// close modal
+modal.close();
         </code></pre>
         <h2 data-bullet="4">Options</h2>
         <table class="methods">
