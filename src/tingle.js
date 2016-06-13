@@ -216,10 +216,10 @@
         // only if the modal is currently shown
         if(this.modal.classList.contains('tingle-modal--visible')) {
             _offset.call(this);
-            _recalculateFooterPosition.call(this);
             if(!this.isOverflow() && this.opts.stickyFooter) {
                 this.setStickyFooter(false);
             } else if(this.isOverflow() && this.opts.stickyFooter) {
+                _recalculateFooterPosition.call(this);
                 this.setStickyFooter(true);
             }
         }
@@ -229,13 +229,13 @@
         var viewportHeight = window.innerHeight;
         var modalHeight = this.modalBox.clientHeight;
 
-        //console.log(viewportHeight + '/' + modalHeight)
         var isOverflow = modalHeight < viewportHeight ? false : true;
         return isOverflow;
     }
 
 
     function _recalculateFooterPosition() {
+        console.log('recal');
         if(!this.modalBoxFooter) {
             return;
         }
