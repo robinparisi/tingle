@@ -235,7 +235,6 @@
 
 
     function _recalculateFooterPosition() {
-        console.log('recal');
         if(!this.modalBoxFooter) {
             return;
         }
