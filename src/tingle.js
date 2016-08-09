@@ -19,6 +19,7 @@
     /* ----------------------------------------------------------- */
 
     var body = document.querySelector('body');
+    var transitionEvent = whichTransitionEvent();
 
     /**
     * Modal constructor
@@ -89,13 +90,16 @@
 
         // onOpen event
         if(typeof this.opts.onOpen === 'function') {
-            var transitionEvent = whichTransitionEvent();
             var self = this;
-            transitionEvent && this.modal.addEventListener(transitionEvent, function(e) {
-                if(e.propertyName == 'transform') {
+
+            if(transitionEvent) {
+                this.modal.addEventListener(transitionEvent, function handler() {
                     self.opts.onOpen.call(self);
-                }
-            });
+
+                    // detach event after transition end (so it doesn't fire multiple onOpen)
+                    self.modal.removeEventListener(transitionEvent, handler, false);
+                }, false);
+            }
         }
     };
 
