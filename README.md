@@ -1,7 +1,12 @@
 
 ![Logo Tingle](logo.png)
 
-Read the documentation: [https://robinparisi.github.io/tingle/](https://robinparisi.github.io/tingle/)
+## Documentation
+
+Documentation and demo can be found here:
+[https://robinparisi.github.io/tingle/](https://robinparisi.github.io/tingle/)
+
+## Introduction
 
 Tingle is a minimalist and easy-to-use modal plugin written in pure JavaScript:
 
