@@ -27,7 +27,7 @@
     </header>
 
     <div class="container tingle-content-wrapper content">
-        <h2 data-bullet="1">Give it a try</h2>
+        <h2 data-bullet="1" class="title">Give it a try</h2>
         <p>
             Tingle is a simple <strong>modal plugin</strong> written in pure JavaScript (<a href="https://github.com/robinparisi/tingle">Source code on GitHub</a>).
         </p>
@@ -49,7 +49,7 @@
         <button class="btn btn--secondary mr1 js-tingle-modal-4">Stick to me!</button>
         <button class="btn btn--secondary mr1 js-tingle-modal-5">?</button>
 
-        <h2 data-bullet="2">Installation</h2>
+        <h2 data-bullet="2" class="title">Installation</h2>
         <table class="methods">
             <thead>
                 <tr>
@@ -78,43 +78,43 @@
 
         <pre class="html"><code>&lt;script src=&quot;tingle.min.js&quot;&gt;&lt;/script&gt;</code></pre>
 
-        <h2 data-bullet="3">Use</h2>
+        <h2 data-bullet="3" class="title">Use</h2>
         <pre class="javascript"><code>
-// instanciate new modal
-var modal = new tingle.modal({
-    footer: true,
-    stickyFooter: false,
-    cssClass: ['custom-class-1', 'custom-class-2']
-    onOpen: function() {
-        console.log('modal open');
-    },
-    onClose: function() {
-        console.log('modal closed');
-    }
-});
+            // instanciate new modal
+            var modal = new tingle.modal({
+                footer: true,
+                stickyFooter: false,
+                cssClass: ['custom-class-1', 'custom-class-2']
+                onOpen: function() {
+                    console.log('modal open');
+                },
+                onClose: function() {
+                    console.log('modal closed');
+                }
+            });
 
-// set content
-modal.setContent('&lt;h1&gt;here some content&lt;/h1&gt;');
+            // set content
+            modal.setContent('&lt;h1&gt;here some content&lt;/h1&gt;');
 
-// add a button
-modal.addFooterBtn('Button label', 'tingle-btn tingle-btn--primary', function() {
-    // here goes some logic
-    modal.close();
-});
+            // add a button
+            modal.addFooterBtn('Button label', 'tingle-btn tingle-btn--primary', function() {
+                // here goes some logic
+                modal.close();
+            });
 
-// add another button
-modal.addFooterBtn('Dangerous action !', 'tingle-btn tingle-btn--danger', function() {
-    // here goes some logic
-    modal.close();
-});
+            // add another button
+            modal.addFooterBtn('Dangerous action !', 'tingle-btn tingle-btn--danger', function() {
+                // here goes some logic
+                modal.close();
+            });
 
-// open modal
-modal.open();
+            // open modal
+            modal.open();
 
-// close modal
-modal.close();
+            // close modal
+            modal.close();
         </code></pre>
-        <h2 data-bullet="4">Options</h2>
+        <h2 data-bullet="4" class="title">Options</h2>
         <table class="methods">
             <thead>
                 <tr>
@@ -149,7 +149,7 @@ modal.close();
                 <td>Custom CSS classes that will be added to tingle container</td>
             </tr>
         </table>
-        <h2 data-bullet="5">CSS</h2>
+        <h2 data-bullet="5" class="title">CSS</h2>
         <p>
             All tingle styles are available in CSS. Only some specific properties for positioning are processed by JavaScript.
             It means you can customize tingle to fit your needs. Tingle came with some useful styles for buttons:
@@ -237,6 +237,31 @@ modal.close();
             <img src="http://lorempixel.com/800/400/cats/4" height="400" alt="">
             <p>Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
         </div>
+
+        <!-- Tingle big content with sticky footer -->
+        <div class="tingle-demo tingle-demo-sticky">
+            <h1>Terms of use</h1>
+            <h2>Boring first article</h2>
+            <p>
+                Sed posuere consectetur est at lobortis. Curabitur blandit tempus porttitor. Nullam id dolor id nibh ultricies vehicula ut id elit. Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+            </p>
+            <h2>Boring second article</h2>
+            <p>
+                Etiam porta sem malesuada magna mollis euismod. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cras mattis consectetur purus sit amet fermentum. Vestibulum id ligula porta felis euismod semper. Cras mattis consectetur purus sit amet fermentum. Nulla vitae elit libero, a pharetra augue.
+            </p>
+            <h2>Boring third article</h2>
+            <p>
+                Curabitur blandit tempus porttitor. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras mattis consectetur purus sit amet fermentum. Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed posuere consectetur est at lobortis. Donec id elit non mi porta gravida at eget metus. Curabitur blandit tempus porttitor. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper.
+            </p>
+
+            <p>
+                Curabitur blandit tempus porttitor. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras mattis consectetur purus sit amet fermentum. Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
+            </p>
+        </div>
+
     </div>
 
     <!-- /Tingle big content -->
@@ -313,8 +338,17 @@ modal.close();
     btn4.addEventListener('click', function(){
         modalStickyFooter.open();
     });
-    modalStickyFooter.setFooterContent("This footer is sticky so it's useful to keep actions always visible.");
-    modalStickyFooter.setContent(document.querySelector('.tingle-demo-big').innerHTML);
+
+
+    modalStickyFooter.addFooterBtn('I agree', 'tingle-btn tingle-btn--primary tingle-btn--pull-right', function(){
+        modalStickyFooter.close();
+    });
+
+    modalStickyFooter.addFooterBtn('Cancel', 'tingle-btn tingle-btn--default tingle-btn--pull-right', function(){
+        modalStickyFooter.close();
+    });
+
+    modalStickyFooter.setContent(document.querySelector('.tingle-demo-sticky').innerHTML);
 
     /**
     * 	Modal suprise

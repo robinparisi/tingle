@@ -204,9 +204,9 @@ h3 {
 }
 
 .header__github {
-  position: absolute;;
-  bottom: 0;
+  position: absolute;
   right: 10%;
+  bottom: 0;
   width: 60px;
   height: 60px;
   transform: rotate(180deg) translateZ(0);
@@ -215,10 +215,11 @@ h3 {
   animation-duration: .5s;
   animation-timing-function: cubic-bezier(.91,.79,.57,1.01);
   animation-iteration-count: 1;
-  animation-fill-mode: forwards;
+
+  animation-fill-mode: forwards;;
 }
 
-h2 {
+.title {
   position: relative;
   left: 30px;
   margin-bottom: 30px;
@@ -227,7 +228,7 @@ h2 {
   line-height: 1.5;
 }
 
-h2::before {
+.title::before {
   position: absolute;
   top: 5px;
   left: 0;
@@ -240,6 +241,10 @@ h2::before {
   text-align: center;
   font-size: 25px;
   line-height: 35px;;
+}
+
+h3 {
+  color: #39df7f;
 }
 
 .btn {
@@ -290,8 +295,8 @@ img {
 }
 
 .methods {
-  table-layout: fixed;
   width: 100%;
+  table-layout: fixed;
 }
 
 .methods tr:nth-child(odd) {
@@ -303,9 +308,9 @@ img {
 }
 
 .methods th {
+  padding: 10px;
   background-color: #39df7f;
   color: #fff;
-  padding: 10px;
   text-align: left;
 }
 
