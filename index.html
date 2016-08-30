@@ -27,7 +27,7 @@
     </header>
 
     <div class="container tingle-content-wrapper content">
-        <h2 data-bullet="1">Give it a try</h2>
+        <h2 data-bullet="1" class="title">Give it a try</h2>
         <p>
             Tingle is a simple <strong>modal plugin</strong> written in pure JavaScript (<a href="https://github.com/robinparisi/tingle">Source code on GitHub</a>).
         </p>
@@ -49,7 +49,7 @@
         <button class="btn btn--secondary mr1 js-tingle-modal-4">Stick to me!</button>
         <button class="btn btn--secondary mr1 js-tingle-modal-5">?</button>
 
-        <h2 data-bullet="2">Installation</h2>
+        <h2 data-bullet="2" class="title">Installation</h2>
         <table class="methods">
             <thead>
                 <tr>
@@ -78,7 +78,7 @@
 
         <pre class="html"><code>&lt;script src=&quot;tingle.min.js&quot;&gt;&lt;/script&gt;</code></pre>
 
-        <h2 data-bullet="3">Use</h2>
+        <h2 data-bullet="3" class="title">Use</h2>
         <pre class="javascript"><code>
 // instanciate new modal
 var modal = new tingle.modal({
@@ -114,7 +114,7 @@ modal.open();
 // close modal
 modal.close();
         </code></pre>
-        <h2 data-bullet="4">Options</h2>
+        <h2 data-bullet="4" class="title">Options</h2>
         <table class="methods">
             <thead>
                 <tr>
@@ -149,7 +149,7 @@ modal.close();
                 <td>Custom CSS classes that will be added to tingle container</td>
             </tr>
         </table>
-        <h2 data-bullet="5">CSS</h2>
+        <h2 data-bullet="5" class="title">CSS</h2>
         <p>
             All tingle styles are available in CSS. Only some specific properties for positioning are processed by JavaScript.
             It means you can customize tingle to fit your needs. Tingle came with some useful styles for buttons:
@@ -166,7 +166,7 @@ modal.close();
             <li>tingle-btn--pull-right</li>
         </ul>
 
-        <h2 data-bullet="6">API</h2>
+        <h2 data-bullet="6" class="title">API</h2>
         <table class="methods">
             <thead>
                 <tr>
@@ -181,10 +181,6 @@ modal.close();
             <tr>
                 <td>close()</td>
                 <td>Close modal and execute callback if exist</td>
-            </tr>
-            <tr>
-                <td>destroy()</td>
-                <td>Destroy modal (remove from dom and unbind events)</td>
             </tr>
             <tr>
                 <td>setContent(content)</td>
@@ -207,12 +203,16 @@ modal.close();
                 <td>Add buttons to footer (use cssClass for style and positioning)</td>
             </tr>
             <tr>
-                <td>resize()</td>
-                <td>Recalculate position of the modal</td>
-            </tr>
-            <tr>
                 <td>isOverflow()</td>
                 <td>Return true if modal height is bigger than viewport height</td>
+            </tr>
+            <tr>
+                <td>destroy()</td>
+                <td>Destroy modal (remove from dom and unbind events)</td>
+            </tr>
+            <tr>
+                <td>resize() <span class="tag tag--warning">deprecated</span></td>
+                <td>Deprecated since v0.8 and will be removed in v1.0</td>
             </tr>
         </table>
 
@@ -231,106 +231,141 @@ modal.close();
         <div class="tingle-demo tingle-demo-big">
             <h1 class="plop">Big content with scroll</h1>
             <p>Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-            <img src="http://lorempixel.com/800/400/cats/3" height="400">
+            <img src="http://lorempixel.com/800/400/cats/3" height="400" alt="">
             <p>Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
             <p>Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-            <img src="http://lorempixel.com/800/400/cats/4" height="400">
+            <img src="http://lorempixel.com/800/400/cats/4" height="400" alt="">
             <p>Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
         </div>
 
-        <!-- /Tingle big content -->
+        <!-- Tingle big content with sticky footer -->
+        <div class="tingle-demo tingle-demo-sticky">
+            <h1>Terms of use</h1>
+            <h2>Boring first article</h2>
+            <p>
+                Sed posuere consectetur est at lobortis. Curabitur blandit tempus porttitor. Nullam id dolor id nibh ultricies vehicula ut id elit. Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+            </p>
+            <h2>Boring second article</h2>
+            <p>
+                Etiam porta sem malesuada magna mollis euismod. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cras mattis consectetur purus sit amet fermentum. Vestibulum id ligula porta felis euismod semper. Cras mattis consectetur purus sit amet fermentum. Nulla vitae elit libero, a pharetra augue.
+            </p>
+            <h2>Boring third article</h2>
+            <p>
+                Curabitur blandit tempus porttitor. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras mattis consectetur purus sit amet fermentum. Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed posuere consectetur est at lobortis. Donec id elit non mi porta gravida at eget metus. Curabitur blandit tempus porttitor. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper.
+            </p>
 
-        <script src="tingle/tingle.js"></script>
-        <script type="text/javascript">
+            <p>
+                Curabitur blandit tempus porttitor. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras mattis consectetur purus sit amet fermentum. Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
+            </p>
+        </div>
 
-        /**
-        * Modal Tiny no footer
-        */
+    </div>
 
-        var modalTinyNoFooter = new tingle.modal({
-            onClose: function() {
-                console.log('close');
-            },
-            onOpen: function() {
-                console.log('open');
-                console.log(this.modalBox.clientWidth);
-            },
-            cssClass: ['class1', 'class2']
+    <!-- /Tingle big content -->
+
+    <script src="tingle/tingle.js"></script>
+    <script type="text/javascript">
+
+    /**
+    * Modal Tiny no footer
+    */
+
+    var modalTinyNoFooter = new tingle.modal({
+        onClose: function() {
+            console.log('close');
+        },
+        onOpen: function() {
+            console.log('open');
+            console.log(this.modalBox.clientWidth);
+        },
+        cssClass: ['class1', 'class2']
+    });
+    var btn = document.querySelector('.js-tingle-modal-1');
+    btn.addEventListener('click', function(){
+        modalTinyNoFooter.open();
+    });
+    modalTinyNoFooter.setContent(document.querySelector('.tingle-demo-tiny').innerHTML);
+
+    /**
+    * Modal tiny with btn
+    */
+
+    var modalTinyBtn = new tingle.modal({
+        footer: true
+    });
+    var btn2 = document.querySelector('.js-tingle-modal-2');
+
+    btn2.addEventListener('click', function(){
+        modalTinyBtn.open();
+    });
+
+    modalTinyBtn.setContent(document.querySelector('.tingle-demo-tiny').innerHTML);
+
+    modalTinyBtn.addFooterBtn('Primary action', 'tingle-btn tingle-btn--primary tingle-btn--pull-right', function() {
+        alert('click on primary button!');
+    });
+
+    modalTinyBtn.addFooterBtn('Cancel', 'tingle-btn tingle-btn--default tingle-btn--pull-right', function(){
+        modalTinyBtn.close();
+    });
+
+    modalTinyBtn.addFooterBtn('Danger!', 'tingle-btn tingle-btn--danger', function(){
+        alert('click on danger button!');
+    });
+
+    /**
+    * Modal big
+    */
+
+    var modalBigContent = new tingle.modal();
+    var btn3 = document.querySelector('.js-tingle-modal-3');
+    btn3.addEventListener('click', function(){
+        modalBigContent.open();
+    });
+    modalBigContent.setContent(document.querySelector('.tingle-demo-big').innerHTML);
+
+    /**
+    * Modal big with sticky footer
+    */
+    var modalStickyFooter = new tingle.modal({
+        footer: true,
+        stickyFooter: true
+    });
+    var btn4 = document.querySelector('.js-tingle-modal-4');
+    btn4.addEventListener('click', function(){
+        modalStickyFooter.open();
+    });
+
+
+    modalStickyFooter.addFooterBtn('I agree', 'tingle-btn tingle-btn--primary tingle-btn--pull-right', function(){
+        modalStickyFooter.close();
+    });
+
+    modalStickyFooter.addFooterBtn('Cancel', 'tingle-btn tingle-btn--default tingle-btn--pull-right', function(){
+        modalStickyFooter.close();
+    });
+
+    modalStickyFooter.setContent(document.querySelector('.tingle-demo-sticky').innerHTML);
+
+    /**
+    * 	Modal suprise
+    */
+    var btn5 = document.querySelector('.js-tingle-modal-5');
+    btn5.addEventListener('click', function(){
+        var modalSurprise = new tingle.modal({
+            onClose: function(){
+                modalSurprise.destroy();
+            }
         });
-        var btn = document.querySelector('.js-tingle-modal-1');
-        btn.addEventListener('click', function(){
-            modalTinyNoFooter.open();
-        });
-        modalTinyNoFooter.setContent(document.querySelector('.tingle-demo-tiny').innerHTML);
+        modalSurprise.setContent('<iframe width="100%" height="400" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" frameborder="0" allowfullscreen></iframe>');
+        modalSurprise.open();
+    });
 
-        /**
-        * Modal tiny with btn
-        */
-
-        var modalTinyBtn = new tingle.modal({
-            footer: true
-        });
-        var btn2 = document.querySelector('.js-tingle-modal-2');
-
-        btn2.addEventListener('click', function(){
-            modalTinyBtn.open();
-        });
-
-        modalTinyBtn.setContent(document.querySelector('.tingle-demo-tiny').innerHTML);
-
-        modalTinyBtn.addFooterBtn('Primary action', 'tingle-btn tingle-btn--primary tingle-btn--pull-right', function() {
-            alert('click on primary button!');
-        });
-
-        modalTinyBtn.addFooterBtn('Cancel', 'tingle-btn tingle-btn--default tingle-btn--pull-right', function(){
-            modalTinyBtn.close();
-        });
-
-        modalTinyBtn.addFooterBtn('Danger!', 'tingle-btn tingle-btn--danger', function(){
-            alert('click on danger button!');
-        });
-
-        /**
-        * Modal big
-        */
-
-        var modalBigContent = new tingle.modal();
-        var btn3 = document.querySelector('.js-tingle-modal-3');
-        btn3.addEventListener('click', function(){
-            modalBigContent.open();
-        });
-        modalBigContent.setContent(document.querySelector('.tingle-demo-big').innerHTML);
-
-        /**
-        * Modal big with sticky footer
-        */
-        var modalStickyFooter = new tingle.modal({
-            footer: true,
-            stickyFooter: true
-        });
-        var btn4 = document.querySelector('.js-tingle-modal-4');
-        btn4.addEventListener('click', function(){
-            modalStickyFooter.open();
-        });
-        modalStickyFooter.setFooterContent("This footer is sticky so it's useful to keep actions always visible.");
-        modalStickyFooter.setContent(document.querySelector('.tingle-demo-big').innerHTML);
-
-        /**
-        * 	Modal suprise
-        */
-        var btn5 = document.querySelector('.js-tingle-modal-5');
-        btn5.addEventListener('click', function(){
-            var modalSurprise = new tingle.modal({
-                onClose: function(){
-                    modalSurprise.destroy();
-                }
-            });
-            modalSurprise.setContent('<iframe width="100%" height="400" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" frameborder="0" allowfullscreen></iframe>');
-            modalSurprise.open();
-        });
-
-        </script>
-        <script type="text/javascript" src="vendor/highlight/highlight.pack.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-    </body>
-    </html>
+    </script>
+    <script type="text/javascript" src="vendor/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
