@@ -325,6 +325,23 @@ img {
 .w60 {
   width: 60%;
 }
+
+/* tags
+-------------------------------------------------------------- */
+
+.tag {
+  display: inline-block;
+  padding: .1em .5em;
+  border-radius: 4px;
+  color: #fff;
+  vertical-align: middle;
+  font-size: 1.3rem;
+}
+
+.tag--warning {
+  background-color: #f39c12;
+}
+
 /* animations
 -------------------------------------------------------------- */
 

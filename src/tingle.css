@@ -67,7 +67,7 @@
 	opacity: 1;
 	cursor: auto;
 	transition: transform .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	transform: scale(.6);
+	transform: scale(.7);
 }
 
 .tingle-modal-box__content {
@@ -91,7 +91,7 @@
 
 .tingle-modal-box__footer--sticky {
 	position: fixed;
-	bottom: -100px; /* TODO : find a better way */
+	bottom: -200px; /* TODO : find a better way */
 	z-index: 10001;
 	opacity: 1;
 	transition: bottom .3s ease-in-out .3s;;

@@ -80,39 +80,39 @@
 
         <h2 data-bullet="3" class="title">Use</h2>
         <pre class="javascript"><code>
-            // instanciate new modal
-            var modal = new tingle.modal({
-                footer: true,
-                stickyFooter: false,
-                cssClass: ['custom-class-1', 'custom-class-2']
-                onOpen: function() {
-                    console.log('modal open');
-                },
-                onClose: function() {
-                    console.log('modal closed');
-                }
-            });
+// instanciate new modal
+var modal = new tingle.modal({
+    footer: true,
+    stickyFooter: false,
+    cssClass: ['custom-class-1', 'custom-class-2']
+    onOpen: function() {
+        console.log('modal open');
+    },
+    onClose: function() {
+        console.log('modal closed');
+    }
+});
 
-            // set content
-            modal.setContent('&lt;h1&gt;here some content&lt;/h1&gt;');
+// set content
+modal.setContent('&lt;h1&gt;here some content&lt;/h1&gt;');
 
-            // add a button
-            modal.addFooterBtn('Button label', 'tingle-btn tingle-btn--primary', function() {
-                // here goes some logic
-                modal.close();
-            });
+// add a button
+modal.addFooterBtn('Button label', 'tingle-btn tingle-btn--primary', function() {
+    // here goes some logic
+    modal.close();
+});
 
-            // add another button
-            modal.addFooterBtn('Dangerous action !', 'tingle-btn tingle-btn--danger', function() {
-                // here goes some logic
-                modal.close();
-            });
+// add another button
+modal.addFooterBtn('Dangerous action !', 'tingle-btn tingle-btn--danger', function() {
+    // here goes some logic
+    modal.close();
+});
 
-            // open modal
-            modal.open();
+// open modal
+modal.open();
 
-            // close modal
-            modal.close();
+// close modal
+modal.close();
         </code></pre>
         <h2 data-bullet="4" class="title">Options</h2>
         <table class="methods">
@@ -166,7 +166,7 @@
             <li>tingle-btn--pull-right</li>
         </ul>
 
-        <h2 data-bullet="6">API</h2>
+        <h2 data-bullet="6" class="title">API</h2>
         <table class="methods">
             <thead>
                 <tr>
@@ -181,10 +181,6 @@
             <tr>
                 <td>close()</td>
                 <td>Close modal and execute callback if exist</td>
-            </tr>
-            <tr>
-                <td>destroy()</td>
-                <td>Destroy modal (remove from dom and unbind events)</td>
             </tr>
             <tr>
                 <td>setContent(content)</td>
@@ -207,12 +203,16 @@
                 <td>Add buttons to footer (use cssClass for style and positioning)</td>
             </tr>
             <tr>
-                <td>resize()</td>
-                <td>Recalculate position of the modal</td>
-            </tr>
-            <tr>
                 <td>isOverflow()</td>
                 <td>Return true if modal height is bigger than viewport height</td>
+            </tr>
+            <tr>
+                <td>destroy()</td>
+                <td>Destroy modal (remove from dom and unbind events)</td>
+            </tr>
+            <tr>
+                <td>resize() <span class="tag tag--warning">deprecated</span></td>
+                <td>Deprecated since v0.8 and will be removed in v1.0</td>
             </tr>
         </table>
 
