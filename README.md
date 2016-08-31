@@ -19,12 +19,12 @@ Tingle is a minimalist and easy-to-use modal plugin written in pure JavaScript:
 
 ![Demo Page screenshot](tingle.gif)
 
-## Coming soon
+## Roadmap
 
-* Accessibility (any help is welcome)
+* ~~Flexbox support~~
 * Better responsive
-* Flexbox support
 * alert/dialog
+* Accessibility (any help is welcome)
 
 ## License
 
