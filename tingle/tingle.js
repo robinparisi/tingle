@@ -1,7 +1,7 @@
 /*!
  * tingle.js
  * @author  robin_parisi
- * @version 0.7.3
+ * @version 0.8.1
  * @url
  */
 (function(root, factory) {
@@ -89,7 +89,12 @@
      */
     Modal.prototype.open = function(options) {
 
-        this.modal.style.display = null;
+        if (this.modal.style.removeProperty) {
+            this.modal.style.removeProperty('display');
+        } else {
+            this.modal.style.removeAttribute('display');
+        }
+
 
         // prevent double scroll
         body.classList.add('tingle-enabled');
