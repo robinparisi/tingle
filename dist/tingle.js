@@ -89,7 +89,12 @@
      */
     Modal.prototype.open = function(options) {
 
-        this.modal.style.display = null;
+        if (this.modal.style.removeProperty) {
+			this.modal.style.removeProperty('display');
+		} else {
+			this.modal.style.removeAttribute('display');
+		}
+
 
         // prevent double scroll
         body.classList.add('tingle-enabled');
