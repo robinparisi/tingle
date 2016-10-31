@@ -18,7 +18,6 @@
     /* == modal */
     /* ----------------------------------------------------------- */
 
-    var body = document.querySelector('body');
     var transitionEvent = whichTransitionEvent();
 
     /**
@@ -97,7 +96,7 @@
 
 
         // prevent double scroll
-        body.classList.add('tingle-enabled');
+        document.body.classList.add('tingle-enabled');
 
         // sticky footer
         this.setStickyFooter(this.opts.stickyFooter);
@@ -131,7 +130,7 @@
     Modal.prototype.close = function(e) {
 
         this.modal.style.display = 'none';
-        body.classList.remove('tingle-enabled');
+        document.body.classList.remove('tingle-enabled');
 
         this.modal.classList.remove('tingle-modal--visible');
 
