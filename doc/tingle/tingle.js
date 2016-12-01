@@ -184,7 +184,8 @@
                 this.modal.appendChild(this.modalBoxFooter);
                 this.modalBoxFooter.classList.add('tingle-modal-box__footer--sticky');
                 _recalculateFooterPosition.call(this);
-                this.modalBoxContent.style['padding-bottom'] = this.modalBoxFooter.clientHeight + 20 + 'px';
+                this.modalBoxContent.style['padding-bottom'] = this.modalBoxFooter.clientHeight +
+                    20 + 'px';
                 bind(this.modalBoxFooter, 'click', _catchEvent);
             }
         } else if (this.modalBoxFooter) {
@@ -297,10 +298,16 @@
 
     function _bindEvents() {
         bind(this.modalCloseBtn, 'click', this.close.bind(this));
-        bind(this.modal, 'click', this.close.bind(this));
-        bind(this.modalBox, 'click', _catchEvent);
+        bind(this.modal, 'click', _handleClickProcedure.bind(this));
         window.addEventListener('resize', _checkOverflow.bind(this));
     };
+
+    function _handleClickProcedure(event) {
+        // if click is outside the modal
+        if (!_findAncestor(event.target, 'tingle-modal')) {
+            this.close();
+        }
+    }
 
     /**
      * Avoid closing the modal when a click is trigger inside
@@ -309,11 +316,14 @@
         e.stopPropagation();
     };
 
+    function _findAncestor(el, cls) {
+        while ((el = el.parentElement) && !el.classList.contains(cls));
+        return el;
+    }
+
     function _unbindEvents() {
         unbind(this.modalCloseBtn, 'click', this.close.bind(this));
-        unbind(this.modal, 'click', this.close.bind(this));
-        unbind(this.modalBox, 'click', _catchEvent);
-
+        unbind(this.modal, 'click', _handleClickProcedure.bind(this));
     };
 
     /* ----------------------------------------------------------- */
