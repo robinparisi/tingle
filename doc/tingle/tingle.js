@@ -298,7 +298,7 @@
 
     function _bindEvents() {
         bind(this.modalCloseBtn, 'click', this.close.bind(this));
-        bind(this.modal, 'click', _handleClickProcedure.bind(this));
+        bind(this.modal, 'mousedown', _handleClickProcedure.bind(this));
         window.addEventListener('resize', _checkOverflow.bind(this));
     };
 
@@ -323,7 +323,7 @@
 
     function _unbindEvents() {
         unbind(this.modalCloseBtn, 'click', this.close.bind(this));
-        unbind(this.modal, 'click', _handleClickProcedure.bind(this));
+        unbind(this.modal, 'mousedown', _handleClickProcedure.bind(this));
     };
 
     /* ----------------------------------------------------------- */
