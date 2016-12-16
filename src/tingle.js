@@ -298,13 +298,13 @@
 
     function _bindEvents() {
         bind(this.modalCloseBtn, 'click', this.close.bind(this));
-        bind(this.modal, 'mousedown', _handleClickProcedure.bind(this));
+        bind(this.modal, 'mousedown', _handleClickOutside.bind(this));
         window.addEventListener('resize', _checkOverflow.bind(this));
     };
 
-    function _handleClickProcedure(event) {
+    function _handleClickOutside(event) {
         // if click is outside the modal
-        if (!_findAncestor(event.target, 'tingle-modal')) {
+        if (!_findAncestor(event.target, 'tingle-modal') && event.clientX < this.modal.clientWidth) {
             this.close();
         }
     }
