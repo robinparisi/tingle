@@ -33,6 +33,7 @@
         var defaults = {
             onClose: null,
             onOpen: null,
+            beforeClose: null,
             stickyFooter: false,
             footer: false,
             cssClass: [],
@@ -121,6 +122,12 @@
     }
 
     Modal.prototype.close = function(e) {
+
+        //  before close
+        if (typeof this.opts.beforeClose === "function") {
+            var close = this.opts.beforeClose.call(this);
+            if(!close) return;
+        }
 
         this.modal.style.display = 'none';
         document.body.classList.remove('tingle-enabled');

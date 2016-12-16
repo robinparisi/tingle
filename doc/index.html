@@ -91,6 +91,12 @@ var modal = new tingle.modal({
     },
     onClose: function() {
         console.log('modal closed');
+    },
+    beforeClose: function() {
+        // here's goes some logic
+        // e.g. save content before closing the modal
+        return true; // close the modal
+    	return false; // nothing happens
     }
 });
 
@@ -143,6 +149,11 @@ modal.close();
                 <td>onClose</td>
                 <td>function</td>
                 <td>Callback to execute when tingle is closed</td>
+            </tr>
+            <tr>
+                <td>beforeClose</td>
+                <td>function</td>
+                <td>Callback to execute before closing the modal (must return true to close the modal)</td>
             </tr>
             <tr>
                 <td>cssClass</td>
@@ -285,6 +296,10 @@ modal.close();
         },
         onOpen: function() {
             console.log('open');
+        },
+        beforeClose: function() {
+            console.log('before close');
+            return true;
         },
         cssClass: ['class1', 'class2']
     });
