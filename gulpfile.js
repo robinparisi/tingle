@@ -1,13 +1,10 @@
 var gulp          = require('gulp');
 var browserSync   = require('browser-sync');
 var autoprefixer  = require('gulp-autoprefixer');
-//var cp            = require('child_process');
-//var plumber       = require('gulp-plumber');
 var minifyCSS     = require('gulp-minify-css');
 var uglify        = require('gulp-uglify');
 var ghPages       = require('gulp-gh-pages');
-var rename = require('gulp-rename');
-
+var rename        = require('gulp-rename');
 var reload        = browserSync.reload;
 
 /* config
@@ -81,12 +78,15 @@ gulp.task('copy', ['css', 'css-min', 'js', 'js-min'], function () {
       .pipe(gulp.dest('doc/tingle'));
 });
 
-/**
- * Watch files for changes
- */
-gulp.task('watch', function() {
+gulp.task('serve', function() {
+
+    browserSync.init({
+        server: "./doc"
+    });
+
     gulp.watch('src/**', ['copy']);
 });
+
 
 
 gulp.task('doc', ['copy', 'deploy']);
