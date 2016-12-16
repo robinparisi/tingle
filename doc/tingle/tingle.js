@@ -35,7 +35,8 @@
             onOpen: null,
             stickyFooter: false,
             footer: false,
-            cssClass: []
+            cssClass: [],
+            closeLabel: 'Close'
         }
 
         // extends config
@@ -273,7 +274,17 @@
         // close btn
         this.modalCloseBtn = document.createElement('button');
         this.modalCloseBtn.classList.add('tingle-modal__close');
-        this.modalCloseBtn.innerHTML = '×';
+
+        this.modalCloseBtnIcon = document.createElement('span');
+        this.modalCloseBtnIcon.classList.add('tingle-modal__closeIcon');
+        this.modalCloseBtnIcon.innerHTML = '×';
+
+        this.modalCloseBtnLabel = document.createElement('span');
+        this.modalCloseBtnLabel.classList.add('tingle-modal__closeLabel');
+        this.modalCloseBtnLabel.innerHTML = this.opts.closeLabel;
+
+        this.modalCloseBtn.appendChild(this.modalCloseBtnIcon);
+        this.modalCloseBtn.appendChild(this.modalCloseBtnLabel);
 
         // modal
         this.modalBox = document.createElement('div');

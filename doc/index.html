@@ -43,11 +43,11 @@
 
         <p>Below you will find some examples for using tingle: </p>
 
-        <button class="btn btn--primary mr1 js-tingle-modal-1">A simple modal</button>
-        <button class="btn btn--secondary mr1 js-tingle-modal-2">Need buttons?</button>
-        <button class="btn btn--secondary mr1 js-tingle-modal-3">Big content? No problem!</button>
-        <button class="btn btn--secondary mr1 js-tingle-modal-4">Stick to me!</button>
-        <button class="btn btn--secondary mr1 js-tingle-modal-5">?</button>
+        <button class="btn btn--primary btn-demo js-tingle-modal-1">A simple modal</button>
+        <button class="btn btn--secondary btn-demo js-tingle-modal-2">Need buttons?</button>
+        <button class="btn btn--secondary btn-demo js-tingle-modal-3">Big content? No problem!</button>
+        <button class="btn btn--secondary btn-demo js-tingle-modal-4">Stick to me!</button>
+        <button class="btn btn--secondary btn-demo js-tingle-modal-5">?</button>
 
         <h2 data-bullet="2" class="title">Installation</h2>
         <table class="methods">
@@ -84,6 +84,7 @@
 var modal = new tingle.modal({
     footer: true,
     stickyFooter: false,
+    closeLabel: "Close",
     cssClass: ['custom-class-1', 'custom-class-2'],
     onOpen: function() {
         console.log('modal open');
@@ -147,6 +148,11 @@ modal.close();
                 <td>cssClass</td>
                 <td>array</td>
                 <td>Custom CSS classes that will be added to tingle container</td>
+            </tr>
+            <tr>
+                <td>closeLabel</td>
+                <td>string</td>
+                <td>Label wich appears on the close button (mobile version)</td>
             </tr>
         </table>
         <h2 data-bullet="5" class="title">CSS</h2>
