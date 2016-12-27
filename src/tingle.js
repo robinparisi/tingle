@@ -22,13 +22,6 @@
 
 
     function Modal(options) {
-        this.modal;
-        this.modalCloseBtn;
-        this.modalWrapper;
-        this.modalBox;
-        this.modalBoxContent
-        this.modalBoxFooter;
-        this.modalContent;
 
         var defaults = {
             onClose: null,
@@ -38,7 +31,7 @@
             footer: false,
             cssClass: [],
             closeLabel: 'Close'
-        }
+        };
 
         // extends config
         this.opts = extend({}, defaults, options);
@@ -78,7 +71,7 @@
     };
 
 
-    Modal.prototype.open = function(options) {
+    Modal.prototype.open = function() {
 
         if (this.modal.style.removeProperty) {
             this.modal.style.removeProperty('display');
@@ -116,12 +109,10 @@
     };
 
     Modal.prototype.isOpen = function() {
-        var isOpen = this.modal.classList.contains("tingle-modal--visible") ? true :
-            false;
-        return isOpen;
-    }
+        return !!this.modal.classList.contains("tingle-modal--visible");
+    };
 
-    Modal.prototype.close = function(e) {
+    Modal.prototype.close = function() {
 
         //  before close
         if (typeof this.opts.beforeClose === "function") {
@@ -157,7 +148,7 @@
     Modal.prototype.addFooter = function() {
         // add footer to modal
         _buildFooter.call(this);
-    }
+    };
 
     Modal.prototype.setFooterContent = function(content) {
         // set footer content
@@ -193,7 +184,7 @@
                 this.modalBoxFooter.classList.remove('tingle-modal-box__footer--sticky');
             }
         }
-    }
+    };
 
 
     Modal.prototype.addFooterBtn = function(label, cssClass, callback) {
@@ -215,7 +206,7 @@
         this.modalBoxFooter.appendChild(btn);
 
         return btn;
-    }
+    };
 
     Modal.prototype.resize = function() {
         console.warn('Resize is deprecated and will be removed in version 1.0');
@@ -226,9 +217,8 @@
         var viewportHeight = window.innerHeight;
         var modalHeight = this.modalBox.clientHeight;
 
-        var isOverflow = modalHeight < viewportHeight ? false : true;
-        return isOverflow;
-    }
+        return modalHeight >= viewportHeight;
+    };
 
 
     /* ----------------------------------------------------------- */
@@ -254,7 +244,7 @@
                 this.setStickyFooter(true);
             }
         }
-    };
+    }
 
     function _recalculateFooterPosition() {
         if (!this.modalBoxFooter) {
@@ -267,7 +257,7 @@
     function _build() {
 
         // wrapper
-        this.modal = document.createElement('div')
+        this.modal = document.createElement('div');
         this.modal.classList.add('tingle-modal');
         this.modal.style.display = 'none';
 
@@ -305,7 +295,7 @@
         this.modal.appendChild(this.modalCloseBtn);
         this.modal.appendChild(this.modalBox);
 
-    };
+    }
 
     function _buildFooter() {
         this.modalBoxFooter = document.createElement('div');
@@ -320,13 +310,13 @@
             clickOverlay: _handleClickOutside.bind(this),
             resize: _checkOverflow.bind(this),
             keyboardNav: _handleKeyboardNav.bind(this)
-        }
+        };
 
         this.modalCloseBtn.addEventListener('click', this._events.clickCloseBtn);
         this.modal.addEventListener('mousedown', this._events.clickOverlay);
         window.addEventListener('resize', this._events.resize);
         document.addEventListener("keydown", this._events.keyboardNav);
-    };
+    }
 
     function _handleKeyboardNav(event) {
         // escape key
@@ -352,7 +342,7 @@
         this.modal.removeEventListener('mousedown', this._events.clickOverlay);
         window.removeEventListener('resize', this._events.resize);
         document.removeEventListener("keydown", this._events.keyboardNav);
-    };
+    }
 
     /* ----------------------------------------------------------- */
     /* == confirm */
@@ -389,7 +379,7 @@
             'OTransition': 'oTransitionEnd',
             'MozTransition': 'transitionend',
             'WebkitTransition': 'webkitTransitionEnd'
-        }
+        };
 
         for (t in transitions) {
             if (el.style[t] !== undefined) {
