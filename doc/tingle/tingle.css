@@ -28,8 +28,8 @@
   background: rgba(0, 0, 0, .8);
   opacity: 0;
   cursor: pointer;
-  -webkit-transition: opacity .2s ease;
-  transition: opacity .2s ease;
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
 }
 
 /* confirm and alerts
@@ -63,7 +63,6 @@
   color: #f0f0f0;
   font-size: 6rem;
   font-family: monospace;
-  line-height: normal;
   line-height: 1;
   cursor: pointer;
   -webkit-transition: color .3s ease;
@@ -89,10 +88,8 @@
   background: #fff;
   opacity: 1;
   cursor: auto;
-  -webkit-transition: -webkit-transform .3s cubic-bezier(.175, .885, .32, 1.275);
-  transition: -webkit-transform .3s cubic-bezier(.175, .885, .32, 1.275);
-  transition: transform .3s cubic-bezier(.175, .885, .32, 1.275);
-  transition: transform .3s cubic-bezier(.175, .885, .32, 1.275), -webkit-transform .3s cubic-bezier(.175, .885, .32, 1.275);
+  -webkit-transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
   -webkit-transform: scale(.8);
   -ms-transform: scale(.8);
   transform: scale(.8);
@@ -124,7 +121,7 @@
   z-index: 10001;
   opacity: 1;
   -webkit-transition: bottom .3s ease-in-out .3s;
-  transition: bottom .3s ease-in-out .3s;;
+  transition: bottom .3s ease-in-out .3s;
 }
 
 /* state
@@ -153,6 +150,8 @@
   -webkit-transform: scale(1);
   -ms-transform: scale(1);
   transform: scale(1);
+  -webkit-transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
 }
 
 .tingle-modal--overflow {
@@ -206,7 +205,7 @@
 @media (max-width : 540px) {
   .tingle-modal-box {
     width: auto;
-    border-radius: 0px;
+    border-radius: 0;
   }
 
   .tingle-modal {

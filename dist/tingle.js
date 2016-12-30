@@ -120,14 +120,25 @@
             if(!close) return;
         }
 
-        this.modal.style.display = 'none';
         document.body.classList.remove('tingle-enabled');
 
         this.modal.classList.remove('tingle-modal--visible');
 
-        // on close callback
-        if (typeof this.opts.onClose === "function") {
-            this.opts.onClose.call(this);
+        //Using similar setup as onOpen
+        //Reference to the Modal that's created
+        var self = this;
+
+        if (transitionEvent) {
+            //Track when transition is happening then run onClose on complete
+            this.modal.addEventListener(transitionEvent, function handler() {
+                // detach event after transition end (so it doesn't fire multiple onClose)
+                self.modal.removeEventListener(transitionEvent, handler, false);
+                // on close callback
+                if (typeof self.opts.onClose === "function") {
+                    self.opts.onClose.call(this);
+                }
+
+            }, false);
         }
     };
 
