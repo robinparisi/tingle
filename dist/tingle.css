@@ -28,8 +28,10 @@
   background: rgba(0, 0, 0, .8);
   opacity: 0;
   cursor: pointer;
-  -webkit-transition: opacity .2s ease;
-  transition: opacity .2s ease;
+  -webkit-transition: -webkit-transform .2s ease;
+  transition: -webkit-transform .2s ease;
+  transition: transform .2s ease;
+  transition: transform .2s ease, -webkit-transform .2s ease;
 }
 
 /* confirm and alerts
@@ -63,7 +65,6 @@
   color: #f0f0f0;
   font-size: 6rem;
   font-family: monospace;
-  line-height: normal;
   line-height: 1;
   cursor: pointer;
   -webkit-transition: color .3s ease;
@@ -124,7 +125,7 @@
   z-index: 10001;
   opacity: 1;
   -webkit-transition: bottom .3s ease-in-out .3s;
-  transition: bottom .3s ease-in-out .3s;;
+  transition: bottom .3s ease-in-out .3s;
 }
 
 /* state
@@ -176,8 +177,8 @@
   font-family: inherit;
   line-height: normal;
   cursor: pointer;
-  -webkit-transition: background-color .4s;
-  transition: background-color .4s;
+  -webkit-transition: background-color .4s ease;
+  transition: background-color .4s ease;
 }
 
 .tingle-btn--primary {
@@ -206,7 +207,7 @@
 @media (max-width : 540px) {
   .tingle-modal-box {
     width: auto;
-    border-radius: 0px;
+    border-radius: 0;
   }
 
   .tingle-modal {
