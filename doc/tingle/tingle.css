@@ -28,8 +28,10 @@
   background: rgba(0, 0, 0, .8);
   opacity: 0;
   cursor: pointer;
-  -webkit-transition: all .2s ease;
-  transition: all .2s ease;
+  -webkit-transition: -webkit-transform .2s ease;
+  transition: -webkit-transform .2s ease;
+  transition: transform .2s ease;
+  transition: transform .2s ease, -webkit-transform .2s ease;
 }
 
 /* confirm and alerts
@@ -88,8 +90,10 @@
   background: #fff;
   opacity: 1;
   cursor: auto;
-  -webkit-transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
-  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+  -webkit-transition: -webkit-transform .3s cubic-bezier(.175, .885, .32, 1.275);
+  transition: -webkit-transform .3s cubic-bezier(.175, .885, .32, 1.275);
+  transition: transform .3s cubic-bezier(.175, .885, .32, 1.275);
+  transition: transform .3s cubic-bezier(.175, .885, .32, 1.275), -webkit-transform .3s cubic-bezier(.175, .885, .32, 1.275);
   -webkit-transform: scale(.8);
   -ms-transform: scale(.8);
   transform: scale(.8);
@@ -150,8 +154,6 @@
   -webkit-transform: scale(1);
   -ms-transform: scale(1);
   transform: scale(1);
-  -webkit-transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
-  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
 }
 
 .tingle-modal--overflow {
@@ -175,8 +177,8 @@
   font-family: inherit;
   line-height: normal;
   cursor: pointer;
-  -webkit-transition: background-color .4s;
-  transition: background-color .4s;
+  -webkit-transition: background-color .4s ease;
+  transition: background-color .4s ease;
 }
 
 .tingle-btn--primary {

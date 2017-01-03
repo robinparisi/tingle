@@ -21,7 +21,7 @@
   background: rgba(0, 0, 0, .8);
   opacity: 0;
   cursor: pointer;
-  transition: all .2s ease;
+  transition: transform .2s ease;
 }
 
 /* confirm and alerts
@@ -78,7 +78,7 @@
   background: #fff;
   opacity: 1;
   cursor: auto;
-  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+  transition: transform .3s cubic-bezier(.175, .885, .32, 1.275);
   transform: scale(.8);
 }
 
@@ -133,7 +133,6 @@
 
 .tingle-modal--visible .tingle-modal-box {
   transform: scale(1);
-  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
 }
 
 .tingle-modal--overflow {
@@ -157,7 +156,7 @@
   font-family: inherit;
   line-height: normal;
   cursor: pointer;
-  transition: background-color .4s;
+  transition: background-color .4s ease;
 }
 
 .tingle-btn--primary {

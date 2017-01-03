@@ -129,6 +129,7 @@
             "box-decoration-break",
             "box-shadow",
             "color",
+            "fill",
             "table-layout",
             "caption-side",
             "empty-cells",
@@ -207,9 +208,9 @@
             "animation",
             "animation-name",
             "animation-duration",
+            "animation-fill-mode",
             "animation-play-state",
             "animation-timing-function",
-
             "animation-delay",
             "animation-iteration-count",
             "animation-direction",

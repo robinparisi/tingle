@@ -133,6 +133,9 @@
             this.modal.addEventListener(transitionEvent, function handler() {
                 // detach event after transition end (so it doesn't fire multiple onClose)
                 self.modal.removeEventListener(transitionEvent, handler, false);
+
+                self.modal.style.display = 'none';
+
                 // on close callback
                 if (typeof self.opts.onClose === "function") {
                     self.opts.onClose.call(this);
