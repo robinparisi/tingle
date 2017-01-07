@@ -1,7 +1,7 @@
 /*!
  * tingle.js
  * @author  robin_parisi
- * @version 0.8.4
+ * @version 0.9.0
  * @url
  */
 (function(root, factory) {
@@ -20,36 +20,26 @@
 
     var transitionEvent = whichTransitionEvent();
 
-    /**
-     * Modal constructor
-     */
+
     function Modal(options) {
-        this.modal;
-        this.modalCloseBtn;
-        this.modalWrapper;
-        this.modalBox;
-        this.modalBoxContent
-        this.modalBoxFooter;
-        this.modalContent;
+
         var defaults = {
             onClose: null,
             onOpen: null,
+            beforeClose: null,
             stickyFooter: false,
             footer: false,
-            cssClass: []
-        }
+            cssClass: [],
+            closeLabel: 'Close'
+        };
 
         // extends config
         this.opts = extend({}, defaults, options);
 
         // init modal
         this.init();
-
     }
 
-    /**
-     * Init modal
-     */
     Modal.prototype.init = function() {
         if (this.modal) {
             return;
@@ -66,14 +56,12 @@
         }
     };
 
-
-    /**
-     * Destroy modal: unbind events and remove from dom
-     */
     Modal.prototype.destroy = function() {
         if (this.modal === null) {
             return;
         }
+
+        // unbind all events
         _unbindEvents.call(this);
 
         // remove modal from dom
@@ -83,17 +71,13 @@
     };
 
 
-    /**
-     * Open modal
-     */
-    Modal.prototype.open = function(options) {
+    Modal.prototype.open = function() {
 
         if (this.modal.style.removeProperty) {
             this.modal.style.removeProperty('display');
         } else {
             this.modal.style.removeAttribute('display');
         }
-
 
         // prevent double scroll
         document.body.classList.add('tingle-enabled');
@@ -124,25 +108,43 @@
 
     };
 
-    /**
-     * Close modal
-     */
-    Modal.prototype.close = function(e) {
+    Modal.prototype.isOpen = function() {
+        return !!this.modal.classList.contains("tingle-modal--visible");
+    };
 
-        this.modal.style.display = 'none';
+    Modal.prototype.close = function() {
+
+        //  before close
+        if (typeof this.opts.beforeClose === "function") {
+            var close = this.opts.beforeClose.call(this);
+            if(!close) return;
+        }
+
         document.body.classList.remove('tingle-enabled');
 
         this.modal.classList.remove('tingle-modal--visible');
 
-        // on close callback
-        if (typeof this.opts.onClose === "function") {
-            this.opts.onClose.call(this);
+        //Using similar setup as onOpen
+        //Reference to the Modal that's created
+        var self = this;
+
+        if (transitionEvent) {
+            //Track when transition is happening then run onClose on complete
+            this.modal.addEventListener(transitionEvent, function handler() {
+                // detach event after transition end (so it doesn't fire multiple onClose)
+                self.modal.removeEventListener(transitionEvent, handler, false);
+
+                self.modal.style.display = 'none';
+
+                // on close callback
+                if (typeof self.opts.onClose === "function") {
+                    self.opts.onClose.call(this);
+                }
+
+            }, false);
         }
     };
 
-    /**
-     * Set content
-     */
     Modal.prototype.setContent = function(content) {
         // check type of content : String or Node
         if (typeof content === 'string') {
@@ -160,7 +162,7 @@
     Modal.prototype.addFooter = function() {
         // add footer to modal
         _buildFooter.call(this);
-    }
+    };
 
     Modal.prototype.setFooterContent = function(content) {
         // set footer content
@@ -172,7 +174,6 @@
     };
 
     Modal.prototype.setStickyFooter = function(isSticky) {
-
         // if the modal is smaller than the viewport height, we don't need sticky
         if (!this.isOverflow()) {
             isSticky = false;
@@ -186,7 +187,6 @@
                 _recalculateFooterPosition.call(this);
                 this.modalBoxContent.style['padding-bottom'] = this.modalBoxFooter.clientHeight +
                     20 + 'px';
-                bind(this.modalBoxFooter, 'click', _catchEvent);
             }
         } else if (this.modalBoxFooter) {
             if (!this.modalBox.contains(this.modalBoxFooter)) {
@@ -198,7 +198,8 @@
                 this.modalBoxFooter.classList.remove('tingle-modal-box__footer--sticky');
             }
         }
-    }
+    };
+
 
     Modal.prototype.addFooterBtn = function(label, cssClass, callback) {
         var btn = document.createElement("button");
@@ -219,7 +220,7 @@
         this.modalBoxFooter.appendChild(btn);
 
         return btn;
-    }
+    };
 
     Modal.prototype.resize = function() {
         console.warn('Resize is deprecated and will be removed in version 1.0');
@@ -230,9 +231,8 @@
         var viewportHeight = window.innerHeight;
         var modalHeight = this.modalBox.clientHeight;
 
-        var isOverflow = modalHeight < viewportHeight ? false : true;
-        return isOverflow;
-    }
+        return modalHeight >= viewportHeight;
+    };
 
 
     /* ----------------------------------------------------------- */
@@ -258,7 +258,7 @@
                 this.setStickyFooter(true);
             }
         }
-    };
+    }
 
     function _recalculateFooterPosition() {
         if (!this.modalBoxFooter) {
@@ -269,7 +269,10 @@
     }
 
     function _build() {
-        this.modal = create('div', 'tingle-modal');
+
+        // wrapper
+        this.modal = document.createElement('div');
+        this.modal.classList.add('tingle-modal');
         this.modal.style.display = 'none';
 
         // custom class
@@ -279,42 +282,69 @@
             }
         }, this);
 
-        this.modalCloseBtn = create('button', 'tingle-modal__close');
-        this.modalCloseBtn.innerHTML = '×';
+        // close btn
+        this.modalCloseBtn = document.createElement('button');
+        this.modalCloseBtn.classList.add('tingle-modal__close');
 
-        this.modalBox = create('div', 'tingle-modal-box');
-        this.modalBoxContent = create('div', 'tingle-modal-box__content');
+        this.modalCloseBtnIcon = document.createElement('span');
+        this.modalCloseBtnIcon.classList.add('tingle-modal__closeIcon');
+        this.modalCloseBtnIcon.innerHTML = '×';
+
+        this.modalCloseBtnLabel = document.createElement('span');
+        this.modalCloseBtnLabel.classList.add('tingle-modal__closeLabel');
+        this.modalCloseBtnLabel.innerHTML = this.opts.closeLabel;
+
+        this.modalCloseBtn.appendChild(this.modalCloseBtnIcon);
+        this.modalCloseBtn.appendChild(this.modalCloseBtnLabel);
+
+        // modal
+        this.modalBox = document.createElement('div');
+        this.modalBox.classList.add('tingle-modal-box');
+
+        // modal box content
+        this.modalBoxContent = document.createElement('div');
+        this.modalBoxContent.classList.add('tingle-modal-box__content');
+
         this.modalBox.appendChild(this.modalBoxContent);
-
         this.modal.appendChild(this.modalCloseBtn);
         this.modal.appendChild(this.modalBox);
 
-    };
+    }
 
     function _buildFooter() {
-        this.modalBoxFooter = create('div', 'tingle-modal-box__footer');
+        this.modalBoxFooter = document.createElement('div');
+        this.modalBoxFooter.classList.add('tingle-modal-box__footer');
         this.modalBox.appendChild(this.modalBoxFooter);
     }
 
     function _bindEvents() {
-        bind(this.modalCloseBtn, 'click', this.close.bind(this));
-        bind(this.modal, 'mousedown', _handleClickProcedure.bind(this));
-        window.addEventListener('resize', _checkOverflow.bind(this));
-    };
 
-    function _handleClickProcedure(event) {
-        // if click is outside the modal
-        if (!_findAncestor(event.target, 'tingle-modal')) {
+        this._events = {
+            clickCloseBtn: this.close.bind(this),
+            clickOverlay: _handleClickOutside.bind(this),
+            resize: _checkOverflow.bind(this),
+            keyboardNav: _handleKeyboardNav.bind(this)
+        };
+
+        this.modalCloseBtn.addEventListener('click', this._events.clickCloseBtn);
+        this.modal.addEventListener('mousedown', this._events.clickOverlay);
+        window.addEventListener('resize', this._events.resize);
+        document.addEventListener("keydown", this._events.keyboardNav);
+    }
+
+    function _handleKeyboardNav(event) {
+        // escape key
+        if (event.which === 27 && this.isOpen()) {
             this.close();
         }
     }
 
-    /**
-     * Avoid closing the modal when a click is trigger inside
-     */
-    function _catchEvent(e) {
-        e.stopPropagation();
-    };
+    function _handleClickOutside(event) {
+        // if click is outside the modal
+        if (!_findAncestor(event.target, 'tingle-modal') && event.clientX < this.modal.clientWidth) {
+            this.close();
+        }
+    }
 
     function _findAncestor(el, cls) {
         while ((el = el.parentElement) && !el.classList.contains(cls));
@@ -322,9 +352,11 @@
     }
 
     function _unbindEvents() {
-        unbind(this.modalCloseBtn, 'click', this.close.bind(this));
-        unbind(this.modal, 'mousedown', _handleClickProcedure.bind(this));
-    };
+        this.modalCloseBtn.removeEventListener('click', this._events.clickCloseBtn);
+        this.modal.removeEventListener('mousedown', this._events.clickOverlay);
+        window.removeEventListener('resize', this._events.resize);
+        document.removeEventListener("keydown", this._events.keyboardNav);
+    }
 
     /* ----------------------------------------------------------- */
     /* == confirm */
@@ -353,39 +385,6 @@
         return arguments[0];
     }
 
-    function isNodeList(el) {
-        return (typeof el.length != 'undefined' && typeof el.item != 'undefined');
-    }
-
-    function bind(el, event, callback) {
-
-        if (isNodeList(el)) {
-            [].forEach.call(el, function(el) {
-                el.addEventListener(event, callback);
-            })
-        } else {
-            el.addEventListener(event, callback);
-        }
-    }
-
-    function unbind(el, event, callback) {
-        if (isNodeList(el)) {
-            [].forEach.call(el, function(el) {
-                el.removeEventListener(event, callback);
-            })
-        } else {
-            el.removeEventListener(event, callback);
-        }
-    }
-
-    function create(element, cssClass) {
-        var element = document.createElement(element);
-        if (cssClass) {
-            element.classList.add(cssClass);
-        }
-        return element;
-    }
-
     function whichTransitionEvent() {
         var t;
         var el = document.createElement('tingle-test-transition');
@@ -394,7 +393,7 @@
             'OTransition': 'oTransitionEnd',
             'MozTransition': 'transitionend',
             'WebkitTransition': 'webkitTransitionEnd'
-        }
+        };
 
         for (t in transitions) {
             if (el.style[t] !== undefined) {

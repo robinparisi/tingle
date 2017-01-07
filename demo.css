@@ -26,64 +26,64 @@ textarea {
 }
 h1,
 .h1-like {
-  margin:  1.4118em 0 .7059em 0;
-  font-size:  2.125em; /* equiv 34px */
+  margin: 1.4118em 0 .7059em 0;
+  font-size: 2.125em; /* equiv 34px */
   line-height: 1.4118;
 }
 h2,
 .h2-like {
-  margin:  1.8462em 0 .9231em 0;
-  font-size:  1.625em; /* equiv 26px */
+  margin: 1.8462em 0 .9231em 0;
+  font-size: 1.625em; /* equiv 26px */
   line-height: 1.8462;
 }
 h3,
 .h3-like {
-  margin:  2em 0  1em 0;
-  font-size:  1.5em; /* equiv 24px */
-  line-height:  1;
+  margin: 2em 0  1em 0;
+  font-size: 1.5em; /* equiv 24px */
+  line-height: 1;
 }
 h4,
 .h4-like {
-  margin:  2.1818em 0  1.0909em 0;
-  font-size:  1.375em; /* equiv 22px */
-  line-height:  1.0909;
+  margin: 2.1818em 0  1.0909em 0;
+  font-size: 1.375em; /* equiv 22px */
+  line-height: 1.0909;
 }
 h5,
 .h5-like {
-  margin:  2.4em 0  1.2em 0;
-  font-size:  1.25em; /* equiv 20px */
-  line-height:  1.2;
+  margin: 2.4em 0  1.2em 0;
+  font-size: 1.25em; /* equiv 20px */
+  line-height: 1.2;
 }
 h6,
 .h6-like {
-  margin:  2.6666em 0  1.3333em 0;
-  font-size:  1.125em; /* equiv 18px */
-  line-height:  1.3333;
+  margin: 2.6666em 0  1.3333em 0;
+  font-size: 1.125em; /* equiv 18px */
+  line-height: 1.3333;
 }
 .smaller {
-  margin:  2.4em 0  2.4em 0;
+  margin: 2.4em 0  2.4em 0;
   font-size: .625em; /* equiv 10px */
-  line-height:  2.4;
+  line-height: 2.4;
 }
 .small {
-  margin:  2em 0  2em 0;
+  margin: 2em 0  2em 0;
   font-size: .75em; /* equiv 12px */
-  line-height:  2;
+  line-height: 2;
 }
 .big {
-  margin:  1.3333em 0  1.3333em 0;
-  font-size:  1.125em; /* equiv 18px */
-  line-height:  1.3333;
+  margin: 1.3333em 0  1.3333em 0;
+  font-size: 1.125em; /* equiv 18px */
+  line-height: 1.3333;
 }
 .bigger {
-  margin:  1.2em 0  1.2em 0;
-  font-size:  1.25em; /* equiv 20px */
-  line-height:  1.2;
+  margin: 1.2em 0  1.2em 0;
+  font-size: 1.25em; /* equiv 20px */
+  line-height: 1.2;
 }
 .biggest {
-  margin:  1.0909em 0  1.0909em 0;
-  font-size:  1.375em; /* equiv 22px */
-  line-height:  1.0909;
+  margin: 1.0909em 0  1.0909em 0;
+  font-size: 1.375em; /* equiv 22px */
+  line-height: 1.0909;
 }
 
 h1:first-child,
@@ -135,7 +135,7 @@ code,
 pre,
 samp {
   white-space: pre-wrap;
-  font-family: consolas, 'DejaVu Sans Mono', courier, monospace;
+  font-family: consolas, "DejaVu Sans Mono", courier, monospace;
 }
 code {
   line-height: 1;
@@ -154,7 +154,7 @@ body {
 
 body {
   background-color: #fff;
-  font-family: 'Varela Round', sans-serif;
+  font-family: "Varela Round", sans-serif;
 }
 
 a,
@@ -221,8 +221,8 @@ h3 {
 
 .title {
   position: relative;
-  left: 30px;
   margin-bottom: 30px;
+  margin-left: 30px;
   border-bottom: 2px solid #39df7f;
   color: #39df7f;
   line-height: 1.5;
@@ -267,6 +267,11 @@ h3 {
   -webkit-appearance: none;
 }
 
+.btn-demo {
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
 .hljs {
   padding: 15px 20px;
   line-height: 1.3;
@@ -300,7 +305,7 @@ img {
 }
 
 .methods tr:nth-child(odd) {
-  background-color: #f9f9f9
+  background-color: #f9f9f9;
 }
 
 .methods td {
@@ -360,7 +365,6 @@ img {
 -------------------------------------------------------------- */
 
 @media (max-width: 540px) {
-
   .container {
     width: 90%;
   }
@@ -369,5 +373,17 @@ img {
     display: block;
     margin-bottom: 20px;
     width: 100%;
+  }
+
+  .header__pic {
+    width: 100px;
+  }
+
+  .title {
+    margin-left: 0;
+  }
+
+  .title:before {
+    display: none;
   }
 }

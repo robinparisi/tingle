@@ -43,11 +43,11 @@
 
         <p>Below you will find some examples for using tingle: </p>
 
-        <button class="btn btn--primary mr1 js-tingle-modal-1">A simple modal</button>
-        <button class="btn btn--secondary mr1 js-tingle-modal-2">Need buttons?</button>
-        <button class="btn btn--secondary mr1 js-tingle-modal-3">Big content? No problem!</button>
-        <button class="btn btn--secondary mr1 js-tingle-modal-4">Stick to me!</button>
-        <button class="btn btn--secondary mr1 js-tingle-modal-5">?</button>
+        <button class="btn btn--primary btn-demo js-tingle-modal-1">A simple modal</button>
+        <button class="btn btn--secondary btn-demo js-tingle-modal-2">Need buttons?</button>
+        <button class="btn btn--secondary btn-demo js-tingle-modal-3">Big content? No problem!</button>
+        <button class="btn btn--secondary btn-demo js-tingle-modal-4">Stick to me!</button>
+        <button class="btn btn--secondary btn-demo js-tingle-modal-5">?</button>
 
         <h2 data-bullet="2" class="title">Installation</h2>
         <table class="methods">
@@ -84,17 +84,24 @@
 var modal = new tingle.modal({
     footer: true,
     stickyFooter: false,
-    cssClass: ['custom-class-1', 'custom-class-2']
+    closeLabel: "Close",
+    cssClass: ['custom-class-1', 'custom-class-2'],
     onOpen: function() {
         console.log('modal open');
     },
     onClose: function() {
         console.log('modal closed');
+    },
+    beforeClose: function() {
+        // here's goes some logic
+        // e.g. save content before closing the modal
+        return true; // close the modal
+    	return false; // nothing happens
     }
 });
 
 // set content
-modal.setContent('&lt;h1&gt;here some content&lt;/h1&gt;');
+modal.setContent('&lt;h1&gt;here\'s some content&lt;/h1&gt;');
 
 // add a button
 modal.addFooterBtn('Button label', 'tingle-btn tingle-btn--primary', function() {
@@ -144,9 +151,19 @@ modal.close();
                 <td>Callback to execute when tingle is closed</td>
             </tr>
             <tr>
+                <td>beforeClose</td>
+                <td>function</td>
+                <td>Callback to execute before closing the modal (must return true to close the modal)</td>
+            </tr>
+            <tr>
                 <td>cssClass</td>
                 <td>array</td>
                 <td>Custom CSS classes that will be added to tingle container</td>
+            </tr>
+            <tr>
+                <td>closeLabel</td>
+                <td>string</td>
+                <td>Label wich appears on the close button (mobile version)</td>
             </tr>
         </table>
         <h2 data-bullet="5" class="title">CSS</h2>
@@ -279,7 +296,10 @@ modal.close();
         },
         onOpen: function() {
             console.log('open');
-            console.log(this.modalBox.clientWidth);
+        },
+        beforeClose: function() {
+            console.log('before close');
+            return true;
         },
         cssClass: ['class1', 'class2']
     });
