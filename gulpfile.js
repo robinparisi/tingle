@@ -1,15 +1,14 @@
 var gulp          = require('gulp');
 var browserSync   = require('browser-sync');
 var autoprefixer  = require('gulp-autoprefixer');
-var minifyCSS     = require('gulp-minify-css');
 var uglify        = require('gulp-uglify');
 var ghPages       = require('gulp-gh-pages');
 var rename        = require('gulp-rename');
 var reload        = browserSync.reload;
+var cleanCSS      = require('gulp-clean-css');
 
 /* config
 ---------------------------------------------------- */
-
 
 var srcFolder =  'src';
 var distFolder = 'dist';
@@ -36,7 +35,7 @@ gulp.task('css-min', function () {
         browsers: ['> 1%', 'last 3 versions'],
         cascade: false
     }))
-    .pipe(minifyCSS())
+    .pipe(cleanCSS())
     .pipe(rename("tingle.min.css"))
     .pipe(gulp.dest('dist'))
     .pipe(reload({stream:true}));

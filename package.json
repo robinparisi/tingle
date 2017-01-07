@@ -1,42 +1,40 @@
 {
-    "name": "tingle.js",
-    "version": "0.9.0",
-    "description": "A simple modal plugin written in pure JavaScript",
-    "main": "dist/tingle.min.js",
-    "directories": {
-        "doc": "doc"
-    },
-    "keywords": [
-        "modal",
-        "popup",
-        "window",
-        "dialog",
-        "popin",
-        "lightbox"
-    ],
-    "dependencies": {
-        "gulp": "^3.9.0",
-        "gulp-gh-pages": "^0.5.2"
-    },
-    "devDependencies": {
-        "browser-sync": "^2.18.5",
-        "gulp": "^3.9.1",
-        "gulp-autoprefixer": "^3.0.2",
-        "gulp-minify-css": "^1.2.1",
-        "gulp-rename": "^1.2.2",
-        "gulp-uglify": "^2.0.0"
-    },
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/robinparisi/tingle.git"
-    },
-    "author": "robinparisi",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/robinparisi/tingle/issues"
-    },
-    "homepage": "https://github.com/robinparisi/tingle#readme"
+  "name": "tingle.js",
+  "version": "0.9.0",
+  "description": "A simple modal plugin written in pure JavaScript",
+  "main": "dist/tingle.min.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "keywords": [
+    "modal",
+    "popup",
+    "window",
+    "dialog",
+    "popin",
+    "lightbox"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "browser-sync": "^2.18.5",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.0.2",
+    "gulp-clean-css": "^2.3.2",
+    "gulp-gh-pages": "^0.5.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robinparisi/tingle.git"
+  },
+  "author": "robinparisi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/robinparisi/tingle/issues"
+  },
+  "homepage": "https://github.com/robinparisi/tingle#readme"
 }
