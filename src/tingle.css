@@ -233,3 +233,14 @@
     font-size: 4rem;
   }
 }
+
+/* mobile
+-------------------------------------------------------------- */
+
+@media only screen and (max-device-width: 480px) {
+
+  .tingle-modal-box {
+    width: 90%;
+  }
+
+}
