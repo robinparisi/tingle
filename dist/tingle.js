@@ -101,6 +101,10 @@
                 self.modal.removeEventListener(transitionEvent, handler, false);
 
             }, false);
+        } else {
+            if (typeof self.opts.onOpen === 'function') {
+                self.opts.onOpen.call(self);
+            }
         }
 
         // check if modal is bigger than screen height
@@ -142,6 +146,12 @@
                 }
 
             }, false);
+        } else {
+            self.modal.style.display = 'none';
+            // on close callback
+            if (typeof self.opts.onClose === "function") {
+                self.opts.onClose.call(this);
+            }
         }
     };
 
