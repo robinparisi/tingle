@@ -222,6 +222,21 @@
         return btn;
     };
 
+    Modal.prototype.addHeader = function(label) {
+        var head = document.createElement("div");
+        head.classList.add('tingle-head');
+
+        // set label
+        head.innerHTML = label;
+
+        //The head should not overlay the content
+        this.modalBox.classList.add('tingle-box-w-header');
+
+        this.modalBox.appendChild(head);
+
+        return head;
+    };
+
     Modal.prototype.resize = function() {
         console.warn('Resize is deprecated and will be removed in version 1.0');
     };
