@@ -47,7 +47,8 @@
         <button class="btn btn--secondary btn-demo js-tingle-modal-2">Need buttons?</button>
         <button class="btn btn--secondary btn-demo js-tingle-modal-3">Big content? No problem!</button>
         <button class="btn btn--secondary btn-demo js-tingle-modal-4">Stick to me!</button>
-        <button class="btn btn--secondary btn-demo js-tingle-modal-5">?</button>
+        <button class="btn btn--secondary btn-demo js-tingle-modal-5">Force the close button? Of course!</button>
+        <button class="btn btn--secondary btn-demo js-tingle-modal-6">?</button>
 
         <h2 data-bullet="2" class="title">Installation</h2>
         <table class="methods">
@@ -84,6 +85,7 @@
 var modal = new tingle.modal({
     footer: true,
     stickyFooter: false,
+    forceCloseButton: false,
     closeLabel: "Close",
     cssClass: ['custom-class-1', 'custom-class-2'],
     onOpen: function() {
@@ -139,6 +141,11 @@ modal.close();
                 <td>stickyFooter</td>
                 <td>boolean</td>
                 <td>Set to true for a footer always visible on screen</td>
+            </tr>
+            <tr>
+                <td>forceCloseButton</td>
+                <td>boolean</td>
+                <td>Force users to close the modal using the close button only</td>
             </tr>
             <tr>
                 <td>onOpen</td>
@@ -278,6 +285,12 @@ modal.close();
                 Curabitur blandit tempus porttitor. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras mattis consectetur purus sit amet fermentum. Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
             </p>
         </div>
+        <!-- Tingle tiny content -->
+        <div class="tingle-demo tingle-demo-force-close">
+            <h1>Forcing the user to use the close button</h1>
+            <p>Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+        </div>
+        <!-- /Tingle tiny content -->
 
     </div>
 
@@ -371,10 +384,25 @@ modal.close();
     modalStickyFooter.setContent(document.querySelector('.tingle-demo-sticky').innerHTML);
 
     /**
-    * 	Modal suprise
+    *   Force close button
     */
     var btn5 = document.querySelector('.js-tingle-modal-5');
     btn5.addEventListener('click', function(){
+        var modalForceButton = new tingle.modal({
+            onClose: function(){
+                modalForceButton.destroy();
+            },
+            forceCloseButton: true
+        });
+        modalForceButton.setContent(document.querySelector('.tingle-demo-force-close').innerHTML);
+        modalForceButton.open();
+    });
+
+    /**
+    *   Modal suprise
+    */
+    var btn6 = document.querySelector('.js-tingle-modal-6');
+    btn6.addEventListener('click', function(){
         var modalSurprise = new tingle.modal({
             onClose: function(){
                 modalSurprise.destroy();

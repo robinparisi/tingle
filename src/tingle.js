@@ -30,7 +30,8 @@
             stickyFooter: false,
             footer: false,
             cssClass: [],
-            closeLabel: 'Close'
+            closeLabel: 'Close',
+            forceCloseButton: false
         };
 
         // extends config
@@ -341,7 +342,7 @@
 
     function _handleClickOutside(event) {
         // if click is outside the modal
-        if (!_findAncestor(event.target, 'tingle-modal') && event.clientX < this.modal.clientWidth) {
+        if (!this.opts.forceCloseButton && !_findAncestor(event.target, 'tingle-modal') && event.clientX < this.modal.clientWidth) {
             this.close();
         }
     }
