@@ -386,17 +386,15 @@ modal.close();
     /**
     *   Force close button
     */
+
+    var modalForceButton = new tingle.modal({
+        forceCloseButton: true
+    });
     var btn5 = document.querySelector('.js-tingle-modal-5');
     btn5.addEventListener('click', function(){
-        var modalForceButton = new tingle.modal({
-            onClose: function(){
-                modalForceButton.destroy();
-            },
-            forceCloseButton: true
-        });
-        modalForceButton.setContent(document.querySelector('.tingle-demo-force-close').innerHTML);
         modalForceButton.open();
     });
+    modalForceButton.setContent(document.querySelector('.tingle-demo-force-close').innerHTML);
 
     /**
     *   Modal suprise
