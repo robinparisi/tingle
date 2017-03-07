@@ -47,7 +47,7 @@
         <button class="btn btn--secondary btn-demo js-tingle-modal-2">Need buttons?</button>
         <button class="btn btn--secondary btn-demo js-tingle-modal-3">Big content? No problem!</button>
         <button class="btn btn--secondary btn-demo js-tingle-modal-4">Stick to me!</button>
-        <button class="btn btn--secondary btn-demo js-tingle-modal-5">Force the close button? Of course!</button>
+        <button class="btn btn--secondary btn-demo js-tingle-modal-5">Close with footer button only</button>
         <button class="btn btn--secondary btn-demo js-tingle-modal-6">?</button>
 
         <h2 data-bullet="2" class="title">Installation</h2>
@@ -387,14 +387,24 @@ modal.close();
     *   Force close button
     */
 
-    var modalForceButton = new tingle.modal({
-        forceCloseButton: true
+    var modalButtonOnly = new tingle.modal({
+        closeMethods: [],
+        footer: true,
+        stickyFooter: true
     });
     var btn5 = document.querySelector('.js-tingle-modal-5');
     btn5.addEventListener('click', function(){
-        modalForceButton.open();
+        modalButtonOnly.open();
     });
-    modalForceButton.setContent(document.querySelector('.tingle-demo-force-close').innerHTML);
+    modalButtonOnly.setContent(document.querySelector('.tingle-demo-force-close').innerHTML);
+
+    modalButtonOnly.addFooterBtn('I agree', 'tingle-btn tingle-btn--primary tingle-btn--pull-right', function(){
+        modalButtonOnly.close();
+    });
+
+    modalButtonOnly.addFooterBtn('Cancel', 'tingle-btn tingle-btn--default tingle-btn--pull-right', function(){
+        modalButtonOnly.close();
+    });
 
     /**
     *   Modal suprise

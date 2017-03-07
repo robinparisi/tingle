@@ -31,7 +31,7 @@
             footer: false,
             cssClass: [],
             closeLabel: 'Close',
-            forceCloseButton: false
+            closeMethods: ['overlay', 'button', 'escape']
         };
 
         // extends config
@@ -274,6 +274,12 @@
         // wrapper
         this.modal = document.createElement('div');
         this.modal.classList.add('tingle-modal');
+
+        if(this.opts.closeMethods.length === 0)
+            this.modal.classList.add('tingle-modal--noClose');
+        else if(this.opts.closeMethods.indexOf('escape') === -1)
+            this.modal.classList.add('tingle-modal--noOverlayClose');
+
         this.modal.style.display = 'none';
 
         // custom class
@@ -284,19 +290,21 @@
         }, this);
 
         // close btn
-        this.modalCloseBtn = document.createElement('button');
-        this.modalCloseBtn.classList.add('tingle-modal__close');
+        if(this.opts.closeMethods.indexOf('button') !== -1) {
+            this.modalCloseBtn = document.createElement('button');
+            this.modalCloseBtn.classList.add('tingle-modal__close');
 
-        this.modalCloseBtnIcon = document.createElement('span');
-        this.modalCloseBtnIcon.classList.add('tingle-modal__closeIcon');
-        this.modalCloseBtnIcon.innerHTML = '×';
+            this.modalCloseBtnIcon = document.createElement('span');
+            this.modalCloseBtnIcon.classList.add('tingle-modal__closeIcon');
+            this.modalCloseBtnIcon.innerHTML = '×';
 
-        this.modalCloseBtnLabel = document.createElement('span');
-        this.modalCloseBtnLabel.classList.add('tingle-modal__closeLabel');
-        this.modalCloseBtnLabel.innerHTML = this.opts.closeLabel;
+            this.modalCloseBtnLabel = document.createElement('span');
+            this.modalCloseBtnLabel.classList.add('tingle-modal__closeLabel');
+            this.modalCloseBtnLabel.innerHTML = this.opts.closeLabel;
 
-        this.modalCloseBtn.appendChild(this.modalCloseBtnIcon);
-        this.modalCloseBtn.appendChild(this.modalCloseBtnLabel);
+            this.modalCloseBtn.appendChild(this.modalCloseBtnIcon);
+            this.modalCloseBtn.appendChild(this.modalCloseBtnLabel);
+        }
 
         // modal
         this.modalBox = document.createElement('div');
@@ -307,7 +315,8 @@
         this.modalBoxContent.classList.add('tingle-modal-box__content');
 
         this.modalBox.appendChild(this.modalBoxContent);
-        this.modal.appendChild(this.modalCloseBtn);
+        if(this.opts.closeMethods.indexOf('button') !== -1)
+            this.modal.appendChild(this.modalCloseBtn);
         this.modal.appendChild(this.modalBox);
 
     }
@@ -327,7 +336,8 @@
             keyboardNav: _handleKeyboardNav.bind(this)
         };
 
-        this.modalCloseBtn.addEventListener('click', this._events.clickCloseBtn);
+        if(this.opts.closeMethods.indexOf('button') !== -1)
+            this.modalCloseBtn.addEventListener('click', this._events.clickCloseBtn);
         this.modal.addEventListener('mousedown', this._events.clickOverlay);
         window.addEventListener('resize', this._events.resize);
         document.addEventListener("keydown", this._events.keyboardNav);
@@ -335,14 +345,14 @@
 
     function _handleKeyboardNav(event) {
         // escape key
-        if (event.which === 27 && this.isOpen()) {
+        if (this.opts.closeMethods.indexOf('escape') !== -1 && event.which === 27 && this.isOpen()) {
             this.close();
         }
     }
 
     function _handleClickOutside(event) {
         // if click is outside the modal
-        if (!this.opts.forceCloseButton && !_findAncestor(event.target, 'tingle-modal') && event.clientX < this.modal.clientWidth) {
+        if (this.opts.closeMethods.indexOf('overlay') !== -1 && !_findAncestor(event.target, 'tingle-modal') && event.clientX < this.modal.clientWidth) {
             this.close();
         }
     }
@@ -353,7 +363,8 @@
     }
 
     function _unbindEvents() {
-        this.modalCloseBtn.removeEventListener('click', this._events.clickCloseBtn);
+        if(this.opts.closeMethods.indexOf('button') !== -1)
+            this.modalCloseBtn.removeEventListener('click', this._events.clickCloseBtn);
         this.modal.removeEventListener('mousedown', this._events.clickOverlay);
         window.removeEventListener('resize', this._events.resize);
         document.removeEventListener("keydown", this._events.keyboardNav);
