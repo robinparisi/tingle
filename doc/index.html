@@ -85,7 +85,7 @@
 var modal = new tingle.modal({
     footer: true,
     stickyFooter: false,
-    forceCloseButton: false,
+    closeMethods: ['overlay', 'button', 'escape'],
     closeLabel: "Close",
     cssClass: ['custom-class-1', 'custom-class-2'],
     onOpen: function() {
@@ -143,9 +143,9 @@ modal.close();
                 <td>Set to true for a footer always visible on screen</td>
             </tr>
             <tr>
-                <td>forceCloseButton</td>
-                <td>boolean</td>
-                <td>Force users to close the modal using the close button only</td>
+                <td>closeMethods</td>
+                <td>array</td>
+                <td>Available close methods (overlay, button, escape)</td>
             </tr>
             <tr>
                 <td>onOpen</td>
