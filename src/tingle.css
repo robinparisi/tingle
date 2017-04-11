@@ -34,7 +34,7 @@
 /* modal
 -------------------------------------------------------------- */
 
-.tingle-modal--noClose {
+.tingle-modal--noOverlayClose {
   cursor: default;
 }
 
@@ -192,6 +192,10 @@
     top: 60px;
     display: block;
     width: 100%;
+  }
+
+  .tingle-modal--noClose {
+    top: 0;
   }
 
   .tingle-modal--overflow {
