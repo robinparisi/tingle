@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------- */
-/* == tingle v0.9.0 */
+/* == tingle v0.10.0 */
 /* ----------------------------------------------------------- */
 
 .tingle-modal * {
@@ -24,7 +24,7 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  overflow-y: auto;
+  overflow: hidden;
   background: rgba(0, 0, 0, .8);
   opacity: 0;
   cursor: pointer;
@@ -44,7 +44,7 @@
 /* modal
 -------------------------------------------------------------- */
 
-.tingle-modal--noClose {
+.tingle-modal--noOverlayClose {
   cursor: default;
 }
 
@@ -157,6 +157,7 @@
 }
 
 .tingle-modal--overflow {
+  overflow-y: scroll;
   padding-top: 8vh;
 }
 
@@ -214,6 +215,10 @@
     top: 60px;
     display: block;
     width: 100%;
+  }
+
+  .tingle-modal--noClose {
+    top: 0;
   }
 
   .tingle-modal--overflow {

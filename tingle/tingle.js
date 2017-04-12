@@ -1,7 +1,7 @@
 /*!
  * tingle.js
  * @author  robin_parisi
- * @version 0.9.0
+ * @version 0.10.0
  * @url
  */
 (function(root, factory) {
@@ -30,7 +30,8 @@
             stickyFooter: false,
             footer: false,
             cssClass: [],
-            closeLabel: 'Close'
+            closeLabel: 'Close',
+            closeMethods: ['overlay', 'button', 'escape']
         };
 
         // extends config
@@ -101,6 +102,10 @@
                 self.modal.removeEventListener(transitionEvent, handler, false);
 
             }, false);
+        } else {
+            if (typeof self.opts.onOpen === 'function') {
+                self.opts.onOpen.call(self);
+            }
         }
 
         // check if modal is bigger than screen height
@@ -117,7 +122,7 @@
         //  before close
         if (typeof this.opts.beforeClose === "function") {
             var close = this.opts.beforeClose.call(this);
-            if(!close) return;
+            if (!close) return;
         }
 
         document.body.classList.remove('tingle-enabled');
@@ -142,6 +147,12 @@
                 }
 
             }, false);
+        } else {
+            self.modal.style.display = 'none';
+            // on close callback
+            if (typeof self.opts.onClose === "function") {
+                self.opts.onClose.call(this);
+            }
         }
     };
 
@@ -185,8 +196,7 @@
                 this.modal.appendChild(this.modalBoxFooter);
                 this.modalBoxFooter.classList.add('tingle-modal-box__footer--sticky');
                 _recalculateFooterPosition.call(this);
-                this.modalBoxContent.style['padding-bottom'] = this.modalBoxFooter.clientHeight +
-                    20 + 'px';
+                this.modalBoxContent.style['padding-bottom'] = this.modalBoxFooter.clientHeight + 20 + 'px';
             }
         } else if (this.modalBoxFooter) {
             if (!this.modalBox.contains(this.modalBoxFooter)) {
@@ -273,6 +283,12 @@
         // wrapper
         this.modal = document.createElement('div');
         this.modal.classList.add('tingle-modal');
+
+        // remove cusor if no overlay close method
+        if (this.opts.closeMethods.length === 0 || this.opts.closeMethods.indexOf('overlay') === -1) {
+            this.modal.classList.add('tingle-modal--noOverlayClose');
+        }
+
         this.modal.style.display = 'none';
 
         // custom class
@@ -283,19 +299,21 @@
         }, this);
 
         // close btn
-        this.modalCloseBtn = document.createElement('button');
-        this.modalCloseBtn.classList.add('tingle-modal__close');
+        if (this.opts.closeMethods.indexOf('button') !== -1) {
+            this.modalCloseBtn = document.createElement('button');
+            this.modalCloseBtn.classList.add('tingle-modal__close');
 
-        this.modalCloseBtnIcon = document.createElement('span');
-        this.modalCloseBtnIcon.classList.add('tingle-modal__closeIcon');
-        this.modalCloseBtnIcon.innerHTML = '×';
+            this.modalCloseBtnIcon = document.createElement('span');
+            this.modalCloseBtnIcon.classList.add('tingle-modal__closeIcon');
+            this.modalCloseBtnIcon.innerHTML = '×';
 
-        this.modalCloseBtnLabel = document.createElement('span');
-        this.modalCloseBtnLabel.classList.add('tingle-modal__closeLabel');
-        this.modalCloseBtnLabel.innerHTML = this.opts.closeLabel;
+            this.modalCloseBtnLabel = document.createElement('span');
+            this.modalCloseBtnLabel.classList.add('tingle-modal__closeLabel');
+            this.modalCloseBtnLabel.innerHTML = this.opts.closeLabel;
 
-        this.modalCloseBtn.appendChild(this.modalCloseBtnIcon);
-        this.modalCloseBtn.appendChild(this.modalCloseBtnLabel);
+            this.modalCloseBtn.appendChild(this.modalCloseBtnIcon);
+            this.modalCloseBtn.appendChild(this.modalCloseBtnLabel);
+        }
 
         // modal
         this.modalBox = document.createElement('div');
@@ -306,7 +324,11 @@
         this.modalBoxContent.classList.add('tingle-modal-box__content');
 
         this.modalBox.appendChild(this.modalBoxContent);
-        this.modal.appendChild(this.modalCloseBtn);
+
+        if (this.opts.closeMethods.indexOf('button') !== -1) {
+            this.modal.appendChild(this.modalCloseBtn);
+        }
+
         this.modal.appendChild(this.modalBox);
 
     }
@@ -326,7 +348,10 @@
             keyboardNav: _handleKeyboardNav.bind(this)
         };
 
-        this.modalCloseBtn.addEventListener('click', this._events.clickCloseBtn);
+        if (this.opts.closeMethods.indexOf('button') !== -1) {
+            this.modalCloseBtn.addEventListener('click', this._events.clickCloseBtn);
+        }
+
         this.modal.addEventListener('mousedown', this._events.clickOverlay);
         window.addEventListener('resize', this._events.resize);
         document.addEventListener("keydown", this._events.keyboardNav);
@@ -334,14 +359,15 @@
 
     function _handleKeyboardNav(event) {
         // escape key
-        if (event.which === 27 && this.isOpen()) {
+        if (this.opts.closeMethods.indexOf('escape') !== -1 && event.which === 27 && this.isOpen()) {
             this.close();
         }
     }
 
     function _handleClickOutside(event) {
         // if click is outside the modal
-        if (!_findAncestor(event.target, 'tingle-modal') && event.clientX < this.modal.clientWidth) {
+        if (this.opts.closeMethods.indexOf('overlay') !== -1 && !_findAncestor(event.target, 'tingle-modal') &&
+            event.clientX < this.modal.clientWidth) {
             this.close();
         }
     }
@@ -352,7 +378,9 @@
     }
 
     function _unbindEvents() {
-        this.modalCloseBtn.removeEventListener('click', this._events.clickCloseBtn);
+        if (this.opts.closeMethods.indexOf('button') !== -1) {
+            this.modalCloseBtn.removeEventListener('click', this._events.clickCloseBtn);
+        }
         this.modal.removeEventListener('mousedown', this._events.clickOverlay);
         window.removeEventListener('resize', this._events.resize);
         document.removeEventListener("keydown", this._events.keyboardNav);
