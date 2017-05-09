@@ -20,7 +20,6 @@
 
     var transitionEvent = whichTransitionEvent();
 
-
     function Modal(options) {
 
         var defaults = {
@@ -109,8 +108,7 @@
         }
 
         // check if modal is bigger than screen height
-        _checkOverflow.call(this);
-
+        this.checkOverflow();
     };
 
     Modal.prototype.isOpen = function() {
@@ -244,13 +242,7 @@
         return modalHeight >= viewportHeight;
     };
 
-
-    /* ----------------------------------------------------------- */
-    /* == private methods */
-    /* ----------------------------------------------------------- */
-
-
-    function _checkOverflow() {
+    Modal.prototype.checkOverflow = function() {
         // only if the modal is currently shown
         if (this.modal.classList.contains('tingle-modal--visible')) {
             if (this.isOverflow()) {
@@ -269,6 +261,11 @@
             }
         }
     }
+
+
+    /* ----------------------------------------------------------- */
+    /* == private methods */
+    /* ----------------------------------------------------------- */
 
     function _recalculateFooterPosition() {
         if (!this.modalBoxFooter) {
@@ -344,7 +341,7 @@
         this._events = {
             clickCloseBtn: this.close.bind(this),
             clickOverlay: _handleClickOutside.bind(this),
-            resize: _checkOverflow.bind(this),
+            resize: this.checkOverflow.bind(this),
             keyboardNav: _handleKeyboardNav.bind(this)
         };
 
