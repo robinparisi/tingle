@@ -1,0 +1,40 @@
+{
+  "name": "robinparisi/tingle.js",
+  "description": "A simple modal plugin written in pure JavaScript",
+  "keywords": [
+    "javascript",
+    "modal",
+    "popup",
+    "window",
+    "dialog",
+    "popin",
+    "lightbox"
+  ],
+  "require-dev": {
+    "npm-asset/browser-sync": "^2.18.5",
+    "npm-asset/gulp": "^3.9.1",
+    "npm-asset/gulp-autoprefixer": "^3.0.2",
+    "npm-asset/gulp-clean-css": "^2.3.2",
+    "npm-asset/gulp-gh-pages": "^0.5.2",
+    "npm-asset/gulp-rename": "^1.2.2",
+    "npm-asset/gulp-uglify": "^2.0.0"
+  },
+  "authors" : [
+    {
+      "name" : "Kael Shipman",
+      "email" : "kael.shipman@gmail.com",
+      "homepage" : "https://colors.kaelshipman.me",
+      "role" : "Minor Contributor"
+    },
+    {
+      "name" : "Robin Parisi",
+      "role" : "Author"
+    }
+  ],
+  "license": "MIT",
+  "support": {
+    "issues": "https://github.com/robinparisi/tingle/issues"
+  },
+  "homepage": "https://github.com/robinparisi/tingle#readme"
+}
+
