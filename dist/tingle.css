@@ -12,6 +12,7 @@
   right: 0;
   bottom: 0;
   left: 0;
+  text-align: center;
   z-index: 1000;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -28,7 +29,6 @@
   background: rgba(0, 0, 0, .8);
   opacity: 0;
   cursor: pointer;
-  -webkit-transition: -webkit-transform .2s ease;
   transition: -webkit-transform .2s ease;
   transition: transform .2s ease;
   transition: transform .2s ease, -webkit-transform .2s ease;
@@ -67,7 +67,6 @@
   font-family: monospace;
   line-height: 1;
   cursor: pointer;
-  -webkit-transition: color .3s ease;
   transition: color .3s ease;
 }
 
@@ -83,14 +82,13 @@
   position: relative;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  margin-top: auto;
-  margin-bottom: auto;
+  margin: auto;
+  text-align: left;
   width: 60%;
   border-radius: 4px;
   background: #fff;
   opacity: 1;
   cursor: auto;
-  -webkit-transition: -webkit-transform .3s cubic-bezier(.175, .885, .32, 1.275);
   transition: -webkit-transform .3s cubic-bezier(.175, .885, .32, 1.275);
   transition: transform .3s cubic-bezier(.175, .885, .32, 1.275);
   transition: transform .3s cubic-bezier(.175, .885, .32, 1.275), -webkit-transform .3s cubic-bezier(.175, .885, .32, 1.275);
@@ -124,7 +122,6 @@
   bottom: -200px; /* TODO : find a better way */
   z-index: 10001;
   opacity: 1;
-  -webkit-transition: bottom .3s ease-in-out .3s;
   transition: bottom .3s ease-in-out .3s;
 }
 
@@ -178,7 +175,6 @@
   font-family: inherit;
   line-height: normal;
   cursor: pointer;
-  -webkit-transition: background-color .4s ease;
   transition: background-color .4s ease;
 }
 
