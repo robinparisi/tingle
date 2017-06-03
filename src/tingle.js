@@ -80,13 +80,13 @@
         }
 
         // prevent double scroll
-        document.body.classList.add('tingle-enabled');
+        classList(document.body, 'add', 'tingle-enabled');
 
         // sticky footer
         this.setStickyFooter(this.opts.stickyFooter);
 
         // show modal
-        this.modal.classList.add('tingle-modal--visible');
+        classList(this.modal, 'add', 'tingle-modal--visible');
 
         // onOpen event
         var self = this;
@@ -112,7 +112,7 @@
     };
 
     Modal.prototype.isOpen = function() {
-        return !!this.modal.classList.contains("tingle-modal--visible");
+        return !!classList(this.modal, 'contains', "tingle-modal--visible");
     };
 
     Modal.prototype.close = function() {
@@ -123,9 +123,9 @@
             if (!close) return;
         }
 
-        document.body.classList.remove('tingle-enabled');
+        classList(document.body, 'remove', 'tingle-enabled');
 
-        this.modal.classList.remove('tingle-modal--visible');
+        classList(this.modal, 'remove', 'tingle-modal--visible');
 
         //Using similar setup as onOpen
         //Reference to the Modal that's created
@@ -192,7 +192,7 @@
             if (this.modalBox.contains(this.modalBoxFooter)) {
                 this.modalBox.removeChild(this.modalBoxFooter);
                 this.modal.appendChild(this.modalBoxFooter);
-                this.modalBoxFooter.classList.add('tingle-modal-box__footer--sticky');
+                classList(this.modalBoxFooter, 'add', 'tingle-modal-box__footer--sticky');
                 _recalculateFooterPosition.call(this);
                 this.modalBoxContent.style['padding-bottom'] = this.modalBoxFooter.clientHeight + 20 + 'px';
             }
@@ -203,7 +203,7 @@
                 this.modalBoxFooter.style.width = 'auto';
                 this.modalBoxFooter.style.left = '';
                 this.modalBoxContent.style['padding-bottom'] = '';
-                this.modalBoxFooter.classList.remove('tingle-modal-box__footer--sticky');
+                classList(this.modalBoxFooter, 'remove', 'tingle-modal-box__footer--sticky');
             }
         }
     };
@@ -221,7 +221,7 @@
         if (typeof cssClass === 'string' && cssClass.length) {
             // add classes to btn
             cssClass.split(" ").forEach(function(item) {
-                btn.classList.add(item);
+                classList(btn, 'add', item);
             });
         }
 
@@ -244,11 +244,11 @@
 
     Modal.prototype.checkOverflow = function() {
         // only if the modal is currently shown
-        if (this.modal.classList.contains('tingle-modal--visible')) {
+        if (classList(this.modal, 'contains', 'tingle-modal--visible')) {
             if (this.isOverflow()) {
-                this.modal.classList.add('tingle-modal--overflow');
+                classList(this.modal, 'add', 'tingle-modal--overflow');
             } else {
-                this.modal.classList.remove('tingle-modal--overflow');
+                classList(this.modal, 'remove', 'tingle-modal--overflow');
             }
 
             // TODO: remove offset
@@ -279,11 +279,11 @@
 
         // wrapper
         this.modal = document.createElement('div');
-        this.modal.classList.add('tingle-modal');
+        classList(this.modal, 'add', 'tingle-modal');
 
         // remove cusor if no overlay close method
         if (this.opts.closeMethods.length === 0 || this.opts.closeMethods.indexOf('overlay') === -1) {
-            this.modal.classList.add('tingle-modal--noOverlayClose');
+            classList(this.modal, 'add', 'tingle-modal--noOverlayClose');
         }
 
         this.modal.style.display = 'none';
@@ -291,21 +291,21 @@
         // custom class
         this.opts.cssClass.forEach(function(item) {
             if (typeof item === 'string') {
-                this.modal.classList.add(item);
+                classList(this.modal, 'add', item);
             }
         }, this);
 
         // close btn
         if (this.opts.closeMethods.indexOf('button') !== -1) {
             this.modalCloseBtn = document.createElement('button');
-            this.modalCloseBtn.classList.add('tingle-modal__close');
+            classList(this.modalCloseBtn, 'add', 'tingle-modal__close');
 
             this.modalCloseBtnIcon = document.createElement('span');
-            this.modalCloseBtnIcon.classList.add('tingle-modal__closeIcon');
+            classList(this.modalCloseBtnIcon, 'add', 'tingle-modal__closeIcon');
             this.modalCloseBtnIcon.innerHTML = '×';
 
             this.modalCloseBtnLabel = document.createElement('span');
-            this.modalCloseBtnLabel.classList.add('tingle-modal__closeLabel');
+            classList(this.modalCloseBtnLabel, 'add', 'tingle-modal__closeLabel');
             this.modalCloseBtnLabel.innerHTML = this.opts.closeLabel;
 
             this.modalCloseBtn.appendChild(this.modalCloseBtnIcon);
@@ -314,11 +314,11 @@
 
         // modal
         this.modalBox = document.createElement('div');
-        this.modalBox.classList.add('tingle-modal-box');
+        classList(this.modalBox, 'add', 'tingle-modal-box');
 
         // modal box content
         this.modalBoxContent = document.createElement('div');
-        this.modalBoxContent.classList.add('tingle-modal-box__content');
+        classList(this.modalBoxContent, 'add', 'tingle-modal-box__content');
 
         this.modalBox.appendChild(this.modalBoxContent);
 
@@ -332,7 +332,7 @@
 
     function _buildFooter() {
         this.modalBoxFooter = document.createElement('div');
-        this.modalBoxFooter.classList.add('tingle-modal-box__footer');
+        classList(this.modalBoxFooter, 'add', 'tingle-modal-box__footer');
         this.modalBox.appendChild(this.modalBoxFooter);
     }
 
@@ -370,7 +370,7 @@
     }
 
     function _findAncestor(el, cls) {
-        while ((el = el.parentElement) && !el.classList.contains(cls));
+        while ((el = el.parentElement) && !classList(el, 'contains', cls));
         return el;
     }
 
@@ -425,6 +425,47 @@
                 return transitions[t];
             }
         }
+    }
+
+    function classList(el, actn) {
+        var classes = [];
+        for (var i = 2; i < arguments.length; i++) classes.push(arguments[i]);
+
+        // Type checking
+        if (!(el instanceof HTMLElement)) throw "InvalidArgumentException: The first argument to this function must be an HTML element";
+        if (classes.length == 0) throw "InvalidArgumentException: You must supply one or more classes as the final arguments to this function.";
+        if (typeof actn != 'string') throw "InvalidArgumentException: The second argument to this function must be a string action key ('add', 'remove', 'contains').";
+        if (actn == 'contains' && classes.length > 1) throw "InvalidArgumentException: the 'contains' method accepts only a single class argument ("+classes.length+" passed: '"+classes.join("', '")+"')";
+
+        var currentClasses = el.className.split(' ');
+        if (actn == 'add') {
+            for (var i = 0; i < classes.length; i++) {
+                if (!classList(el, 'contains', classes[i])) currentClasses.push(classes[i]);
+            }
+            el.className = currentClasses.join(' ');
+            return this;
+        }
+        if (actn == 'remove') {
+            for (var i = 0; i < classes.length; i++) {
+                for (var j = 0; j < currentClasses.length; j++) {
+                    if (currentClasses[j] == classes[i]) {
+                        currentClasses.splice(j, 1);
+                        j--;
+                    }
+                }
+            }
+            el.className = currentClasses.join(' ');
+            return this;
+        }
+        if (actn == 'contains') {
+            for (var i = 0; i < classes.length; i++) {
+                for (var j = 0; j < currentClasses.length; j++) {
+                    if (currentClasses[j] == classes[i]) return true;
+                }
+            }
+            return false;
+        }
+        throw "InvalidArgumentException: The second argument to this function must be 'add', 'remove' or 'contains'";
     }
 
     /* ----------------------------------------------------------- */

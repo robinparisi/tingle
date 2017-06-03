@@ -12,6 +12,7 @@
   right: 0;
   bottom: 0;
   left: 0;
+  text-align: center;
   z-index: 1000;
   display: flex;
   visibility: hidden;
@@ -71,8 +72,8 @@
 .tingle-modal-box {
   position: relative;
   flex-shrink: 0;
-  margin-top: auto;
-  margin-bottom: auto;
+  margin: auto;
+  text-align: left;
   width: 60%;
   border-radius: 4px;
   background: #fff;
