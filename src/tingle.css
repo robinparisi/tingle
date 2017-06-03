@@ -180,6 +180,25 @@
   float: right;
 }
 
+/*Header*/
+.tingle-head{
+    padding: 1.5rem 1rem;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    background: #eaeaea;
+    width: 100%;
+    border-radius: 4px 4px 0 0;
+    height: 54px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tingle-box-w-header{
+    padding-top: 54px;
+}
+
 /* responsive
 -------------------------------------------------------------- */
 
