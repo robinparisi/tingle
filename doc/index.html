@@ -158,6 +158,11 @@ modal.close();
                 <td>Callback to execute when tingle is closed</td>
             </tr>
             <tr>
+                <td>beforeOpen</td>
+                <td>function</td>
+                <td>Callback to execute before opening the modal</td>
+            </tr>
+            <tr>
                 <td>beforeClose</td>
                 <td>function</td>
                 <td>Callback to execute before closing the modal (must return true to close the modal)</td>
@@ -313,6 +318,9 @@ modal.close();
         },
         onOpen: function() {
             console.log('open');
+        },
+        beforeOpen: function() {
+            console.log('before open');
         },
         beforeClose: function() {
             console.log('before close');
