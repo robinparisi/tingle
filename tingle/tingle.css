@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------- */
-/* == tingle v0.11.0 */
+/* == tingle v0.12.0 */
 /* ----------------------------------------------------------- */
 
 .tingle-modal * {
@@ -206,23 +206,28 @@
 -------------------------------------------------------------- */
 
 @media (max-width : 540px) {
+  .tingle-modal {
+    top: 0px;
+    display: block;
+    padding-top: 60px;
+    width: 100%;
+  }
+
   .tingle-modal-box {
     width: auto;
     border-radius: 0;
   }
 
-  .tingle-modal {
-    top: 60px;
-    display: block;
-    width: 100%;
+  .tingle-modal-box__content {
+    overflow-y: scroll;
   }
 
   .tingle-modal--noClose {
     top: 0;
   }
 
-  .tingle-modal--overflow {
-    padding: 0;
+  .tingle-modal--noOverlayClose {
+    padding-top: 0;
   }
 
   .tingle-modal-box__footer .tingle-btn {

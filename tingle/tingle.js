@@ -1,9 +1,9 @@
 /*!
- * tingle.js
- * @author  robin_parisi
- * @version 0.11.0
- * @url
- */
+* tingle.js
+* @author  robin_parisi
+* @version 0.12.0
+* @url
+*/
 (function(root, factory) {
     if (typeof define === 'function' && define.amd) {
         define(factory);
@@ -25,6 +25,7 @@
         var defaults = {
             onClose: null,
             onOpen: null,
+            beforeOpen: null,
             beforeClose: null,
             stickyFooter: false,
             footer: false,
@@ -73,6 +74,13 @@
 
     Modal.prototype.open = function() {
 
+        var self = this;
+
+        // before open callback
+        if (typeof self.opts.beforeOpen === 'function') {
+            self.opts.beforeOpen();
+        }
+
         if (this.modal.style.removeProperty) {
             this.modal.style.removeProperty('display');
         } else {
@@ -87,9 +95,6 @@
 
         // show modal
         this.modal.classList.add('tingle-modal--visible');
-
-        // onOpen event
-        var self = this;
 
         if (transitionEvent) {
             this.modal.addEventListener(transitionEvent, function handler() {
@@ -364,7 +369,7 @@
     function _handleClickOutside(event) {
         // if click is outside the modal
         if (this.opts.closeMethods.indexOf('overlay') !== -1 && !_findAncestor(event.target, 'tingle-modal') &&
-            event.clientX < this.modal.clientWidth) {
+        event.clientX < this.modal.clientWidth) {
             this.close();
         }
     }
