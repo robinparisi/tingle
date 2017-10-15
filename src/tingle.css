@@ -246,16 +246,14 @@
   }
 }
 
-@supports ((-webkit-backdrop-filter: blur(12px)) or (backdrop-filter: blur(12px))) {
+@supports (backdrop-filter: blur(12px)) {
   .tingle-modal {
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
   }
 
   @media (max-width : 540px) {
     .tingle-modal {
       backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
     }
   }
 
