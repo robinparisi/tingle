@@ -88,7 +88,9 @@
         }
 
         // prevent double scroll
+        this.scrollPosition = window.pageYOffset;
         document.body.classList.add('tingle-enabled');
+        document.body.style.top = -this.scrollPosition + 'px';
 
         // sticky footer
         this.setStickyFooter(this.opts.stickyFooter);
@@ -129,6 +131,7 @@
         }
 
         document.body.classList.remove('tingle-enabled');
+        window.scrollTo(0, this.scrollPosition);
 
         this.modal.classList.remove('tingle-modal--visible');
 
