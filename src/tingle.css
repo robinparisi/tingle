@@ -22,6 +22,7 @@
   opacity: 0;
   cursor: pointer;
   transition: transform .2s ease;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* confirm and alerts
@@ -114,6 +115,7 @@
 -------------------------------------------------------------- */
 
 .tingle-enabled {
+  position: fixed;
   overflow: hidden;
   height: 100%;
 }
