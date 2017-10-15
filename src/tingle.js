@@ -87,6 +87,10 @@
             this.modal.style.removeAttribute('display');
         }
 
+        // create a history event
+        // allows the back button to close the modal
+        history.pushState({ tingle: true }, '');
+
         // prevent double scroll
         this.scrollPosition = window.pageYOffset;
         document.body.classList.add('tingle-enabled');
@@ -128,6 +132,12 @@
         if (typeof this.opts.beforeClose === "function") {
             var close = this.opts.beforeClose.call(this);
             if (!close) return;
+        }
+
+        // remove the tingle history event
+        // only if the user did not close with the back button
+        if (history.state && history.state.tingle) {
+          window.history.back();
         }
 
         document.body.classList.remove('tingle-enabled');
@@ -345,12 +355,12 @@
     }
 
     function _bindEvents() {
-
         this._events = {
             clickCloseBtn: this.close.bind(this),
             clickOverlay: _handleClickOutside.bind(this),
             resize: this.checkOverflow.bind(this),
-            keyboardNav: _handleKeyboardNav.bind(this)
+            keyboardNav: _handleKeyboardNav.bind(this),
+            historyBack: _handleHistoryBack.bind(this)
         };
 
         if (this.opts.closeMethods.indexOf('button') !== -1) {
@@ -359,7 +369,18 @@
 
         this.modal.addEventListener('mousedown', this._events.clickOverlay);
         window.addEventListener('resize', this._events.resize);
-        document.addEventListener("keydown", this._events.keyboardNav);
+        document.addEventListener('keydown', this._events.keyboardNav);
+        window.addEventListener('popstate', this._events.historyBack);
+    }
+
+    function _handleHistoryBack(event) {
+      // only handle history popstate if the modal is open
+      if (this.isOpen()) {
+        // close the modal if tingle is not in the history.state
+        if ( !(event.state && event.state.tingle) ) {
+          this.close();
+        }
+      }
     }
 
     function _handleKeyboardNav(event) {
@@ -388,7 +409,8 @@
         }
         this.modal.removeEventListener('mousedown', this._events.clickOverlay);
         window.removeEventListener('resize', this._events.resize);
-        document.removeEventListener("keydown", this._events.keyboardNav);
+        document.removeEventListener('keydown', this._events.keyboardNav);
+        window.removeEventListener('popstate', this._events.historyBack);
     }
 
     /* ----------------------------------------------------------- */
