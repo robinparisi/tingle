@@ -125,7 +125,7 @@
 }
 
 .tingle-enabled .tingle-content-wrapper {
-  filter: blur(15px);
+  filter: blur(12px);
 }
 
 .tingle-modal--visible {
@@ -243,5 +243,23 @@
     margin-right: .5rem;
     vertical-align: middle;
     font-size: 4rem;
+  }
+}
+
+@supports ((-webkit-backdrop-filter: blur(12px)) or (backdrop-filter: blur(12px))) {
+  .tingle-modal {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  @media (max-width : 540px) {
+    .tingle-modal {
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+  }
+
+  .tingle-enabled .tingle-content-wrapper {
+    filter: none;
   }
 }
