@@ -78,9 +78,7 @@
 
 
     Modal.prototype.open = function() {
-        console.log('open called on:', this._id);
         if (Modal.prototype.active !== null) {
-          console.log('cant open...')
           setTimeout(this.open.bind(this), 250);
           return;
         }
@@ -274,7 +272,6 @@
     }
 
     function _close() {
-        console.log('close called on: ', this._id);
         //  before close
         if (typeof this.opts.beforeClose === "function") {
             var close = this.opts.beforeClose.call(this);
