@@ -297,16 +297,19 @@
                 if (typeof self.opts.onClose === "function") {
                     self.opts.onClose.call(this);
                 }
+
+                // Unset the active modal
+                Modal.prototype.active = null;
             }, false);
         } else {
             // on close callback
             if (typeof self.opts.onClose === "function") {
                 self.opts.onClose.call(this);
             }
-        }
 
-        // Unset the active modal
-        Modal.prototype.active = null;
+            // Unset the active modal
+            Modal.prototype.active = null;
+        }
     }
 
     function _build() {
