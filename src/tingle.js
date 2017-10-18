@@ -31,15 +31,20 @@
             footer: false,
             cssClass: [],
             closeLabel: 'Close',
-            closeMethods: ['overlay', 'button', 'escape']
+            closeMethods: ['overlay', 'button', 'escape'],
+            history: true
         };
 
         // extends config
         this.opts = extend({}, defaults, options);
 
+        this._id = 'tingle-' + Math.random().toString(36).substr(2, 12);
+
         // init modal
         this.init();
     }
+
+    Modal.prototype.active = null;
 
     Modal.prototype.init = function() {
         if (this.modal) {
@@ -73,8 +78,14 @@
 
 
     Modal.prototype.open = function() {
+        if (Modal.prototype.active !== null) {
+          setTimeout(this.open.bind(this), 250);
+          return;
+        }
 
         var self = this;
+
+        Modal.prototype.active = this._id;
 
         // before open callback
         if (typeof self.opts.beforeOpen === 'function') {
@@ -87,8 +98,16 @@
             this.modal.style.removeAttribute('display');
         }
 
+        // create a history event
+        // allows the back button to close the modal
+        if (this.opts.history) {
+          _setHistoryOpen.call(this);
+        }
+
         // prevent double scroll
+        this._scrollPosition = window.pageYOffset;
         document.body.classList.add('tingle-enabled');
+        document.body.style.top = -this._scrollPosition + 'px';
 
         // sticky footer
         this.setStickyFooter(this.opts.stickyFooter);
@@ -121,41 +140,14 @@
     };
 
     Modal.prototype.close = function() {
-
-        //  before close
-        if (typeof this.opts.beforeClose === "function") {
-            var close = this.opts.beforeClose.call(this);
-            if (!close) return;
-        }
-
-        document.body.classList.remove('tingle-enabled');
-
-        this.modal.classList.remove('tingle-modal--visible');
-
-        //Using similar setup as onOpen
-        //Reference to the Modal that's created
-        var self = this;
-
-        if (transitionEvent) {
-            //Track when transition is happening then run onClose on complete
-            this.modal.addEventListener(transitionEvent, function handler() {
-                // detach event after transition end (so it doesn't fire multiple onClose)
-                self.modal.removeEventListener(transitionEvent, handler, false);
-
-                self.modal.style.display = 'none';
-
-                // on close callback
-                if (typeof self.opts.onClose === "function") {
-                    self.opts.onClose.call(this);
-                }
-
-            }, false);
-        } else {
-            self.modal.style.display = 'none';
-            // on close callback
-            if (typeof self.opts.onClose === "function") {
-                self.opts.onClose.call(this);
-            }
+        // We should not be able to close the modal if it is not open
+        if (this.isOpen()) {
+          // If the history option is enabled, let the browser event handle closing the modal
+          if (this.opts.history) {
+              window.history.back();
+          } else {
+              _close.call(this);
+          }
         }
     };
 
@@ -267,7 +259,6 @@
         }
     }
 
-
     /* ----------------------------------------------------------- */
     /* == private methods */
     /* ----------------------------------------------------------- */
@@ -278,6 +269,47 @@
         }
         this.modalBoxFooter.style.width = this.modalBox.clientWidth + 'px';
         this.modalBoxFooter.style.left = this.modalBox.offsetLeft + 'px';
+    }
+
+    function _close() {
+        //  before close
+        if (typeof this.opts.beforeClose === "function") {
+            var close = this.opts.beforeClose.call(this);
+            if (!close) return;
+        }
+
+        document.body.classList.remove('tingle-enabled');
+        window.scrollTo(0, this._scrollPosition);
+
+        this.modal.classList.remove('tingle-modal--visible');
+
+        //Using similar setup as onOpen
+        //Reference to the Modal that's created
+        var self = this;
+
+        if (transitionEvent) {
+            //Track when transition is happening then run onClose on complete
+            this.modal.addEventListener(transitionEvent, function handler() {
+                // detach event after transition end (so it doesn't fire multiple onClose)
+                self.modal.removeEventListener(transitionEvent, handler, false);
+
+                // on close callback
+                if (typeof self.opts.onClose === "function") {
+                    self.opts.onClose.call(this);
+                }
+
+                // Unset the active modal
+                Modal.prototype.active = null;
+            }, false);
+        } else {
+            // on close callback
+            if (typeof self.opts.onClose === "function") {
+                self.opts.onClose.call(this);
+            }
+
+            // Unset the active modal
+            Modal.prototype.active = null;
+        }
     }
 
     function _build() {
@@ -342,21 +374,32 @@
     }
 
     function _bindEvents() {
-
         this._events = {
             clickCloseBtn: this.close.bind(this),
             clickOverlay: _handleClickOutside.bind(this),
             resize: this.checkOverflow.bind(this),
-            keyboardNav: _handleKeyboardNav.bind(this)
+            keyboardNav: _handleKeyboardNav.bind(this),
+            historyBack: _handleHistoryBack.bind(this)
         };
 
         if (this.opts.closeMethods.indexOf('button') !== -1) {
             this.modalCloseBtn.addEventListener('click', this._events.clickCloseBtn);
         }
 
+        if (this.opts.history) {
+            window.addEventListener('popstate', this._events.historyBack);
+        }
+
         this.modal.addEventListener('mousedown', this._events.clickOverlay);
         window.addEventListener('resize', this._events.resize);
-        document.addEventListener("keydown", this._events.keyboardNav);
+        document.addEventListener('keydown', this._events.keyboardNav);
+    }
+
+    function _handleHistoryBack(event) {
+        // if the modal is open, and going back took us to the state where we originally opened the modal, then close the modal
+        if (this.isOpen() && event.state && event.state.tingle && event.state.tingle.didOpen === this._id) {
+            _close.call(this);
+        }
     }
 
     function _handleKeyboardNav(event) {
@@ -379,13 +422,33 @@
         return el;
     }
 
+    function _setHistoryOpen() {
+        var currentStateObj;
+        var appendState = { tingle: { didOpen: this._id } };
+
+        // preserve the existing state data if it exists
+        if (history.state) {
+            currentStateObj = Object.assign({}, history.state, appendState);
+        } else {
+            currentStateObj = appendState;
+        }
+
+        history.replaceState(currentStateObj, '');
+        history.pushState({ tingle: { active: this._id } }, '');
+    }
+
     function _unbindEvents() {
         if (this.opts.closeMethods.indexOf('button') !== -1) {
             this.modalCloseBtn.removeEventListener('click', this._events.clickCloseBtn);
         }
+
+        if (this.opts.history) {
+            window.removeEventListener('popstate', this._events.historyBack);
+        }
+
         this.modal.removeEventListener('mousedown', this._events.clickOverlay);
         window.removeEventListener('resize', this._events.resize);
-        document.removeEventListener("keydown", this._events.keyboardNav);
+        document.removeEventListener('keydown', this._events.keyboardNav);
     }
 
     /* ----------------------------------------------------------- */

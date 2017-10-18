@@ -22,6 +22,7 @@
   opacity: 0;
   cursor: pointer;
   transition: transform .2s ease;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* confirm and alerts
@@ -114,6 +115,7 @@
 -------------------------------------------------------------- */
 
 .tingle-enabled {
+  position: fixed;
   overflow: hidden;
   height: 100%;
 }
@@ -123,7 +125,7 @@
 }
 
 .tingle-enabled .tingle-content-wrapper {
-  filter: blur(15px);
+  filter: blur(12px);
 }
 
 .tingle-modal--visible {
@@ -241,5 +243,21 @@
     margin-right: .5rem;
     vertical-align: middle;
     font-size: 4rem;
+  }
+}
+
+@supports (backdrop-filter: blur(12px)) {
+  .tingle-modal {
+    backdrop-filter: blur(12px);
+  }
+
+  @media (max-width : 540px) {
+    .tingle-modal {
+      backdrop-filter: blur(8px);
+    }
+  }
+
+  .tingle-enabled .tingle-content-wrapper {
+    filter: none;
   }
 }
