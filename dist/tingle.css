@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------- */
-/* == tingle v0.12.0 */
+/* == tingle v0.13.0 */
 /* ----------------------------------------------------------- */
 
 .tingle-modal * {
@@ -25,6 +25,7 @@
   -ms-flex-align: center;
   align-items: center;
   overflow: hidden;
+  -webkit-overflow-scrolling: touch;
   background: rgba(0, 0, 0, .8);
   opacity: 0;
   cursor: pointer;
@@ -132,6 +133,7 @@
 -------------------------------------------------------------- */
 
 .tingle-enabled {
+  position: fixed;
   overflow: hidden;
   height: 100%;
 }
@@ -141,8 +143,8 @@
 }
 
 .tingle-enabled .tingle-content-wrapper {
-  -webkit-filter: blur(15px);
-  filter: blur(15px);
+  -webkit-filter: blur(12px);
+  filter: blur(12px);
 }
 
 .tingle-modal--visible {
@@ -263,5 +265,24 @@
     margin-right: .5rem;
     vertical-align: middle;
     font-size: 4rem;
+  }
+}
+
+@supports ((-webkit-backdrop-filter: blur(12px)) or (backdrop-filter: blur(12px))) {
+  .tingle-modal {
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+  }
+
+  @media (max-width : 540px) {
+    .tingle-modal {
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+    }
+  }
+
+  .tingle-enabled .tingle-content-wrapper {
+    -webkit-filter: none;
+    filter: none;
   }
 }

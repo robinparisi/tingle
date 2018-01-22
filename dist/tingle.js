@@ -1,7 +1,7 @@
 /*!
 * tingle.js
 * @author  robin_parisi
-* @version 0.12.0
+* @version 0.13.0
 * @url
 */
 (function(root, factory) {
@@ -88,7 +88,9 @@
         }
 
         // prevent double scroll
+        this._scrollPosition = window.pageYOffset;
         document.body.classList.add('tingle-enabled');
+        document.body.style.top = -this._scrollPosition + 'px';
 
         // sticky footer
         this.setStickyFooter(this.opts.stickyFooter);
@@ -129,6 +131,7 @@
         }
 
         document.body.classList.remove('tingle-enabled');
+        window.scrollTo(0, this._scrollPosition);
 
         this.modal.classList.remove('tingle-modal--visible');
 

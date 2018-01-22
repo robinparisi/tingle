@@ -1,6 +1,6 @@
 {
   "name": "tingle.js",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "description": "A simple modal plugin written in pure JavaScript",
   "main": "dist/tingle.min.js",
   "directories": {

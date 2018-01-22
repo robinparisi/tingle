@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------- */
-/* == tingle v0.12.0 */
+/* == tingle v0.13.0 */
 /* ----------------------------------------------------------- */
 
 .tingle-modal * {
@@ -18,11 +18,11 @@
   flex-direction: column;
   align-items: center;
   overflow: hidden;
+  -webkit-overflow-scrolling: touch;
   background: rgba(0, 0, 0, .8);
   opacity: 0;
   cursor: pointer;
   transition: transform .2s ease;
-  -webkit-overflow-scrolling: touch;
 }
 
 /* confirm and alerts
@@ -248,7 +248,7 @@
 
 @supports (backdrop-filter: blur(12px)) {
   .tingle-modal {
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(20px);
   }
 
   @media (max-width : 540px) {
