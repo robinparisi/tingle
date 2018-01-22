@@ -24,6 +24,17 @@ Tingle is a minimalist and easy-to-use modal plugin written in pure JavaScript:
 * alert/dialog
 * Accessibility (any help is welcome)
 
+## Contribute
+
+Run the demo and listen for changes:
+
+```bash
+$ git clone git@github.com:robinparisi/tingle.git
+$ cd tingle
+$ npm install
+$ gulp serve
+```
+
 ## License
 
 © 2018 [Robin Parisi](https://github.com/robinparisi)  
