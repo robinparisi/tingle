@@ -104,7 +104,6 @@
   padding: 3rem 3rem;
 }
 
-
 .tingle-modal-box__footer {
   padding: 1.5rem 2rem;
   width: auto;
@@ -135,7 +134,8 @@
 .tingle-enabled {
   position: fixed;
   overflow: hidden;
-  height: 100%;
+  left: 0;
+  right: 0;
 }
 
 .tingle-modal--visible .tingle-modal-box__footer {
@@ -143,8 +143,8 @@
 }
 
 .tingle-enabled .tingle-content-wrapper {
-  -webkit-filter: blur(12px);
-  filter: blur(12px);
+  -webkit-filter: blur(8px);
+  filter: blur(8px);
 }
 
 .tingle-modal--visible {
