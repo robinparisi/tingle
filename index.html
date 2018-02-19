@@ -17,70 +17,71 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <h1 class="header__title">tingle.js</h1>
-            <div class="header__tagline">A minimalist and easy-to-use modal plugin written in pure JavaScript</div>
-            <img class="header__pic" src="modal.svg" alt="Pure JavaScript modal plugin">
-            <a href="https://github.com/robinparisi/tingle" class="header__github" target="_blank"><img src="github.svg" alt="Github"></a>
-        </div>
-    </header>
+    <div class="tingle-content-wrapper">
+        <header class="header">
+            <div class="container">
+                <h1 class="header__title">tingle.js</h1>
+                <div class="header__tagline">A minimalist and easy-to-use modal plugin written in pure JavaScript</div>
+                <img class="header__pic" src="modal.svg" alt="Pure JavaScript modal plugin">
+                <a href="https://github.com/robinparisi/tingle" class="header__github" target="_blank"><img src="github.svg" alt="Github"></a>
+            </div>
+        </header>
 
-    <div class="container tingle-content-wrapper content">
-        <h2 data-bullet="1" class="title">Give it a try</h2>
-        <p>
-            Tingle is a simple <strong>modal plugin</strong> written in pure JavaScript (<a href="https://github.com/robinparisi/tingle">Source code on GitHub</a>).
-        </p>
+        <div class="container content">
+            <h2 data-bullet="1" class="title">Give it a try</h2>
+            <p>
+                Tingle is a simple <strong>modal plugin</strong> written in pure JavaScript (<a href="https://github.com/robinparisi/tingle">Source code on GitHub</a>).
+            </p>
 
-        <ul>
-            <li>No dependencies required</li>
-            <li>Fully customizable via CSS</li>
-            <li>CSS transitions</li>
-            <li>Simple API</li>
-            <li>No extra files to download</li>
-            <li>Created with UX in mind</li>
-        </ul>
+            <ul>
+                <li>No dependencies required</li>
+                <li>Fully customizable via CSS</li>
+                <li>CSS transitions</li>
+                <li>Simple API</li>
+                <li>No extra files to download</li>
+                <li>Created with UX in mind</li>
+            </ul>
 
-        <p>Below you will find some examples for using tingle: </p>
+            <p>Below you will find some examples for using tingle: </p>
 
-        <button class="btn btn--primary btn-demo js-tingle-modal-1">A simple modal</button>
-        <button class="btn btn--secondary btn-demo js-tingle-modal-2">Need buttons?</button>
-        <button class="btn btn--secondary btn-demo js-tingle-modal-3">Big content? No problem!</button>
-        <button class="btn btn--secondary btn-demo js-tingle-modal-4">Stick to me!</button>
-        <button class="btn btn--secondary btn-demo js-tingle-modal-5">Close with footer button only</button>
-        <button class="btn btn--secondary btn-demo js-tingle-modal-6">?</button>
+            <button class="btn btn--primary btn-demo js-tingle-modal-1">A simple modal</button>
+            <button class="btn btn--secondary btn-demo js-tingle-modal-2">Need buttons?</button>
+            <button class="btn btn--secondary btn-demo js-tingle-modal-3">Big content? No problem!</button>
+            <button class="btn btn--secondary btn-demo js-tingle-modal-4">Stick to me!</button>
+            <button class="btn btn--secondary btn-demo js-tingle-modal-5">Close with footer button only</button>
+            <button class="btn btn--secondary btn-demo js-tingle-modal-6">?</button>
 
-        <h2 data-bullet="2" class="title">Installation</h2>
-        <table class="methods">
-            <thead>
+            <h2 data-bullet="2" class="title">Installation</h2>
+            <table class="methods">
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th class="w60">Procedure</th>
+                    </tr>
+                </thead>
                 <tr>
-                    <th>Method</th>
-                    <th class="w60">Procedure</th>
+                    <td>Bower</td>
+                    <td>bower install tingle --save</td>
                 </tr>
-            </thead>
-            <tr>
-                <td>Bower</td>
-                <td>bower install tingle --save</td>
-            </tr>
-            <tr>
-                <td>NPM</td>
-                <td>npm install tingle.js --save</td>
-            </tr>
-            <tr>
-                <td>Basic download</td>
-                <td><a href="https://github.com/robinparisi/tingle/archive/master.zip" title="Download tingle">download zip</a></td>
-            </tr>
-        </table>
-        <p>Tingle uses just one small CSS. Feel free to include it in your workflow (Less, Sass, etc...) and customize it to fit your needs.</p>
+                <tr>
+                    <td>NPM</td>
+                    <td>npm install tingle.js --save</td>
+                </tr>
+                <tr>
+                    <td>Basic download</td>
+                    <td><a href="https://github.com/robinparisi/tingle/archive/master.zip" title="Download tingle">download zip</a></td>
+                </tr>
+            </table>
+            <p>Tingle uses just one small CSS. Feel free to include it in your workflow (Less, Sass, etc...) and customize it to fit your needs.</p>
 
-        <pre class="html"><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;tingle.min.css&quot;&gt;</code></pre>
+            <pre class="html"><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;tingle.min.css&quot;&gt;</code></pre>
 
-        <p>Then, just include tingle in your document:</p>
+            <p>Then, just include tingle in your document:</p>
 
-        <pre class="html"><code>&lt;script src=&quot;tingle.min.js&quot;&gt;&lt;/script&gt;</code></pre>
+            <pre class="html"><code>&lt;script src=&quot;tingle.min.js&quot;&gt;&lt;/script&gt;</code></pre>
 
-        <h2 data-bullet="3" class="title">Use</h2>
-        <pre class="javascript"><code>
+            <h2 data-bullet="3" class="title">Use</h2>
+            <pre class="javascript"><code>
 // instanciate new modal
 var modal = new tingle.modal({
     footer: true,
@@ -98,7 +99,7 @@ var modal = new tingle.modal({
         // here's goes some logic
         // e.g. save content before closing the modal
         return true; // close the modal
-    	return false; // nothing happens
+        return false; // nothing happens
     }
 });
 
@@ -122,137 +123,137 @@ modal.open();
 
 // close modal
 modal.close();
-        </code></pre>
-        <h2 data-bullet="4" class="title">Options</h2>
-        <table class="methods">
-            <thead>
+            </code></pre>
+            <h2 data-bullet="4" class="title">Options</h2>
+            <table class="methods">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th class="w60">Description</th>
+                    </tr>
+                </thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th class="w60">Description</th>
+                    <td>footer</td>
+                    <td>boolean</td>
+                    <td>Display a footer or not</td>
                 </tr>
-            </thead>
-            <tr>
-                <td>footer</td>
-                <td>boolean</td>
-                <td>Display a footer or not</td>
-            </tr>
-            <tr>
-                <td>stickyFooter</td>
-                <td>boolean</td>
-                <td>Set to true for a footer always visible on screen</td>
-            </tr>
-            <tr>
-                <td>closeMethods</td>
-                <td>array</td>
-                <td>Available close methods (overlay, button, escape)</td>
-            </tr>
-            <tr>
-                <td>onOpen</td>
-                <td>function</td>
-                <td>Callback to execute when tingle is open (after transition end)</td>
-            </tr>
-            <tr>
-                <td>onClose</td>
-                <td>function</td>
-                <td>Callback to execute when tingle is closed</td>
-            </tr>
-            <tr>
-                <td>beforeOpen</td>
-                <td>function</td>
-                <td>Callback to execute before opening the modal</td>
-            </tr>
-            <tr>
-                <td>beforeClose</td>
-                <td>function</td>
-                <td>Callback to execute before closing the modal (must return true to close the modal)</td>
-            </tr>
-            <tr>
-                <td>cssClass</td>
-                <td>array</td>
-                <td>Custom CSS classes that will be added to tingle container</td>
-            </tr>
-            <tr>
-                <td>closeLabel</td>
-                <td>string</td>
-                <td>Label wich appears on the close button (mobile version)</td>
-            </tr>
-        </table>
-        <h2 data-bullet="5" class="title">CSS</h2>
-        <p>
-            All tingle styles are available in CSS. Only some specific properties for positioning are processed by JavaScript.
-            It means you can customize tingle to fit your needs. Tingle came with some useful styles for buttons:
-        </p>
-        <p>
-            <span class="important">Important:</span> For the blur effect, you need to wrap your content inside a container with the "tingle-content-wrapper" class.
-        </p>
-        <ul>
-            <li>tingle-btn</li>
-            <li>tingle-btn--primary</li>
-            <li>tingle-btn--default</li>
-            <li>tingle-btn--danger</li>
-            <li>tingle-btn--pull-left</li>
-            <li>tingle-btn--pull-right</li>
-        </ul>
-
-        <h2 data-bullet="6" class="title">API</h2>
-        <table class="methods">
-            <thead>
                 <tr>
-                    <th>Name</th>
-                    <th class="w60">Description</th>
+                    <td>stickyFooter</td>
+                    <td>boolean</td>
+                    <td>Set to true for a footer always visible on screen</td>
                 </tr>
-            </thead>
-            <tr>
-                <td>open()</td>
-                <td>Open modal (tingle-enabled class is added on body)</td>
-            </tr>
-            <tr>
-                <td>close()</td>
-                <td>Close modal and execute callback if exist</td>
-            </tr>
-            <tr>
-                <td>setContent(content)</td>
-                <td>Set modal content</td>
-            </tr>
-            <tr>
-                <td>getContent()</td>
-                <td>Get modal content</td>
-            </tr>
-            <tr>
-                <td>setFooterContent(content)</td>
-                <td>Set footer content</td>
-            </tr>
-            <tr>
-                <td>getFooterContent(content)</td>
-                <td>Get footer content</td>
-            </tr>
-            <tr>
-                <td>addFooterBtn(label, cssClass, callback)</td>
-                <td>Add buttons to footer (use cssClass for style and positioning)</td>
-            </tr>
-            <tr>
-                <td>checkOverflow()</td>
-                <td>Allow to reposition the modal (useful with asynchronous content)</td>
-            </tr>
-            <tr>
-                <td>isOverflow()</td>
-                <td>Return true if modal height is bigger than viewport height</td>
-            </tr>
-            <tr>
-                <td>destroy()</td>
-                <td>Destroy modal (remove from dom and unbind events)</td>
-            </tr>
-            <tr>
-                <td>resize() <span class="tag tag--warning">deprecated</span></td>
-                <td>Deprecated since v0.8 and will be removed in v1.0</td>
-            </tr>
-        </table>
+                <tr>
+                    <td>closeMethods</td>
+                    <td>array</td>
+                    <td>Available close methods (overlay, button, escape)</td>
+                </tr>
+                <tr>
+                    <td>onOpen</td>
+                    <td>function</td>
+                    <td>Callback to execute when tingle is open (after transition end)</td>
+                </tr>
+                <tr>
+                    <td>onClose</td>
+                    <td>function</td>
+                    <td>Callback to execute when tingle is closed</td>
+                </tr>
+                <tr>
+                    <td>beforeOpen</td>
+                    <td>function</td>
+                    <td>Callback to execute before opening the modal</td>
+                </tr>
+                <tr>
+                    <td>beforeClose</td>
+                    <td>function</td>
+                    <td>Callback to execute before closing the modal (must return true to close the modal)</td>
+                </tr>
+                <tr>
+                    <td>cssClass</td>
+                    <td>array</td>
+                    <td>Custom CSS classes that will be added to tingle container</td>
+                </tr>
+                <tr>
+                    <td>closeLabel</td>
+                    <td>string</td>
+                    <td>Label wich appears on the close button (mobile version)</td>
+                </tr>
+            </table>
+            <h2 data-bullet="5" class="title">CSS</h2>
+            <p>
+                All tingle styles are available in CSS. Only some specific properties for positioning are processed by JavaScript.
+                It means you can customize tingle to fit your needs. Tingle came with some useful styles for buttons:
+            </p>
+            <p>
+                <span class="important">Important:</span> For the blur effect, you need to wrap your content inside a container with the "tingle-content-wrapper" class.
+            </p>
+            <ul>
+                <li>tingle-btn</li>
+                <li>tingle-btn--primary</li>
+                <li>tingle-btn--default</li>
+                <li>tingle-btn--danger</li>
+                <li>tingle-btn--pull-left</li>
+                <li>tingle-btn--pull-right</li>
+            </ul>
 
-        <footer class="footer">
-            Developed by <a href="https://twitter.com/robin_parisi" target="_blank">@robin_parisi</a>
-        </footer>
+            <h2 data-bullet="6" class="title">API</h2>
+            <table class="methods">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th class="w60">Description</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>open()</td>
+                    <td>Open modal (tingle-enabled class is added on body)</td>
+                </tr>
+                <tr>
+                    <td>close()</td>
+                    <td>Close modal and execute callback if exist</td>
+                </tr>
+                <tr>
+                    <td>setContent(content)</td>
+                    <td>Set modal content</td>
+                </tr>
+                <tr>
+                    <td>getContent()</td>
+                    <td>Get modal content</td>
+                </tr>
+                <tr>
+                    <td>setFooterContent(content)</td>
+                    <td>Set footer content</td>
+                </tr>
+                <tr>
+                    <td>getFooterContent(content)</td>
+                    <td>Get footer content</td>
+                </tr>
+                <tr>
+                    <td>addFooterBtn(label, cssClass, callback)</td>
+                    <td>Add buttons to footer (use cssClass for style and positioning)</td>
+                </tr>
+                <tr>
+                    <td>checkOverflow()</td>
+                    <td>Allow to reposition the modal (useful with asynchronous content)</td>
+                </tr>
+                <tr>
+                    <td>isOverflow()</td>
+                    <td>Return true if modal height is bigger than viewport height</td>
+                </tr>
+                <tr>
+                    <td>destroy()</td>
+                    <td>Destroy modal (remove from dom and unbind events)</td>
+                </tr>
+                <tr>
+                    <td>resize() <span class="tag tag--warning">deprecated</span></td>
+                    <td>Deprecated since v0.8 and will be removed in v1.0</td>
+                </tr>
+            </table>
 
+            <footer class="footer">
+                Developed by <a href="https://twitter.com/robin_parisi" target="_blank">@robin_parisi</a>
+            </footer>
+        </div>
         <!-- Tingle tiny content -->
         <div class="tingle-demo tingle-demo-tiny">
             <h1>A small content</h1>
