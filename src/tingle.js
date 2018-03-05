@@ -132,6 +132,7 @@
 
         document.body.classList.remove('tingle-enabled');
         window.scrollTo(0, this._scrollPosition);
+        document.body.style.top = null;
 
         this.modal.classList.remove('tingle-modal--visible');
 
