@@ -171,6 +171,9 @@
             this.modalBoxContent.innerHTML = "";
             this.modalBoxContent.appendChild(content);
         }
+
+        // check if modal is bigger than screen height
+        this.checkOverflow();
     };
 
     Modal.prototype.getContent = function() {
