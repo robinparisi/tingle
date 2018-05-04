@@ -36,6 +36,7 @@
 
         // extends config
         this.opts = extend({}, defaults, options);
+        this.ignoreUtilFocusChanges = false;
 
         // init modal
         this.init();
@@ -114,6 +115,10 @@
             }
         }
 
+        this.addFocusListener();
+
+        this.focusFirstDescendant(this.modalBoxContent);
+
         // check if modal is bigger than screen height
         this.checkOverflow();
     };
@@ -161,6 +166,8 @@
                 self.opts.onClose.call(this);
             }
         }
+
+        this.removeFocusListener();
     };
 
     Modal.prototype.setContent = function(content) {
@@ -276,6 +283,99 @@
         }
     }
 
+    /* ----------------------------------------------------------- */
+    /* == accessibilities functions */
+    /* ----------------------------------------------------------- */
+    Modal.prototype.addFocusListener = function() {
+        document.addEventListener('focus', this.trapFocus.bind(this), true);
+    }
+
+    Modal.prototype.removeFocusListener = function() {
+        document.removeEventListener('focus', this.trapFocus, true);
+    }
+
+    Modal.prototype.trapFocus = function (event) {
+        if (this.ignoreUtilFocusChanges) {
+            return;
+        }
+
+        if (this.modal.contains(event.target)) {
+            this.lastFocus = event.target;
+        } else {
+            this.focusFirstDescendant(this.modal);
+
+            if (this.lastFocus === document.activeElement) {
+                this.focusLastDescendant(this.modal);
+            }
+
+            this.lastFocus = document.activeElement;
+        }
+    }
+
+    Modal.prototype.focusFirstDescendant = function(element) {
+        for (var i = 0; i < element.childNodes.length; i++) {
+            var child = element.childNodes[i];
+
+            if (this.attemptFocus(child) || this.focusFirstDescendant(child)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    Modal.prototype.focusLastDescendant = function(element) {
+        for (var i = element.childNodes.length - 1; i >= 0; i--) {
+            var child = element.childNodes[i];
+
+            if (this.attemptFocus(child) || this.focusLastDescendant(child)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    Modal.prototype.attemptFocus = function(element) {
+        if (!this.isFocusable(element)) {
+            return false;
+        }
+
+        this.ignoreUtilFocusChanges = true;
+
+        try {
+            element.focus();
+        }
+        catch (e) { }
+
+        this.ignoreUtilFocusChanges = false;
+
+        return (document.activeElement === element);
+    }
+
+    Modal.prototype.isFocusable = function(element) {
+        if (element.tabIndex > 0 || (element.tabIndex === 0 && element.getAttribute('tabIndex') !== null)) {
+            return true;
+        }
+
+        if (element.disabled) {
+            return false;
+        }
+
+        switch (element.nodeName) {
+            case 'A':
+                return !!element.href && element.rel != 'ignore';
+            case 'INPUT':
+                return element.type != 'hidden' && element.type != 'file';
+            case 'BUTTON':
+            case 'SELECT':
+            case 'TEXTAREA':
+                return true;
+            default:
+            return false;
+        }
+    }
+
 
     /* ----------------------------------------------------------- */
     /* == private methods */
@@ -294,6 +394,8 @@
         // wrapper
         this.modal = document.createElement('div');
         this.modal.classList.add('tingle-modal');
+        this.modal.setAttribute('role', 'dialog');
+        this.modal.setAttribute('aria-modal', true);
 
         // remove cusor if no overlay close method
         if (this.opts.closeMethods.length === 0 || this.opts.closeMethods.indexOf('overlay') === -1) {
@@ -365,13 +467,18 @@
 
         this.modal.addEventListener('mousedown', this._events.clickOverlay);
         window.addEventListener('resize', this._events.resize);
-        document.addEventListener("keydown", this._events.keyboardNav);
+        document.addEventListener("keyup", this._events.keyboardNav);
     }
 
     function _handleKeyboardNav(event) {
         // escape key
         if (this.opts.closeMethods.indexOf('escape') !== -1 && event.which === 27 && this.isOpen()) {
             this.close();
+        }
+
+        // tab key
+        if (event.which === 9 && this.isOpen()) {
+
         }
     }
 
