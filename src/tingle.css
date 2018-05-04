@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+.tingle-modal *:focus {
+  outline: 1px solid black;
+}
+
 .tingle-modal {
   position: fixed;
   top: 0;
