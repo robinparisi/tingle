@@ -62,6 +62,11 @@
             return;
         }
 
+        // restore scrolling
+        if (this.isOpen()) {
+            document.body.classList.remove('tingle-enabled');
+        }
+
         // unbind all events
         _unbindEvents.call(this);
 
