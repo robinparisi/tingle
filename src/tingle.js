@@ -98,21 +98,11 @@
         // show modal
         this.modal.classList.add('tingle-modal--visible');
 
-        if (transitionEvent) {
-            this.modal.addEventListener(transitionEvent, function handler() {
-                if (typeof self.opts.onOpen === 'function') {
-                    self.opts.onOpen.call(self);
-                }
-
-                // detach event after transition end (so it doesn't fire multiple onOpen)
-                self.modal.removeEventListener(transitionEvent, handler, false);
-
-            }, false);
-        } else {
+        transitionHelper(this.modal, function () {
             if (typeof self.opts.onOpen === 'function') {
                 self.opts.onOpen.call(self);
             }
-        }
+        });
 
         // check if modal is bigger than screen height
         this.checkOverflow();
@@ -140,27 +130,13 @@
         //Reference to the Modal that's created
         var self = this;
 
-        if (transitionEvent) {
-            //Track when transition is happening then run onClose on complete
-            this.modal.addEventListener(transitionEvent, function handler() {
-                // detach event after transition end (so it doesn't fire multiple onClose)
-                self.modal.removeEventListener(transitionEvent, handler, false);
-
-                self.modal.style.display = 'none';
-
-                // on close callback
-                if (typeof self.opts.onClose === "function") {
-                    self.opts.onClose.call(this);
-                }
-
-            }, false);
-        } else {
+        transitionHelper(this.modal, function () {
             self.modal.style.display = 'none';
             // on close callback
             if (typeof self.opts.onClose === "function") {
-                self.opts.onClose.call(this);
+                self.opts.onClose.call(self);
             }
-        }
+        });
     };
 
     Modal.prototype.setContent = function(content) {
@@ -438,6 +414,31 @@
             if (el.style[t] !== undefined) {
                 return transitions[t];
             }
+        }
+    }
+
+    function transitionHelper(modal, callback) {
+        if (transitionEvent) {
+            const startEvent = transitionEvent.replace(/end$/, 'start').replace(/End$/, 'Start');
+            var startCallback, timeout;
+
+            const eventCallback = function() {
+                // detach event after transition end (so it doesn't fire multiple onOpen)
+                modal.removeEventListener(transitionEvent, eventCallback, false);
+                // detach event after transition start
+                modal.removeEventListener(startEvent, startCallback, false);
+
+                callback();
+            };
+            startCallback = function() {
+                clearTimeout(timeout);
+                modal.addEventListener(transitionEvent, eventCallback, false);
+            };
+
+            timeout = setTimeout(eventCallback, 0);
+            modal.addEventListener(startEvent, startCallback, false);
+        } else {
+            callback();
         }
     }
 
