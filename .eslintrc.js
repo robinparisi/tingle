@@ -23,6 +23,14 @@ module.exports = {
         "semi": [
             "error",
             "never"
+        ],
+        "spaced-comment": [
+          "error",
+          "always"
+        ],
+        "capitalized-comments" : [
+          "error",
+          "never"
         ]
     }
 };
