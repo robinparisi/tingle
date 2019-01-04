@@ -23,6 +23,8 @@
   opacity: 0;
   cursor: pointer;
   transition: transform .2s ease;
+
+  user-select: none;
 }
 
 /* confirm and alerts
@@ -115,9 +117,9 @@
 
 .tingle-enabled {
   position: fixed;
-  overflow: hidden;
-  left: 0;
   right: 0;
+  left: 0;
+  overflow: hidden;
 }
 
 .tingle-modal--visible .tingle-modal-box__footer {
