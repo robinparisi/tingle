@@ -13,15 +13,11 @@
   bottom: 0;
   left: 0;
   z-index: 1000;
-  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   visibility: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
   overflow: hidden;
@@ -29,10 +25,7 @@
   background: rgba(0, 0, 0, .8);
   opacity: 0;
   cursor: pointer;
-  -webkit-transition: -webkit-transform .2s ease;
-  transition: -webkit-transform .2s ease;
   transition: transform .2s ease;
-  transition: transform .2s ease, -webkit-transform .2s ease;
 }
 
 /* confirm and alerts
@@ -68,7 +61,6 @@
   font-family: monospace;
   line-height: 1;
   cursor: pointer;
-  -webkit-transition: color .3s ease;
   transition: color .3s ease;
 }
 
@@ -91,11 +83,7 @@
   background: #fff;
   opacity: 1;
   cursor: auto;
-  -webkit-transition: -webkit-transform .3s cubic-bezier(.175, .885, .32, 1.275);
-  transition: -webkit-transform .3s cubic-bezier(.175, .885, .32, 1.275);
   transition: transform .3s cubic-bezier(.175, .885, .32, 1.275);
-  transition: transform .3s cubic-bezier(.175, .885, .32, 1.275), -webkit-transform .3s cubic-bezier(.175, .885, .32, 1.275);
-  -webkit-transform: scale(.8);
   -ms-transform: scale(.8);
   transform: scale(.8);
 }
@@ -124,7 +112,6 @@
   bottom: -200px; /* TODO : find a better way */
   z-index: 10001;
   opacity: 1;
-  -webkit-transition: bottom .3s ease-in-out .3s;
   transition: bottom .3s ease-in-out .3s;
 }
 
@@ -143,7 +130,6 @@
 }
 
 .tingle-enabled .tingle-content-wrapper {
-  -webkit-filter: blur(8px);
   filter: blur(8px);
 }
 
@@ -153,7 +139,6 @@
 }
 
 .tingle-modal--visible .tingle-modal-box {
-  -webkit-transform: scale(1);
   -ms-transform: scale(1);
   transform: scale(1);
 }
@@ -180,7 +165,6 @@
   font-family: inherit;
   line-height: normal;
   cursor: pointer;
-  -webkit-transition: background-color .4s ease;
   transition: background-color .4s ease;
 }
 
@@ -282,7 +266,6 @@
   }
 
   .tingle-enabled .tingle-content-wrapper {
-    -webkit-filter: none;
     filter: none;
   }
 }
