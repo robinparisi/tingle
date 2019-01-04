@@ -1,7 +1,7 @@
 /*!
 * tingle.js
 * @author  robin_parisi
-* @version 0.13.2
+* @version 0.14.0
 * @url
 */
 
