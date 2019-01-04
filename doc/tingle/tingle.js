@@ -55,11 +55,18 @@
         if (this.opts.footer) {
             this.addFooter();
         }
+
+        return this;
     };
 
     Modal.prototype.destroy = function() {
         if (this.modal === null) {
             return;
+        }
+
+        // restore scrolling
+        if (this.isOpen()) {
+            this.close(true);
         }
 
         // unbind all events
@@ -116,13 +123,16 @@
 
         // check if modal is bigger than screen height
         this.checkOverflow();
+
+        return this;
     };
 
     Modal.prototype.isOpen = function() {
         return !!this.modal.classList.contains("tingle-modal--visible");
     };
 
-    Modal.prototype.close = function() {
+    Modal.prototype.close = function(force) {
+        force = force || false;
 
         //  before close
         if (typeof this.opts.beforeClose === "function") {
@@ -140,7 +150,12 @@
         //Reference to the Modal that's created
         var self = this;
 
-        if (transitionEvent) {
+        if (force) {
+            self.modal.style.display = 'none';
+            if (typeof self.opts.onClose === "function") {
+                self.opts.onClose.call(this);
+            }
+        } else if (transitionEvent) {
             //Track when transition is happening then run onClose on complete
             this.modal.addEventListener(transitionEvent, function handler() {
                 // detach event after transition end (so it doesn't fire multiple onClose)
@@ -176,6 +191,8 @@
             // check if modal is bigger than screen height
             this.checkOverflow();
         }
+        
+        return this;
     };
 
     Modal.prototype.getContent = function() {
@@ -185,11 +202,15 @@
     Modal.prototype.addFooter = function() {
         // add footer to modal
         _buildFooter.call(this);
+
+        return this;
     };
 
     Modal.prototype.setFooterContent = function(content) {
         // set footer content
         this.modalBoxFooter.innerHTML = content;
+
+        return this;
     };
 
     Modal.prototype.getFooterContent = function() {
@@ -220,6 +241,8 @@
                 this.modalBoxFooter.classList.remove('tingle-modal-box__footer--sticky');
             }
         }
+
+        return this;
     };
 
 
