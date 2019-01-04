@@ -24,16 +24,12 @@
   -webkit-overflow-scrolling: touch;
   background: rgba(0, 0, 0, .8);
   opacity: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   cursor: pointer;
   transition: transform .2s ease;
-
-  -webkit-user-select: none;
-
-  -moz-user-select: none;
-
-  -ms-user-select: none;
-
-  user-select: none;
 }
 
 /* confirm and alerts
@@ -91,7 +87,7 @@
   background: #fff;
   opacity: 1;
   cursor: auto;
-  transition: transform 5s cubic-bezier(.175, .885, .32, 1.275);
+  transition: transform .3s cubic-bezier(.175, .885, .32, 1.275);
   -ms-transform: scale(.8);
   transform: scale(.8);
 }
