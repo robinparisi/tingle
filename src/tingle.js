@@ -19,6 +19,7 @@
     /* ----------------------------------------------------------- */
 
     var transitionEvent = whichTransitionEvent();
+    var isBusy = false;
 
     function Modal(options) {
 
@@ -36,7 +37,7 @@
 
         // extends config
         this.opts = extend({}, defaults, options);
-
+        
         // init modal
         this.init();
     }
@@ -59,6 +60,14 @@
         return this;
     };
 
+    Modal.prototype._busy = function(state) {
+        isBusy = state;
+    }
+
+    Modal.prototype._isBusy = function() {
+        return isBusy;
+    }
+
     Modal.prototype.destroy = function() {
         if (this.modal === null) {
             return;
@@ -78,8 +87,13 @@
         this.modal = null;
     };
 
+    Modal.prototype.isOpen = function() {
+        return !!this.modal.classList.contains("tingle-modal--visible");
+    };
 
     Modal.prototype.open = function() {
+        if(this._isBusy()) return;
+        this._busy(true);
 
         var self = this;
 
@@ -113,12 +127,13 @@
 
                 // detach event after transition end (so it doesn't fire multiple onOpen)
                 self.modal.removeEventListener(transitionEvent, handler, false);
-
+                self._busy(false);
             }, false);
         } else {
             if (typeof self.opts.onOpen === 'function') {
                 self.opts.onOpen.call(self);
             }
+            self._busy(false);
         }
 
         // check if modal is bigger than screen height
@@ -127,11 +142,9 @@
         return this;
     };
 
-    Modal.prototype.isOpen = function() {
-        return !!this.modal.classList.contains("tingle-modal--visible");
-    };
-
     Modal.prototype.close = function(force) {
+        if(this._isBusy()) return;
+        this._busy(true);
         force = force || false;
 
         //  before close
@@ -155,6 +168,7 @@
             if (typeof self.opts.onClose === "function") {
                 self.opts.onClose.call(this);
             }
+            self._busy(false);
         } else if (transitionEvent) {
             //Track when transition is happening then run onClose on complete
             this.modal.addEventListener(transitionEvent, function handler() {
@@ -168,6 +182,8 @@
                     self.opts.onClose.call(this);
                 }
 
+                self._busy(false);
+
             }, false);
         } else {
             self.modal.style.display = 'none';
@@ -175,6 +191,7 @@
             if (typeof self.opts.onClose === "function") {
                 self.opts.onClose.call(this);
             }
+            self._busy(false);
         }
     };
 
