@@ -248,7 +248,7 @@
 
     Modal.prototype.addFooterBtn = function(label, cssClass, callback) {
         var btn = document.createElement("button");
-
+                
         // set label
         btn.innerHTML = label;
 
@@ -335,6 +335,7 @@
         // close btn
         if (this.opts.closeMethods.indexOf('button') !== -1) {
             this.modalCloseBtn = document.createElement('button');
+            this.modalCloseBtn.type = 'button';
             this.modalCloseBtn.classList.add('tingle-modal__close');
 
             this.modalCloseBtnIcon = document.createElement('span');
