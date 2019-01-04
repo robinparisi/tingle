@@ -55,6 +55,8 @@
         if (this.opts.footer) {
             this.addFooter();
         }
+
+        return this;
     };
 
     Modal.prototype.destroy = function() {
@@ -116,6 +118,8 @@
 
         // check if modal is bigger than screen height
         this.checkOverflow();
+
+        return this;
     };
 
     Modal.prototype.isOpen = function() {
@@ -176,6 +180,8 @@
             // check if modal is bigger than screen height
             this.checkOverflow();
         }
+        
+        return this;
     };
 
     Modal.prototype.getContent = function() {
@@ -185,11 +191,15 @@
     Modal.prototype.addFooter = function() {
         // add footer to modal
         _buildFooter.call(this);
+
+        return this;
     };
 
     Modal.prototype.setFooterContent = function(content) {
         // set footer content
         this.modalBoxFooter.innerHTML = content;
+
+        return this;
     };
 
     Modal.prototype.getFooterContent = function() {
@@ -220,6 +230,8 @@
                 this.modalBoxFooter.classList.remove('tingle-modal-box__footer--sticky');
             }
         }
+
+        return this;
     };
 
 
