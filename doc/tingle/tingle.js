@@ -213,18 +213,27 @@
         return this
     }
 
-    Modal.prototype.setAjaxContent = function(url, callback) {
+    Modal.prototype.setAjaxContent = function(request, callback=false) {
         var self = this;
-        var xhr = new XMLHttpRequest();
+        if (request instanceof XMLHttpRequest){
+            request.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status === 200) {
+                    self.setContent(request.responseText);
+                    if (callback) callback();
+                }
+            };
+        } else {
+            let xhr = new XMLHttpRequest();
 
-        xhr.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                self.setContent(xhr.responseText);
-                callback();
-            }
-        };
-        xhr.open("GET", url, true);
-        xhr.send();
+            xhr.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status === 200) {
+                    self.setContent(xhr.responseText);
+                    if (callback) callback();
+                }
+            };
+            xhr.open("GET", request, true);
+            xhr.send();
+        }
 
         return this
     }

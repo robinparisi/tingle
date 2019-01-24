@@ -218,6 +218,10 @@ modal.close();
                     <td>Set modal content</td>
                 </tr>
                 <tr>
+                    <td>setAjaxContent(xhr, callback)</td>
+                    <td>Set modal content from async request. Xhr may be an XMLHttpRequest object, or just an URL</td>
+                </tr>
+                <tr>
                     <td>getContent()</td>
                     <td>Get modal content</td>
                 </tr>
@@ -442,7 +446,7 @@ modal.close();
             }
         });
         modalSurprise.setAjaxContent('ajax-modal.html', function () {
-            alert("loaded")
+            console.log("content loaded")
         });
         modalSurprise.open();
     });
