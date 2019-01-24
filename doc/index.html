@@ -50,6 +50,7 @@
             <button class="btn btn--secondary btn-demo js-tingle-modal-4">Stick to me!</button>
             <button class="btn btn--secondary btn-demo js-tingle-modal-5">Close with footer button only</button>
             <button class="btn btn--secondary btn-demo js-tingle-modal-6">?</button>
+            <button class="btn btn--secondary btn-demo js-tingle-modal-7">Ajax popup</button>
 
             <h2 data-bullet="2" class="title">Installation</h2>
             <table class="methods">
@@ -430,6 +431,19 @@ modal.close();
             }
         });
         modalSurprise.setContent('<iframe width="100%" height="400" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" frameborder="0" allowfullscreen></iframe>');
+        modalSurprise.open();
+    });
+
+    var btn7 = document.querySelector('.js-tingle-modal-7');
+    btn7.addEventListener('click', function(){
+        var modalSurprise = new tingle.modal({
+            onClose: function(){
+                modalSurprise.destroy();
+            }
+        });
+        modalSurprise.setAjaxContent('ajax-modal.html', function () {
+            alert("loaded")
+        });
         modalSurprise.open();
     });
 

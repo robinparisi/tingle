@@ -1,11 +1,11 @@
-/*!
+/* !
 * tingle.js
 * @author  robin_parisi
 * @version 0.14.0
 * @url
 */
 
-/*global define,module*/
+/* global define,module*/
 (function(root, factory) {
     if (typeof define === 'function' && define.amd) {
         define(factory)
@@ -50,7 +50,7 @@
 
         _build.call(this)
         _bindEvents.call(this)
-
+        
         // insert modal in dom
         document.body.insertBefore(this.modal, document.body.firstChild)
 
@@ -160,8 +160,8 @@
 
         this.modal.classList.remove('tingle-modal--visible')
 
-        //Using similar setup as onOpen
-        //Reference to the Modal that's created
+        // using similar setup as onOpen
+        // reference to the Modal that's created
         var self = this
 
         if (force) {
@@ -171,7 +171,7 @@
             }
             self._busy(false)
         } else if (transitionEvent) {
-            //Track when transition is happening then run onClose on complete
+            // track when transition is happening then run onClose on complete
             this.modal.addEventListener(transitionEvent, function handler() {
                 // detach event after transition end (so it doesn't fire multiple onClose)
                 self.modal.removeEventListener(transitionEvent, handler, false)
@@ -210,6 +210,22 @@
             this.checkOverflow()
         }
         
+        return this
+    }
+
+    Modal.prototype.setAjaxContent = function(url, callback) {
+        var self = this;
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                self.setContent(xhr.responseText);
+                callback();
+            }
+        };
+        xhr.open("GET", url, true);
+        xhr.send();
+
         return this
     }
 
@@ -306,8 +322,8 @@
                 this.modal.classList.remove('tingle-modal--overflow')
             }
 
-            // TODO: remove offset
-            //_offset.call(this);
+            // tODO: remove offset
+            // _offset.call(this);
             if (!this.isOverflow() && this.opts.stickyFooter) {
                 this.setStickyFooter(false)
             } else if (this.isOverflow() && this.opts.stickyFooter) {

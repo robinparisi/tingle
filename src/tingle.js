@@ -213,6 +213,22 @@
         return this
     }
 
+    Modal.prototype.setAjaxContent = function(url, callback) {
+        var self = this;
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                self.setContent(xhr.responseText);
+                callback();
+            }
+        };
+        xhr.open("GET", url, true);
+        xhr.send();
+
+        return this
+    }
+
     Modal.prototype.getContent = function() {
         return this.modalBoxContent
     }
