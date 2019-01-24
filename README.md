@@ -1,9 +1,6 @@
 
 ![Logo Tingle](logo.png)
 
-# Forked by Wokine
-added Xhr support
-
 ## Documentation
 
 Documentation and demo can be found here:
