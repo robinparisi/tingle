@@ -23,7 +23,7 @@
   opacity: 0;
   user-select: none;
   cursor: pointer;
-  transition: transform .2s ease;
+  transition: visibility .2s ease, opacity .2s ease;
 }
 
 /* confirm and alerts

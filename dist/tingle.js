@@ -395,7 +395,7 @@
     function _bindEvents() {
 
         this._events = {
-            clickCloseBtn: this.close.bind(this),
+            clickCloseBtn: this.close.bind(this, false),
             clickOverlay: _handleClickOutside.bind(this),
             resize: this.checkOverflow.bind(this),
             keyboardNav: _handleKeyboardNav.bind(this)
