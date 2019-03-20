@@ -151,7 +151,10 @@
         //  before close
         if (typeof this.opts.beforeClose === 'function') {
             var close = this.opts.beforeClose.call(this)
-            if (!close) return
+            if (!close) {
+                this._busy(false)
+                return
+            }
         }
 
         document.body.classList.remove('tingle-enabled')
