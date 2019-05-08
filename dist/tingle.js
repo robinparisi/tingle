@@ -1,11 +1,11 @@
-/*!
+/* !
 * tingle.js
 * @author  robin_parisi
 * @version 0.14.0
 * @url
 */
 
-/*global define,module*/
+/* global define,module*/
 (function(root, factory) {
     if (typeof define === 'function' && define.amd) {
         define(factory)
@@ -50,7 +50,7 @@
 
         _build.call(this)
         _bindEvents.call(this)
-
+        
         // insert modal in dom
         document.body.insertBefore(this.modal, document.body.firstChild)
 
@@ -151,7 +151,10 @@
         //  before close
         if (typeof this.opts.beforeClose === 'function') {
             var close = this.opts.beforeClose.call(this)
-            if (!close) return
+            if (!close) {
+                this._busy(false)
+                return
+            }
         }
 
         document.body.classList.remove('tingle-enabled')
@@ -160,8 +163,8 @@
 
         this.modal.classList.remove('tingle-modal--visible')
 
-        //Using similar setup as onOpen
-        //Reference to the Modal that's created
+        // using similar setup as onOpen
+        // reference to the Modal that's created
         var self = this
 
         if (force) {
@@ -171,7 +174,7 @@
             }
             self._busy(false)
         } else if (transitionEvent) {
-            //Track when transition is happening then run onClose on complete
+            // track when transition is happening then run onClose on complete
             this.modal.addEventListener(transitionEvent, function handler() {
                 // detach event after transition end (so it doesn't fire multiple onClose)
                 self.modal.removeEventListener(transitionEvent, handler, false)
@@ -306,8 +309,8 @@
                 this.modal.classList.remove('tingle-modal--overflow')
             }
 
-            // TODO: remove offset
-            //_offset.call(this);
+            // tODO: remove offset
+            // _offset.call(this);
             if (!this.isOverflow() && this.opts.stickyFooter) {
                 this.setStickyFooter(false)
             } else if (this.isOverflow() && this.opts.stickyFooter) {
@@ -322,8 +325,12 @@
     /* == private methods */
     /* ----------------------------------------------------------- */
 
+    function closeIcon() {
+        return '<svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M.3 9.7c.2.2.4.3.7.3.3 0 .5-.1.7-.3L5 6.4l3.3 3.3c.2.2.5.3.7.3.2 0 .5-.1.7-.3.4-.4.4-1 0-1.4L6.4 5l3.3-3.3c.4-.4.4-1 0-1.4-.4-.4-1-.4-1.4 0L5 3.6 1.7.3C1.3-.1.7-.1.3.3c-.4.4-.4 1 0 1.4L3.6 5 .3 8.3c-.4.4-.4 1 0 1.4z" fill="#000" fill-rule="nonzero"/></svg>'
+    }
+
     function _recalculateFooterPosition() {
-        if (!this.modalBoxFooter) {
+        if (!this.modalBoxFooter) { 
             return
         }
         this.modalBoxFooter.style.width = this.modalBox.clientWidth + 'px'
@@ -358,7 +365,7 @@
 
             this.modalCloseBtnIcon = document.createElement('span')
             this.modalCloseBtnIcon.classList.add('tingle-modal__closeIcon')
-            this.modalCloseBtnIcon.innerHTML = '×'
+            this.modalCloseBtnIcon.innerHTML = closeIcon()
 
             this.modalCloseBtnLabel = document.createElement('span')
             this.modalCloseBtnLabel.classList.add('tingle-modal__closeLabel')

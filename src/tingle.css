@@ -46,20 +46,20 @@
 
 .tingle-modal__close {
   position: fixed;
-  top: 10px;
-  right: 28px;
+  top: 2rem;
+  right: 2rem;
   z-index: 1000;
   padding: 0;
-  width: 5rem;
-  height: 5rem;
+  width: 2rem;
+  height: 2rem;
   border: none;
   background-color: transparent;
-  color: #f0f0f0;
-  font-size: 6rem;
-  font-family: monospace;
-  line-height: 1;
+  color: #fff;
   cursor: pointer;
-  transition: color .3s ease;
+}
+
+.tingle-modal__close svg * {
+  fill: currentColor;
 }
 
 .tingle-modal__closeLabel {
