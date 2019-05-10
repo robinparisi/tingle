@@ -20,7 +20,6 @@
     /* == modal */
     /* ----------------------------------------------------------- */
 
-    var transitionEvent = whichTransitionEvent()
     var isBusy = false
 
     function Modal(options) {
@@ -120,23 +119,13 @@
         // show modal
         this.modal.classList.add('tingle-modal--visible')
 
-        if (transitionEvent) {
-            this.modal.addEventListener(transitionEvent, function handler() {
-                if (typeof self.opts.onOpen === 'function') {
-                    self.opts.onOpen.call(self)
-                }
-
-                // detach event after transition end (so it doesn't fire multiple onOpen)
-                self.modal.removeEventListener(transitionEvent, handler, false)
-                self._busy(false)
-            }, false)
-        } else {
-            if (typeof self.opts.onOpen === 'function') {
-                self.opts.onOpen.call(self)
-            }
-            self._busy(false)
+        // onOpen callback
+        if (typeof self.opts.onOpen === 'function') {
+            self.opts.onOpen.call(self)
         }
 
+        self._busy(false)
+        
         // check if modal is bigger than screen height
         this.checkOverflow()
 
@@ -164,39 +153,18 @@
         this.modal.classList.remove('tingle-modal--visible')
 
         // using similar setup as onOpen
-        // reference to the Modal that's created
         var self = this
 
-        if (force) {
-            self.modal.style.display = 'none'
-            if (typeof self.opts.onClose === 'function') {
-                self.opts.onClose.call(this)
-            }
-            self._busy(false)
-        } else if (transitionEvent) {
-            // track when transition is happening then run onClose on complete
-            this.modal.addEventListener(transitionEvent, function handler() {
-                // detach event after transition end (so it doesn't fire multiple onClose)
-                self.modal.removeEventListener(transitionEvent, handler, false)
+        self.modal.style.display = 'none'
 
-                self.modal.style.display = 'none'
-
-                // on close callback
-                if (typeof self.opts.onClose === 'function') {
-                    self.opts.onClose.call(this)
-                }
-
-                self._busy(false)
-
-            }, false)
-        } else {
-            self.modal.style.display = 'none'
-            // on close callback
-            if (typeof self.opts.onClose === 'function') {
-                self.opts.onClose.call(this)
-            }
-            self._busy(false)
+        // onClose callback
+        if (typeof self.opts.onClose === 'function') {
+            self.opts.onClose.call(this)
         }
+
+        // release modal
+        self._busy(false)
+        
     }
 
     Modal.prototype.setContent = function(content) {
@@ -447,18 +415,6 @@
     }
 
     /* ----------------------------------------------------------- */
-    /* == confirm */
-    /* ----------------------------------------------------------- */
-
-    // coming soon
-
-    /* ----------------------------------------------------------- */
-    /* == alert */
-    /* ----------------------------------------------------------- */
-
-    // coming soon
-
-    /* ----------------------------------------------------------- */
     /* == helpers */
     /* ----------------------------------------------------------- */
 
@@ -471,23 +427,6 @@
             }
         }
         return arguments[0]
-    }
-
-    function whichTransitionEvent() {
-        var t
-        var el = document.createElement('tingle-test-transition')
-        var transitions = {
-            'transition': 'transitionend',
-            'OTransition': 'oTransitionEnd',
-            'MozTransition': 'transitionend',
-            'WebkitTransition': 'webkitTransitionEnd'
-        }
-
-        for (t in transitions) {
-            if (el.style[t] !== undefined) {
-                return transitions[t]
-            }
-        }
     }
 
     /* ----------------------------------------------------------- */

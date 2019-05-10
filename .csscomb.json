@@ -214,6 +214,7 @@
           "animation-delay",
           "animation-iteration-count",
           "animation-direction",
+          "will-change",
           "pointer-events",
           "unicode-bidi",
           "direction",

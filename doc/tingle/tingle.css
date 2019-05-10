@@ -22,14 +22,13 @@
   align-items: center;
   overflow: hidden;
   -webkit-overflow-scrolling: touch;
-  background: rgba(0, 0, 0, .8);
+  background: rgba(0, 0, 0, .85);
   opacity: 0;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   cursor: pointer;
-  transition: transform .2s ease;
 }
 
 /* confirm and alerts
@@ -87,9 +86,7 @@
   background: #fff;
   opacity: 1;
   cursor: auto;
-  transition: transform .3s cubic-bezier(.175, .885, .32, 1.275);
-  -ms-transform: scale(.8);
-  transform: scale(.8);
+  will-change: transform, opacity;
 }
 
 .tingle-modal-box__content {
@@ -143,8 +140,7 @@
 }
 
 .tingle-modal--visible .tingle-modal-box {
-  -ms-transform: scale(1);
-  transform: scale(1);
+  animation: scale .2s cubic-bezier(.68, -.55, .265, 1.55) forwards;
 }
 
 .tingle-modal--overflow {
@@ -271,5 +267,19 @@
 
   .tingle-enabled .tingle-content-wrapper {
     filter: none;
+  }
+}
+
+/* animations
+-------------------------------------------------------------- */
+
+@keyframes scale {
+  0% {
+    opacity: 0;
+    transform: scale(.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }
