@@ -16,14 +16,19 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "browser-sync": "^2.18.5",
-    "eslint": "^5.11.1",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^3.0.2",
-    "gulp-clean-css": "^2.3.2",
+    "browser-sync": "^2.26.7",
+    "eslint": "^6.6.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-clean-css": "^4.2.0",
     "gulp-gh-pages": "^0.5.2",
     "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^2.0.0"
+    "gulp-uglify": "^3.0.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

@@ -1,91 +1,88 @@
 /* eslint-env node */
 
-var gulp          = require('gulp')
-var browserSync   = require('browser-sync')
-var autoprefixer  = require('gulp-autoprefixer')
-var uglify        = require('gulp-uglify')
-var ghPages       = require('gulp-gh-pages')
-var rename        = require('gulp-rename')
-var reload        = browserSync.reload
-var cleanCSS      = require('gulp-clean-css')
+const gulp = require('gulp')
+const browserSync = require('browser-sync')
+const autoprefixer = require('gulp-autoprefixer')
+const uglify = require('gulp-uglify')
+const ghPages = require('gulp-gh-pages')
+const rename = require('gulp-rename')
+const reload = browserSync.reload
+const cleanCSS = require('gulp-clean-css')
 
 /* config
 ---------------------------------------------------- */
 
 /**
- * CSS build
+ * css build
  */
-gulp.task('css', function () {
-    return gulp.src('src/tingle.css')
-        .pipe(autoprefixer({
-            browsers: ['> 1%', 'last 3 versions'],
-            cascade: false
-        }))
-        .pipe(gulp.dest('dist'))
-        .pipe(reload({stream:true}))
-})
+function css () {
+  return gulp.src('src/tingle.css')
+    .pipe(autoprefixer({
+      cascade: false
+    }))
+    .pipe(gulp.dest('dist'))
+    .pipe(reload({ stream: true }))
+}
 
 /**
- * CSS build + min
+ * css build + min
  */
-gulp.task('css-min', function () {
-    return gulp.src('src/tingle.css')
-        .pipe(autoprefixer({
-            browsers: ['> 1%', 'last 3 versions'],
-            cascade: false
-        }))
-        .pipe(cleanCSS())
-        .pipe(rename('tingle.min.css'))
-        .pipe(gulp.dest('dist'))
-        .pipe(reload({stream:true}))
-})
+function cssMin () {
+  return gulp.src('src/tingle.css')
+    .pipe(autoprefixer({
+      cascade: false
+    }))
+    .pipe(cleanCSS())
+    .pipe(rename('tingle.min.css'))
+    .pipe(gulp.dest('dist'))
+    .pipe(reload({ stream: true }))
+}
 
 /**
-* JS build
+* js build
 */
-gulp.task('js', function() {
-    return gulp.src('src/tingle.js')
-        .pipe(gulp.dest('dist'))
-})
+function js () {
+  return gulp.src('src/tingle.js')
+    .pipe(gulp.dest('dist'))
+}
 
 /**
-* JS build + min
+* js build + min
 */
-gulp.task('js-min', function() {
-    return gulp.src('src/tingle.js')
-        .pipe(uglify({
-            mangle: true
-        }))
-        .pipe(rename('tingle.min.js'))
-        .pipe(gulp.dest('dist'))
-})
+function jsMin () {
+  return gulp.src('src/tingle.js')
+    .pipe(uglify({
+      mangle: true
+    }))
+    .pipe(rename('tingle.min.js'))
+    .pipe(gulp.dest('dist'))
+}
 
 /**
-* Deploy documentation to Github
+* deploy documentation to Github
 */
-gulp.task('deploy', function() {
-    return gulp.src('./doc/**/*')
-        .pipe(ghPages())
-})
+function deploy () {
+  return gulp.src('./doc/**/*')
+    .pipe(ghPages())
+}
 
 /**
- * Copy sources to doc folder
+ * copy sources to doc folder
  */
-gulp.task('copy', ['css', 'css-min', 'js', 'js-min'], function () {
-    return gulp.src(['dist/**/*'])
-        .pipe(gulp.dest('doc/tingle'))
-})
+function copy () {
+  return gulp.src(['dist/**/*'])
+    .pipe(gulp.dest('doc/tingle'))
+}
 
-gulp.task('serve', function() {
+function watch () {
+  browserSync.init({
+    server: './doc'
+  })
 
-    browserSync.init({
-        server: './doc'
-    })
+  gulp.watch('src/*.js', gulp.parallel(js, jsMin, copy))
+  gulp.watch('src/*.css', gulp.parallel(css, cssMin, copy))
+}
 
-    gulp.watch('src/**', ['copy'])
-})
-
-
-
-gulp.task('doc', ['copy', 'deploy'])
-gulp.task('default', ['css', 'css-min', 'js', 'js-min'])
+exports.default = gulp.parallel(css, cssMin, js, jsMin)
+exports.doc = gulp.series(exports.default, copy, deploy)
+exports.watch = watch
