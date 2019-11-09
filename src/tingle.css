@@ -246,14 +246,14 @@
 }
 
 @supports (backdrop-filter: blur(12px)) {
-  .tingle-modal {
-    backdrop-filter: blur(20px);
-  }
-
-  @media (max-width : 540px) {
-    .tingle-modal {
-      backdrop-filter: blur(8px);
-    }
+  .tingle-modal:before {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    content: "";
+    backdrop-filter: blur(18px);
   }
 
   .tingle-enabled .tingle-content-wrapper {

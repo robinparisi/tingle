@@ -191,6 +191,7 @@
           "-webkit-filter",
           "-ms-filter",
           "filter",
+          "backdrop-filter",
           "resize",
           "user-select",
           "cursor",
