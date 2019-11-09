@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------- */
-/* == tingle v0.15.1 */
+/* == tingle v0.15.2 */
 /* ----------------------------------------------------------- */
 
 .tingle-modal * {
@@ -21,10 +21,11 @@
   -webkit-overflow-scrolling: touch;
   background: rgba(0, 0, 0, .85);
   opacity: 0;
-  -webkit-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   cursor: pointer;
+
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 /* confirm and alerts
@@ -255,8 +256,9 @@
     bottom: 0;
     left: 0;
     content: "";
-    -webkit-backdrop-filter: blur(18px);
     backdrop-filter: blur(18px);
+
+    -webkit-backdrop-filter: blur(18px);
   }
 
   .tingle-enabled .tingle-content-wrapper {
