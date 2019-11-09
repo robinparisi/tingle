@@ -79,8 +79,8 @@ function watch () {
     server: './doc'
   })
 
-  gulp.watch('src/*.js', gulp.parallel(js, jsMin, copy))
-  gulp.watch('src/*.css', gulp.parallel(css, cssMin, copy))
+  gulp.watch('src/*.js', gulp.series(gulp.parallel(js, jsMin), copy))
+  gulp.watch('src/*.css', gulp.series(gulp.parallel(css, cssMin), copy))
 }
 
 exports.default = gulp.parallel(css, cssMin, js, jsMin)
