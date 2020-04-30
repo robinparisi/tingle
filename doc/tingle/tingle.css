@@ -21,11 +21,10 @@
   -webkit-overflow-scrolling: touch;
   background: rgba(0, 0, 0, .85);
   opacity: 0;
-  user-select: none;
-  cursor: pointer;
-
   -webkit-user-select: none;
   -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
 }
 
 /* confirm and alerts
@@ -48,8 +47,8 @@
 
 .tingle-modal__close {
   position: fixed;
-  top: 2rem;
-  right: 2rem;
+  top: 2.5rem;
+  right: 2.5rem;
   z-index: 1000;
   padding: 0;
   width: 2rem;
@@ -256,9 +255,9 @@
     bottom: 0;
     left: 0;
     content: "";
-    backdrop-filter: blur(18px);
-
     -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+    pointer-events: none;
   }
 
   .tingle-enabled .tingle-content-wrapper {

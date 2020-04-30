@@ -45,8 +45,8 @@
 
 .tingle-modal__close {
   position: fixed;
-  top: 2rem;
-  right: 2rem;
+  top: 2.5rem;
+  right: 2.5rem;
   z-index: 1000;
   padding: 0;
   width: 2rem;
@@ -254,6 +254,7 @@
     left: 0;
     content: "";
     backdrop-filter: blur(18px);
+    pointer-events: none;
   }
 
   .tingle-enabled .tingle-content-wrapper {

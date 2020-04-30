@@ -389,6 +389,14 @@
   }
 
   function _handleClickOutside (event) {
+    // on macOS, click on scrollbar (hidden mode) will trigger close event so we need to bypass this behavior by detecting scrollbar mode
+    var scrollbarWidth = this.modal.offsetWidth - this.modal.clientWidth
+    var clickedOnScrollbar = event.clientX >= this.modal.offsetWidth - 15 // 15px is macOS scrollbar default width
+    var isScrollable = this.modal.scrollHeight !== this.modal.offsetHeight
+    if (navigator.platform === 'MacIntel' && scrollbarWidth === 0 && clickedOnScrollbar && isScrollable) {
+      return
+    }
+
     // if click is outside the modal
     if (this.opts.closeMethods.indexOf('overlay') !== -1 && !_findAncestor(event.target, 'tingle-modal') &&
         event.clientX < this.modal.clientWidth) {
