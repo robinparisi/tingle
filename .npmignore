@@ -1,5 +1,11 @@
 .publish
+build
 doc
 logo.png
 tingle.gif
 bower.json
+CNAME
+.browserslistrc
+.csscomb.json
+.eslintrc.js
+bs-config.js

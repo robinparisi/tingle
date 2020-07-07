@@ -16,29 +16,46 @@
   ],
   "dependencies": {},
   "devDependencies": {
+    "@babel/cli": "^7.10.4",
+    "@babel/core": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "autoprefixer": "^9.8.4",
+    "babel-preset-es2015-rollup": "^3.0.0",
     "browser-sync": "^2.26.7",
-    "eslint": "^6.8.0",
+    "clean-css-cli": "^4.3.0",
+    "concurrently": "^5.2.0",
+    "eslint": "^7.4.0",
     "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^7.0.1",
-    "gulp-clean-css": "^4.3.0",
-    "gulp-gh-pages": "^0.5.2",
-    "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^3.0.2"
+    "globby": "^11.0.1",
+    "onchange": "^7.0.2",
+    "postcss-cli": "^7.1.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.20.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-uglify": "^6.0.4",
+    "vinyl-source-stream": "^2.0.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "./node_modules/.bin/eslint src/**.js"
+    "clean": "rimraf dist",
+    "prefix": "postcss src/tingle.css --use=autoprefixer --map=false --output=dist/tingle.css",
+    "minify": "cleancss --level=1 --source-map --source-map-inline-sources --output dist/tingle.min.css dist/tingle.css",
+    "css": "npm run prefix && npm run minify",
+    "build:umd": "rollup --config build/umd.js && rollup --config build/umd.min.js",
+    "build:esm": "rollup --config build/esm.js",
+    "build": "npm run clean && npm run build:umd && npm run build:esm && npm run css",
+    "watch:js": "onchange 'src/**/*.js' -- npm run build:umd",
+    "watch:css": "onchange 'src/**/*.css' -- npm run css",
+    "dev": "npm run build & browser-sync start --config bs-config.js & npm run watch:js & npm run watch:css"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/robinparisi/tingle.git"
   },
-  "author": "robinparisi",
+  "author": "Robin Parisi",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/robinparisi/tingle/issues"

@@ -22,8 +22,8 @@
   background: rgba(0, 0, 0, .85);
   opacity: 0;
   -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   cursor: pointer;
 }
 
@@ -256,7 +256,7 @@
     left: 0;
     content: "";
     -webkit-backdrop-filter: blur(18px);
-    backdrop-filter: blur(18px);
+            backdrop-filter: blur(18px);
     pointer-events: none;
   }
 
@@ -278,3 +278,5 @@
     transform: scale(1);
   }
 }
+
+/*# sourceMappingURL=tingle.css.map */

@@ -8,7 +8,7 @@
     <link href="https://tingle.robinparisi.com/" rel= "canonical" />
     <link rel="stylesheet" href="vendor/highlight/styles/monokai_sublime.css" media="all">
     <link rel="stylesheet" href="demo.css" media="all">
-    <link rel="stylesheet" href="tingle/tingle.css" media="all">
+    <link rel="stylesheet" href="tingle.css" media="all">
     <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
     <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="android-chrome-192x192.png" sizes="192x192">
@@ -83,7 +83,7 @@
             <h2 data-bullet="3" class="title">Use</h2>
             <pre class="javascript"><code>
 // instanciate new modal
-var modal = new tingle.modal({
+var modal = new Tingle({
     footer: true,
     stickyFooter: false,
     closeMethods: ['overlay', 'button', 'escape'],
@@ -306,14 +306,14 @@ modal.close();
 
     <!-- /Tingle big content -->
 
-    <script src="tingle/tingle.js"></script>
+    <script src="tingle.js"></script>
     <script type="text/javascript">
 
     /**
     * Modal Tiny no footer
     */
 
-    var modalTinyNoFooter = new tingle.modal({
+    var modalTinyNoFooter = new Tingle({
         onClose: function() {
             console.log('close');
         },
@@ -339,7 +339,7 @@ modal.close();
     * Modal tiny with btn
     */
 
-    var modalTinyBtn = new tingle.modal({
+    var modalTinyBtn = new Tingle({
         footer: true
     });
     var btn2 = document.querySelector('.js-tingle-modal-2');
@@ -366,7 +366,7 @@ modal.close();
     * Modal big
     */
 
-    var modalBigContent = new tingle.modal();
+    var modalBigContent = new Tingle();
     var btn3 = document.querySelector('.js-tingle-modal-3');
     btn3.addEventListener('click', function(){
         modalBigContent.open();
@@ -376,7 +376,7 @@ modal.close();
     /**
     * Modal big with sticky footer
     */
-    var modalStickyFooter = new tingle.modal({
+    var modalStickyFooter = new Tingle({
         footer: true,
         stickyFooter: true
     });
@@ -400,7 +400,7 @@ modal.close();
     *   Force close button
     */
 
-    var modalButtonOnly = new tingle.modal({
+    var modalButtonOnly = new Tingle({
         closeMethods: [],
         footer: true,
         stickyFooter: true
@@ -424,7 +424,7 @@ modal.close();
     */
     var btn6 = document.querySelector('.js-tingle-modal-6');
     btn6.addEventListener('click', function(){
-        var modalSurprise = new tingle.modal({
+        var modalSurprise = new Tingle({
             onClose: function(){
                 modalSurprise.destroy();
             }
