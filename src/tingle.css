@@ -21,7 +21,6 @@
   -webkit-overflow-scrolling: touch;
   background: rgba(0, 0, 0, .85);
   opacity: 0;
-  user-select: none;
   cursor: pointer;
 }
 
