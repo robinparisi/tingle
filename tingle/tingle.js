@@ -107,6 +107,9 @@
       this.modal.style.removeAttribute('display')
     }
 
+    // prevent text selection when opening multiple times
+    document.getSelection().removeAllRanges()
+
     // prevent double scroll
     this._scrollPosition = window.pageYOffset
     document.body.classList.add('tingle-enabled')
