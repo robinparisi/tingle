@@ -215,8 +215,8 @@
         this.modal.appendChild(this.modalBoxFooter)
         this.modalBoxFooter.classList.add('tingle-modal-box__footer--sticky')
         _recalculateFooterPosition.call(this)
-        this.modalBoxContent.style['padding-bottom'] = this.modalBoxFooter.clientHeight + 20 + 'px'
       }
+      this.modalBoxContent.style['padding-bottom'] = this.modalBoxFooter.clientHeight + 20 + 'px'
     } else if (this.modalBoxFooter) {
       if (!this.modalBox.contains(this.modalBoxFooter)) {
         this.modal.removeChild(this.modalBoxFooter)
@@ -273,8 +273,6 @@
         this.modal.classList.remove('tingle-modal--overflow')
       }
 
-      // tODO: remove offset
-      // _offset.call(this);
       if (!this.isOverflow() && this.opts.stickyFooter) {
         this.setStickyFooter(false)
       } else if (this.isOverflow() && this.opts.stickyFooter) {
