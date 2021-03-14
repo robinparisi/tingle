@@ -27,6 +27,7 @@
     "gulp-autoprefixer": "^7.0.1",
     "gulp-clean-css": "^4.3.0",
     "gulp-gh-pages": "^0.5.2",
+    "gulp-header": "^2.0.9",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^3.0.2"
   },

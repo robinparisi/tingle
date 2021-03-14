@@ -1,11 +1,4 @@
-/* !
-* tingle.js
-* @author  robin_parisi
-* @version 0.15.2
-* @url
-*/
-
-/* global define,module */
+/* global define, module */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
     define(factory)

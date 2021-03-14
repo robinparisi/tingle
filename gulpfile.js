@@ -1,5 +1,3 @@
-/* eslint-env node */
-
 const gulp = require('gulp')
 const browserSync = require('browser-sync')
 const autoprefixer = require('gulp-autoprefixer')
@@ -8,6 +6,17 @@ const ghPages = require('gulp-gh-pages')
 const rename = require('gulp-rename')
 const reload = browserSync.reload
 const cleanCSS = require('gulp-clean-css')
+const header = require('gulp-header')
+
+var pkg = require('./package.json')
+var banner = ['/**',
+  ' * <%= pkg.name %> - <%= pkg.description %>',
+  ' * @version v<%= pkg.version %>',
+  ' * @link <%= pkg.homepage %>',
+  ' * @license <%= pkg.license %>',
+  ' */',
+  ' ',
+  ''].join('\n')
 
 /* config
 ---------------------------------------------------- */
@@ -20,6 +29,7 @@ function css () {
     .pipe(autoprefixer({
       cascade: false
     }))
+    .pipe(header(banner, { pkg: pkg }))
     .pipe(gulp.dest('dist'))
     .pipe(reload({ stream: true }))
 }
@@ -43,6 +53,7 @@ function cssMin () {
 */
 function js () {
   return gulp.src('src/tingle.js')
+    .pipe(header(banner, { pkg: pkg }))
     .pipe(gulp.dest('dist'))
 }
 
