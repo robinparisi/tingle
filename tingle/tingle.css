@@ -1,7 +1,10 @@
-/* ----------------------------------------------------------- */
-/* == tingle v0.15.2 */
-/* ----------------------------------------------------------- */
-
+/**
+ * tingle.js - A simple modal plugin written in pure JavaScript
+ * @version v0.16.0
+ * @link https://github.com/robinparisi/tingle#readme
+ * @license MIT
+ */
+ 
 .tingle-modal * {
   box-sizing: border-box;
 }

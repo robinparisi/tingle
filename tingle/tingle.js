@@ -1,11 +1,11 @@
-/* !
-* tingle.js
-* @author  robin_parisi
-* @version 0.15.2
-* @url
-*/
-
-/* global define,module */
+/**
+ * tingle.js - A simple modal plugin written in pure JavaScript
+ * @version v0.16.0
+ * @link https://github.com/robinparisi/tingle#readme
+ * @license MIT
+ */
+ 
+/* global define, module */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
     define(factory)
