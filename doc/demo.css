@@ -160,7 +160,7 @@ body {
 a,
 a:hover,
 a:visited {
-  color: #39df7f;
+  color: #33ca83;
   text-decoration: underline;
 }
 
@@ -176,7 +176,7 @@ h3 {
 .container {
   margin-right: auto;
   margin-left: auto;
-  width: 70%;
+  max-width: 80rem;
 }
 
 .header {
@@ -184,7 +184,7 @@ h3 {
   margin-bottom: 60px;
   padding: 30px 0 60px 0;
   height: 220px;
-  background-color: #39df7f;
+  background-color: #33ca83;
   color: #fff;
   text-align: center;
 }
@@ -223,8 +223,8 @@ h3 {
   position: relative;
   margin-bottom: 30px;
   margin-left: 30px;
-  border-bottom: 2px solid #39df7f;
-  color: #39df7f;
+  border-bottom: 2px solid #33ca83;
+  color: #33ca83;
   line-height: 1.5;
 }
 
@@ -235,7 +235,7 @@ h3 {
   left: -50px;
   width: 35px;
   height: 35px;
-  border: 2px solid #39df7f;
+  border: 2px solid #33ca83;
   border-radius: 50%;
   content: attr(data-bullet);
   text-align: center;
@@ -244,7 +244,7 @@ h3 {
 }
 
 h3 {
-  color: #39df7f;
+  color: #33ca83;
 }
 
 .btn {
@@ -252,11 +252,11 @@ h3 {
   padding: .5em 1.5em;
   outline: 0;
   border: 0;
-  border: 2px solid #39df7f;
+  border: 2px solid #33ca83;
   border-radius: 4px;
   background: none;
   box-shadow: none;
-  color: #39df7f;
+  color: #33ca83;
   text-align: center;
   text-decoration: none;
   font-weight: 400;
@@ -314,7 +314,7 @@ img {
 
 .methods th {
   padding: 10px;
-  background-color: #39df7f;
+  background-color: #33ca83;
   color: #fff;
   text-align: left;
 }
@@ -386,4 +386,11 @@ img {
   .title:before {
     display: none;
   }
+}
+
+/* modal
+-------------------------------------------------------------- */
+
+.tingle-modal-box {
+  max-width: 80rem;
 }

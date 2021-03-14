@@ -19,9 +19,16 @@
   align-items: center;
   overflow: hidden;
   -webkit-overflow-scrolling: touch;
-  background: rgba(0, 0, 0, .85);
+  background: rgba(0, 0, 0, .9);
   opacity: 0;
   cursor: pointer;
+}
+
+@supports ((-webkit-backdrop-filter: blur(12px)) or (backdrop-filter: blur(12px))) {
+  .tingle-modal {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
 }
 
 /* confirm and alerts
@@ -120,10 +127,6 @@
 
 .tingle-modal--visible .tingle-modal-box__footer {
   bottom: 0;
-}
-
-.tingle-enabled .tingle-content-wrapper {
-  filter: blur(8px);
 }
 
 .tingle-modal--visible {
@@ -241,24 +244,6 @@
     width: 1.6rem;
     vertical-align: middle;
     font-size: 0;
-  }
-}
-
-@supports ((-webkit-backdrop-filter: blur(12px)) or (backdrop-filter: blur(12px))) {
-  .tingle-modal:before {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    content: "";
-    -webkit-backdrop-filter: blur(18px);
-    backdrop-filter: blur(18px);
-    pointer-events: none;
-  }
-
-  .tingle-enabled .tingle-content-wrapper {
-    filter: none;
   }
 }
 
