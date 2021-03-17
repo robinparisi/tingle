@@ -49,6 +49,7 @@
         <p>Below you will find some examples for using tingle: </p>
 
         <button class="btn btn--primary btn-demo js-tingle-modal-1">A simple modal</button>
+        <button class="btn btn--primary btn-demo js-tingle-modal-1-2">A simple modal with custom close button</button>
         <button class="btn btn--secondary btn-demo js-tingle-modal-2">Need buttons?</button>
         <button class="btn btn--secondary btn-demo js-tingle-modal-3">Big content? No problem!</button>
         <button class="btn btn--secondary btn-demo js-tingle-modal-4">Stick to me!</button>
@@ -183,6 +184,11 @@ modal.close();
                 <td>closeLabel</td>
                 <td>string</td>
                 <td>Label which appears on the close button (mobile version)</td>
+            </tr>
+            <tr>
+                <td>closeIcon</td>
+                <td>string or element</td>
+                <td>Icon to override the default</td>
             </tr>
         </table>
         <h2 data-bullet="5" class="title">CSS</h2>
@@ -358,6 +364,33 @@ modal.close();
             modalTinyNoFooter.open();
         });
         modalTinyNoFooter.setContent(document.querySelector('.tingle-demo-tiny').innerHTML);
+
+        /**
+        * Modal Tiny no footer with custom close button.
+        */
+
+        var modalTinyCustomCloseIcon = new tingle.modal({
+            onClose: function () {
+                console.log('close');
+            },
+            onOpen: function () {
+                console.log('open');
+            },
+            beforeOpen: function () {
+                console.log('before open');
+            },
+            beforeClose: function () {
+                console.log('before close');
+                return true;
+            },
+            cssClass: ['class1', 'class2'],
+            closeIcon: '❌',
+        });
+        var btn = document.querySelector('.js-tingle-modal-1-2');
+        btn.addEventListener('click', function () {
+            modalTinyCustomCloseIcon.open();
+        });
+        modalTinyCustomCloseIcon.setContent(document.querySelector('.tingle-demo-tiny').innerHTML);
 
         /**
         * Modal tiny with btn
