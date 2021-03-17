@@ -31,7 +31,8 @@
       footer: false,
       cssClass: [],
       closeLabel: 'Close',
-      closeMethods: ['overlay', 'button', 'escape']
+      closeMethods: ['overlay', 'button', 'escape'],
+      closeIcon: null
     }
 
     // extends config
@@ -330,16 +331,20 @@
       this.modalCloseBtn.type = 'button'
       this.modalCloseBtn.classList.add('tingle-modal__close')
 
-      this.modalCloseBtnIcon = document.createElement('span')
-      this.modalCloseBtnIcon.classList.add('tingle-modal__closeIcon')
-      this.modalCloseBtnIcon.innerHTML = closeIcon()
+      if (!this.opts.closeIcon) {
+        this.modalCloseBtnIcon = document.createElement('span')
+        this.modalCloseBtnIcon.classList.add('tingle-modal__closeIcon')
+        this.modalCloseBtnIcon.innerHTML = closeIcon()
 
-      this.modalCloseBtnLabel = document.createElement('span')
-      this.modalCloseBtnLabel.classList.add('tingle-modal__closeLabel')
-      this.modalCloseBtnLabel.innerHTML = this.opts.closeLabel
+        this.modalCloseBtnLabel = document.createElement('span')
+        this.modalCloseBtnLabel.classList.add('tingle-modal__closeLabel')
+        this.modalCloseBtnLabel.innerHTML = this.opts.closeLabel
 
-      this.modalCloseBtn.appendChild(this.modalCloseBtnIcon)
-      this.modalCloseBtn.appendChild(this.modalCloseBtnLabel)
+        this.modalCloseBtn.appendChild(this.modalCloseBtnIcon)
+        this.modalCloseBtn.appendChild(this.modalCloseBtnLabel)
+      } else {
+        this.modalCloseBtn.innerHTML = this.opts.closeIcon
+      }
     }
 
     // modal
