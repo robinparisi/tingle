@@ -327,12 +327,16 @@
       this.modalCloseBtnIcon.classList.add('tingle-modal__closeIcon')
       this.modalCloseBtnIcon.innerHTML = closeIcon()
 
-      this.modalCloseBtnLabel = document.createElement('span')
-      this.modalCloseBtnLabel.classList.add('tingle-modal__closeLabel')
-      this.modalCloseBtnLabel.innerHTML = this.opts.closeLabel
-
       this.modalCloseBtn.appendChild(this.modalCloseBtnIcon)
-      this.modalCloseBtn.appendChild(this.modalCloseBtnLabel)
+      
+      if (this.opts.closeLabel !== '') {
+        this.modalCloseBtnLabel = document.createElement('span')
+        this.modalCloseBtnLabel.classList.add('tingle-modal__closeLabel')
+        this.modalCloseBtnLabel.innerHTML = this.opts.closeLabel
+        
+        this.modalCloseBtn.appendChild(this.modalCloseBtnLabel)
+      }
+
     }
 
     // modal
