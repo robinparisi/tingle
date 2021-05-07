@@ -143,10 +143,7 @@
 
     document.body.classList.remove('tingle-enabled')
     document.body.style.top = null
-    window.scrollTo({
-      top: this._scrollPosition,
-      behavior: 'instant'
-    })
+    window.scrollTo(0, this._scrollPosition)
 
     this.modal.classList.remove('tingle-modal--visible')
 
