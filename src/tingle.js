@@ -1,3 +1,4 @@
+// @ts-check
 /* global define, module */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
@@ -303,7 +304,7 @@
     this.modal = document.createElement('div')
     this.modal.classList.add('tingle-modal')
 
-    // remove cusor if no overlay close method
+    // remove cursor if no overlay close method
     if (this.opts.closeMethods.length === 0 || this.opts.closeMethods.indexOf('overlay') === -1) {
       this.modal.classList.add('tingle-modal--noOverlayClose')
     }
