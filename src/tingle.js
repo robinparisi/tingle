@@ -43,7 +43,7 @@
     _bindEvents.call(this)
 
     // insert modal in dom
-    document.body.appendChild(this.modal, document.body.firstChild)
+    document.body.appendChild(this.modal)
 
     if (this.opts.footer) {
       this.addFooter()
