@@ -44,6 +44,7 @@
             <li>Simple API</li>
             <li>No extra files to download</li>
             <li>Created with UX in mind</li>
+			<li>Custom preloader</li>
         </ul>
 
         <p>Below you will find some examples for using tingle: </p>
@@ -53,8 +54,8 @@
         <button class="btn btn--secondary btn-demo js-tingle-modal-3">Big content? No problem!</button>
         <button class="btn btn--secondary btn-demo js-tingle-modal-4">Stick to me!</button>
         <button class="btn btn--secondary btn-demo js-tingle-modal-5">Close with footer button only</button>
+		<button class="btn btn--secondary btn-demo js-tingle-modal-7">With preloader</button>
         <button class="btn btn--secondary btn-demo js-tingle-modal-6">?</button>
-		<button class="btn btn--secondary btn-demo js-tingle-modal-7">Show preloader</button>
 
         <h2 data-bullet="2" class="title">Installation</h2>
         <table class="methods">
@@ -256,6 +257,14 @@ modal.close();
                 <td>resize() <span class="tag tag--warning">deprecated</span></td>
                 <td>Deprecated since v0.8 and will be removed in v1.0</td>
             </tr>
+			<tr>
+                <td>showPreloader()</td>
+                <td>Show preloader</td>
+            </tr>
+			<tr>
+                <td>hidePreloader()</td>
+                <td>Hide preloader</td>
+            </tr>
         </table>
 
         <footer class="footer">
@@ -330,6 +339,34 @@ modal.close();
     <!-- /Tingle tiny content -->
 
     <!-- /Tingle big content -->
+
+	<!-- Custom preloader -->
+	<div class="tingle-preloader">
+		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: none repeat scroll 0% 0%; display: block;" width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+			<g transform="translate(50 50)">
+				<g transform="scale(0.7)">
+				<g transform="translate(-50 -50)">
+					<g>
+					<animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" values="0 50 50;360 50 50" keyTimes="0;1" dur="0.7575757575757576s"></animateTransform>
+					<path fill-opacity="0.8" fill="#6bf150" d="M50 50L50 0A50 50 0 0 1 100 50Z"></path>
+					</g>
+					<g>
+					<animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" values="0 50 50;360 50 50" keyTimes="0;1" dur="1.0101010101010102s"></animateTransform>
+					<path fill-opacity="0.8" fill="#f4d160" d="M50 50L50 0A50 50 0 0 1 100 50Z" transform="rotate(90 50 50)"></path>
+					</g>
+					<g>
+					<animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" values="0 50 50;360 50 50" keyTimes="0;1" dur="1.5151515151515151s"></animateTransform>
+					<path fill-opacity="0.8" fill="#43ed53" d="M50 50L50 0A50 50 0 0 1 100 50Z" transform="rotate(180 50 50)"></path>
+					</g>
+					<g>
+					<animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" values="0 50 50;360 50 50" keyTimes="0;1" dur="3.0303030303030303s"></animateTransform>
+					<path fill-opacity="0.8" fill="#55ffe8" d="M50 50L50 0A50 50 0 0 1 100 50Z" transform="rotate(270 50 50)"></path>
+					</g>
+				</g>
+				</g>
+			</g>
+		</svg>
+	</div>
 
     <script src="tingle/tingle.js"></script>
     <script type="text/javascript">
@@ -457,6 +494,27 @@ modal.close();
             modalSurprise.setContent('<iframe width="100%" height="400" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" frameborder="0" allowfullscreen></iframe>');
             modalSurprise.open();
         });
+
+		/**
+		 * Modal with preloader
+		 */
+
+		 var btn7 = document.querySelector('.js-tingle-modal-7');
+		 var modalWithPreloader = new tingle.modal ({
+			 //configure...
+		 });
+
+		 btn7.addEventListener ('click', function () {
+
+			 if (modalWithPreloader._isLoading ()) return;
+			 
+			modalWithPreloader.showPreloader ();
+
+			 setTimeout(function () {
+				 modalWithPreloader.setContent('I\'m popup with preloader!');
+				 modalWithPreloader.open ();
+			 }, 3000);
+		 });
 
     </script>
     <script type="text/javascript" src="vendor/highlight/highlight.pack.js"></script>

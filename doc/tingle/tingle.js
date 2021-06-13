@@ -5,6 +5,7 @@
  * @license MIT
  */
  
+// @ts-check
 /* global define, module */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
@@ -20,6 +21,11 @@
   /* ----------------------------------------------------------- */
 
   var isBusy = false
+  var isLoading = false
+
+  var elements = {
+    preloader: document.querySelector('.tingle-preloader')
+  }
 
   function Modal (options) {
     var defaults = {
@@ -50,13 +56,21 @@
     _bindEvents.call(this)
 
     // insert modal in dom
-    document.body.appendChild(this.modal, document.body.firstChild)
+    document.body.appendChild(this.modal)
 
     if (this.opts.footer) {
       this.addFooter()
     }
 
     return this
+  }
+
+  Modal.prototype._loading = function (_isLoading) {
+    isLoading = _isLoading
+  }
+
+  Modal.prototype._isLoading = function () {
+    return isLoading
   }
 
   Modal.prototype._busy = function (state) {
@@ -93,6 +107,9 @@
   Modal.prototype.open = function () {
     if (this._isBusy()) return
     this._busy(true)
+
+    // Reset loading flag
+    this.hidePreloader()
 
     var self = this
 
@@ -289,6 +306,22 @@
     }
   }
 
+  Modal.prototype.showPreloader = function () {
+    if (!this._isLoading()) {
+      this._loading(true)
+      if (elements.preloader) {
+        elements.preloader.classList.add('tingle-preloader--active')
+      }
+    }
+  }
+
+  Modal.prototype.hidePreloader = function () {
+    this._loading(false)
+    if (elements.preloader) {
+      elements.preloader.classList.remove('tingle-preloader--active')
+    }
+  }
+
   /* ----------------------------------------------------------- */
   /* == private methods */
   /* ----------------------------------------------------------- */
@@ -310,7 +343,7 @@
     this.modal = document.createElement('div')
     this.modal.classList.add('tingle-modal')
 
-    // remove cusor if no overlay close method
+    // remove cursor if no overlay close method
     if (this.opts.closeMethods.length === 0 || this.opts.closeMethods.indexOf('overlay') === -1) {
       this.modal.classList.add('tingle-modal--noOverlayClose')
     }

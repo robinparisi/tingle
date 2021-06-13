@@ -14,6 +14,11 @@
   /* ----------------------------------------------------------- */
 
   var isBusy = false
+  var isLoading = false
+
+  var elements = {
+    preloader: document.querySelector('.tingle-preloader')
+  }
 
   function Modal (options) {
     var defaults = {
@@ -53,6 +58,14 @@
     return this
   }
 
+  Modal.prototype._loading = function (_isLoading) {
+    isLoading = _isLoading
+  }
+
+  Modal.prototype._isLoading = function () {
+    return isLoading
+  }
+
   Modal.prototype._busy = function (state) {
     isBusy = state
   }
@@ -87,6 +100,9 @@
   Modal.prototype.open = function () {
     if (this._isBusy()) return
     this._busy(true)
+
+    // Reset loading flag
+    this.hidePreloader()
 
     var self = this
 
@@ -280,6 +296,22 @@
         _recalculateFooterPosition.call(this)
         this.setStickyFooter(true)
       }
+    }
+  }
+
+  Modal.prototype.showPreloader = function () {
+    if (!this._isLoading()) {
+      this._loading(true)
+      if (elements.preloader) {
+        elements.preloader.classList.add('tingle-preloader--active')
+      }
+    }
+  }
+
+  Modal.prototype.hidePreloader = function () {
+    this._loading(false)
+    if (elements.preloader) {
+      elements.preloader.classList.remove('tingle-preloader--active')
     }
   }
 
