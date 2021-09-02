@@ -8,6 +8,7 @@
     root.tingle = factory()
   }
 }(this, function () {
+
   /* ----------------------------------------------------------- */
   /* == modal */
   /* ----------------------------------------------------------- */
@@ -29,6 +30,8 @@
 
     // extends config
     this.opts = extend({}, defaults, options)
+
+    this._reasonForClose = this.tingleCloseNone();
 
     // init modal
     this.init()
@@ -79,6 +82,22 @@
     this.modal = null
   }
 
+  Modal.prototype.reasonForClose = function () {
+    return this._reasonForClose
+  }
+  Modal.prototype.tingleCloseNone = function () {
+    return(0);
+  }
+  Modal.prototype.tingleCloseKeyboard = function () {
+    return(1);
+  }
+  Modal.prototype.tingleCloseButton = function () {
+    return(2);
+  }
+  Modal.prototype.tingleCloseClickOutside = function () {
+    return(3);
+  }
+
   Modal.prototype.isOpen = function () {
     return !!this.modal.classList.contains('tingle-modal--visible')
   }
@@ -124,6 +143,7 @@
     // check if modal is bigger than screen height
     this.checkOverflow()
 
+    this._reasonForClose = this.tingleCloseNone();
     return this
   }
 
@@ -138,6 +158,9 @@
       if (!close) {
         this._busy(false)
         return
+      }
+      if (this._reasonForClose == this.tingleCloseNone()) {
+        this._reasonForClose = this.tingleCloseButton();
       }
     }
 
@@ -378,6 +401,7 @@
   function _handleKeyboardNav (event) {
     // escape key
     if (this.opts.closeMethods.indexOf('escape') !== -1 && event.which === 27 && this.isOpen()) {
+      this._reasonForClose = this.tingleCloseKeyboard();
       this.close()
     }
   }
@@ -394,6 +418,7 @@
     // if click is outside the modal
     if (this.opts.closeMethods.indexOf('overlay') !== -1 && !_findAncestor(event.target, 'tingle-modal') &&
         event.clientX < this.modal.clientWidth) {
+      this._reasonForClose = this.tingleCloseClickOutside();
       this.close()
     }
   }
