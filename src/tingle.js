@@ -231,12 +231,15 @@
     return this
   }
 
-  Modal.prototype.addFooterBtn = function (label, cssClass, callback) {
+  Modal.prototype.addFooterBtn = function (label, cssClass, callback, id) {
     var btn = document.createElement('button')
 
     // set label
     btn.innerHTML = label
 
+    // set id
+    btn.id = id
+    
     // bind callback
     btn.addEventListener('click', callback)
 
@@ -252,6 +255,14 @@
     return btn
   }
 
+  Modal.prototype.removeFooterBtn = function (id) {
+    var btn = document.getElementById(id);
+
+    this.modalBoxFooter.removeChild(btn)
+
+    return true
+  }
+  
   Modal.prototype.resize = function () {
     // eslint-disable-next-line no-console
     console.warn('Resize is deprecated and will be removed in version 1.0')
